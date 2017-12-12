@@ -25,11 +25,11 @@ namespace Xenon___Allianz.Models
             users.Add(new UserModel() { Username = "alex", Password = "pass", Type = "Colaborateur", Mail = "" });
             users.Add(new UserModel() { Username = "gaetan", Password = "pass", Type = "Colaborateur", Mail = "" });
             users.Add(new UserModel() { Username = "admin", Password = "pass" });
-            /*
+            
             wallets.Add(new WalletModel() { Service = "Health" });
             wallets.Add(new WalletModel() { Service = "Defense" });
             wallets.Add(new WalletModel() { Service = "Sport" });
-
+            /*
             contracts.Add(new ContractModel() { Start = DateTime.Now, End = DateTime.Now, Couverture = 15, Negociable = true, Prime = 15, Company = "Renault", Wallet = "Health" });
             contracts.Add(new ContractModel() { Start = DateTime.Now, End = DateTime.Now, Couverture = 15, Negociable = true, Company = "CardiWeb", Wallet = "Health" });
             contracts.Add(new ContractModel() { Start = DateTime.Now, End = DateTime.Now, Couverture = 15, Negociable = true, Company = "Avanade", Wallet = "Health" });
