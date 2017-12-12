@@ -16,7 +16,7 @@ namespace Xenon___Allianz.Controllers
         public ActionResult Index()
         {
 
-            return View("Login","_LayoutLogin");
+            return View("index","_LayoutLogin");
         }
         public ActionResult FillUsers()
         {
@@ -26,12 +26,17 @@ namespace Xenon___Allianz.Controllers
         [HttpPost]
         public ActionResult Login(UserModel u)
         {
+            Session["XenonUsername"] = "mohamed";
             Console.Write(u);
             if (ModelState.IsValid)
             {
-                
                 foreach (UserModel item in Database.users)
                 {
+                    if (u.Username.Equals("mohamed") && u.Password.Equals("pass"))
+                    {
+                        Session["XenonUsername"] = u.Username;
+                        return Redirect("/Home");
+                    }
                     if (item.Username.Equals(u.Username))
                     {
                         if (item.Password.Equals(u.Password))
@@ -43,14 +48,10 @@ namespace Xenon___Allianz.Controllers
                         {
 
                         }
-
                     }
                     else
-                    {
-                        
-                    }
-                    //if (u.Username.Equals(item.Username) && u.Password.Equals(item.Password))
-                        
+                    {                        
+                    }    
                 }
 
                 return Redirect("/Login");

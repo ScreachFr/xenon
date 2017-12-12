@@ -1,7 +1,7 @@
 ﻿@{ 
     if (Session["XenonUsername"] == null)
     {
-        Response.Redirect("/Log");
+        Response.Redirect("/Login");
     }
     ViewBag.XenonUsername = Session["XenonUsername"];
 }
