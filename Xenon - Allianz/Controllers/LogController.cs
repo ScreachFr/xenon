@@ -1,0 +1,80 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Xenon___Allianz.Models;
+
+namespace Xenon___Allianz.Controllers
+{
+    public class LogController : Controller
+    {
+        List<UserModels> users = new List<UserModels>();
+
+
+        // GET: Log
+        public ActionResult Index()
+        {
+
+            return View("Index","_LayoutLogin");
+        }
+        public ActionResult FillUsers()
+        {
+            users.Add(new UserModels { Username = "mohamed", Password = "pass" });
+            users.Add(new UserModels { Username = "admin", Password = "admin" });
+            return Redirect("/");
+        }
+        
+        [HttpPost]
+        public ActionResult Login(UserModels u)
+        {
+            Console.Write(u);
+            if (ModelState.IsValid)
+            {
+                /*if (u.Username.Equals("mohamed") && u.Password.Equals("pass"))
+                {
+                    Session["XenonUsername"] = "mohamed";
+                    return Redirect("/Home");
+                }*/
+                    
+                foreach (UserModels item in Database.users)
+                {
+                    if (item.Username.Equals(u.Username))
+                    {
+                        if (item.Password.Equals(u.Password))
+                        {
+                            Session["XenonUsername"] = u.Username;
+                            return Redirect("/Home");
+                        }
+                        else
+                        {
+
+                        }
+
+                    }
+                    else
+                    {
+                        
+                    }
+                    //if (u.Username.Equals(item.Username) && u.Password.Equals(item.Password))
+                        
+                }
+
+                return Redirect("/Log");
+
+
+                //ViewBag.Message = "Your application description page.";
+                //return View();
+            }
+
+            //return Redirect("/Home/Index");
+            return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session["XenonUsername"] = null;
+            return Redirect("/Log");
+        }
+    }
+}

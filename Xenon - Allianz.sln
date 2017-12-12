@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xenon - Allianz", "Xenon - Allianz\Xenon - Allianz.csproj", "{E65F6FC8-DE32-47A5-9327-2774659B7B41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xenon.FrontEnd", "Xenon - Allianz\Xenon.FrontEnd.csproj", "{E65F6FC8-DE32-47A5-9327-2774659B7B41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xenon - Allianz.Tests", "Xenon - Allianz.Tests\Xenon - Allianz.Tests.csproj", "{F19D0671-2483-4BEE-9EBD-E189ABFA20E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xenon.Tests", "Xenon - Allianz.Tests\Xenon.Tests.csproj", "{F19D0671-2483-4BEE-9EBD-E189ABFA20E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -19,13 +19,23 @@ namespace Xenon___Allianz
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            /** JS BUNDLES **/
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/LoginRegister/js").Include(
+                      "~/Scripts/LoginRegister.js"
+                      ));
+
+
+            /** CSS BUNDLES **/
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/LoginRegister/css").Include(
+                      "~/Content/LoginRegister.css"
+                      ));
         }
     }
 }

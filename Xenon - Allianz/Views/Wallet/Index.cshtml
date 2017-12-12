@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Xenon___Allianz.Models.WalletModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of Wallet</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Service)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.Service)</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", "Wallet",
+                 new { @id = item.Service }, new { @class = "btn btn-success" })
+        </td>
+        <td>
+            @Html.ActionLink("Detail", "Index", "Contract",
+                 new { id = item.Service }, new { @class = "btn btn-primary" })
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", "Wallet",
+                new { id = item.Service }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

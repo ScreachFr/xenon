@@ -99,9 +99,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xenon - Allianz\Xenon - Allianz.csproj">
+    <ProjectReference Include="..\Xenon - Allianz\Xenon.FrontEnd.csproj">
       <Project>{E65F6FC8-DE32-47A5-9327-2774659B7B41}</Project>
-      <Name>Xenon - Allianz</Name>
+      <Name>Xenon.FrontEnd</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

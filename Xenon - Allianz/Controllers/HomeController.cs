@@ -10,7 +10,7 @@ namespace Xenon___Allianz.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return Redirect("/Wallet");
         }
 
         public ActionResult About()
@@ -26,5 +26,6 @@ namespace Xenon___Allianz.Controllers
 
             return View();
         }
+
     }
 }
