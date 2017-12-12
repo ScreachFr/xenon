@@ -10,6 +10,8 @@ namespace Xenon___Allianz.Models
     {
         public string Username { get; set; }
         public string Password { get; set; }
+        public int type { get; set; } = 4;
+        public string mail { get; set; }
     }
 
     public class WalletModel
@@ -19,17 +21,17 @@ namespace Xenon___Allianz.Models
 
     public class ContractModel
     {
-        public int Id { get; }
+        public int Id { get; set; }
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         public double Couverture { get; set; }
-        public bool Negociable { get; set; }
-        public bool Prime { get; set; }
+        public bool Negociable { get; set; } = false;
+        public int Prime { get; set; } = 0;
+        public bool Rompu { get; set; } = false;
         public string Company { get; set; }
-
-        public string Wallet { get; set; } = "Health";
-        public int value { get; set; }
+        public string Wallet { get; set; }
+        public int Value { get; set; }
     }
     public class Database
     {
