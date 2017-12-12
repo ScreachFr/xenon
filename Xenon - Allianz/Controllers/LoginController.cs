@@ -7,7 +7,7 @@ using Xenon___Allianz.Models;
 
 namespace Xenon___Allianz.Controllers
 {
-    public class LogController : Controller
+    public class LoginController : Controller
     {
         List<UserModel> users = new List<UserModel>();
 
@@ -16,7 +16,7 @@ namespace Xenon___Allianz.Controllers
         public ActionResult Index()
         {
 
-            return View("Index","_LayoutLogin");
+            return View("Login","_LayoutLogin");
         }
         public ActionResult FillUsers()
         {
@@ -29,12 +29,7 @@ namespace Xenon___Allianz.Controllers
             Console.Write(u);
             if (ModelState.IsValid)
             {
-                /*if (u.Username.Equals("mohamed") && u.Password.Equals("pass"))
-                {
-                    Session["XenonUsername"] = "mohamed";
-                    return Redirect("/Home");
-                }*/
-                    
+                
                 foreach (UserModel item in Database.users)
                 {
                     if (item.Username.Equals(u.Username))
@@ -58,7 +53,7 @@ namespace Xenon___Allianz.Controllers
                         
                 }
 
-                return Redirect("/Log");
+                return Redirect("/Login");
 
 
                 //ViewBag.Message = "Your application description page.";

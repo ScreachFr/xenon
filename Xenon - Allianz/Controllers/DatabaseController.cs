@@ -16,7 +16,7 @@ namespace Xenon___Allianz.Controllers
 
             Database d = new Database();
 
-            return Redirect("/Log");
+            return Redirect("/Login");
         }
     }
 }
