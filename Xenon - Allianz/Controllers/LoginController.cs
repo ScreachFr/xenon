@@ -44,7 +44,9 @@ namespace Xenon___Allianz.Controllers
                         if (item.Password.Equals(u.Password))
                         {
                             Session["XenonUsername"] = u.Username;
+                            Session["XenonType"] = item.Type;
                             return Redirect("/Home");
+
                         }
                         else
                         {

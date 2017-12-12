@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     if (Session["XenonUsername"] == null)
     {
         Response.Redirect("/Login");
@@ -16,7 +16,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    
+
     <div class="container body-content">
         <div class="navbar">
             <div class="container">
@@ -46,7 +46,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    
+
                     @Html.ActionLink("Xenon Allianz", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 </div>
                 <div class="navbar-collapse collapse navbar-right">
@@ -57,9 +57,18 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Wallet", "Index", "Wallet")</li>
-                        <li>@Html.ActionLink("Contact Admin", "ContactAdmin", "Home")</li>
+                        <li>@Html.ActionLink("Contact Admin todo", "ContactAdmin", "Home")</li>
                         <li>@Html.ActionLink("À propos de", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        @{
+                            if (((string)Session["XenonType"]) == "admin")
+                            {
+                                <li>@Html.ActionLink("Admin Page to do", "Contact", "Home")</li>
+                            }
+                            
+
+                        }
+
 
                     </ul>
                 </div>
