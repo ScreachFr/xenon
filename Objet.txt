@@ -1,0 +1,4 @@
+User( idUser, username, pass, type, mail)
+Wallet(idWallet, Service)
+Contract (idContrat, Start, End, Cover, Negociable, Prime, Rompu, Company, idWallet, value)
+Perimetre(idUser, idWallet, initial)
