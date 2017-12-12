@@ -26,17 +26,19 @@ namespace Xenon___Allianz.Controllers
         [HttpPost]
         public ActionResult Login(UserModel u)
         {
-            Session["XenonUsername"] = "mohamed";
+            
             Console.Write(u);
             if (ModelState.IsValid)
             {
+                //Session["XenonUsername"] = "mohamed";
+                /*if (u.Username.Equals("mohamed") && u.Password.Equals("pass"))
+                {
+                    Session["XenonUsername"] = u.Username;
+                    return Redirect("/Home");
+                }*/
                 foreach (UserModel item in Database.users)
                 {
-                    if (u.Username.Equals("mohamed") && u.Password.Equals("pass"))
-                    {
-                        Session["XenonUsername"] = u.Username;
-                        return Redirect("/Home");
-                    }
+                    
                     if (item.Username.Equals(u.Username))
                     {
                         if (item.Password.Equals(u.Password))
@@ -68,7 +70,7 @@ namespace Xenon___Allianz.Controllers
         public ActionResult Logout()
         {
             Session["XenonUsername"] = null;
-            return Redirect("/Log");
+            return Redirect("/Login");
         }
     }
 }
