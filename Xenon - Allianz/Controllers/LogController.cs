@@ -9,7 +9,7 @@ namespace Xenon___Allianz.Controllers
 {
     public class LogController : Controller
     {
-        List<UserModels> users = new List<UserModels>();
+        List<UserModel> users = new List<UserModel>();
 
 
         // GET: Log
@@ -20,13 +20,11 @@ namespace Xenon___Allianz.Controllers
         }
         public ActionResult FillUsers()
         {
-            users.Add(new UserModels { Username = "mohamed", Password = "pass" });
-            users.Add(new UserModels { Username = "admin", Password = "admin" });
-            return Redirect("/");
+           return Redirect("/");
         }
         
         [HttpPost]
-        public ActionResult Login(UserModels u)
+        public ActionResult Login(UserModel u)
         {
             Console.Write(u);
             if (ModelState.IsValid)
@@ -37,7 +35,7 @@ namespace Xenon___Allianz.Controllers
                     return Redirect("/Home");
                 }*/
                     
-                foreach (UserModels item in Database.users)
+                foreach (UserModel item in Database.users)
                 {
                     if (item.Username.Equals(u.Username))
                     {
