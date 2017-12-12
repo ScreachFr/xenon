@@ -20,10 +20,12 @@ namespace Xenon___Allianz.Models
             users = new HashSet<UserModel>();
             wallets = new HashSet<WalletModel>();
             contracts = new HashSet<ContractModel>();
+            
+            users.Add(new UserModel() { Username = "mohamed", Password = "pass", Type ="Colaborateur", Mail=""});
+            users.Add(new UserModel() { Username = "alex", Password = "pass", Type = "Colaborateur", Mail = "" });
+            users.Add(new UserModel() { Username = "gaetan", Password = "pass", Type = "Colaborateur", Mail = "" });
+            users.Add(new UserModel() { Username = "admin", Password = "pass" });
             /*
-            users.Add(new UserModels() { Username = "mohamed", Password = "pass" });
-            users.Add(new UserModels() { Username = "admin", Password = "pass" });
-
             wallets.Add(new WalletModel() { Service = "Health" });
             wallets.Add(new WalletModel() { Service = "Defense" });
             wallets.Add(new WalletModel() { Service = "Sport" });
