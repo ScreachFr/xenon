@@ -1,20 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xenon.FrontEnd", "Xenon - Allianz\Xenon.FrontEnd.csproj", "{E65F6FC8-DE32-47A5-9327-2774659B7B41}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xenon.Tests", "Xenon - Allianz.Tests\Xenon.Tests.csproj", "{F19D0671-2483-4BEE-9EBD-E189ABFA20E5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xenon.BusinessLogic", "Xenon.BusinessLogic\Xenon.BusinessLogic.csproj", "{93715B27-6DF2-4084-AF2B-8D60D36F0083}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xenon.BusinessLogic", "Xenon.BusinessLogic\Xenon.BusinessLogic.csproj", "{93715B27-6DF2-4084-AF2B-8D60D36F0083}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Xenon.BackEnd", "Xenon.BackEnd\Xenon.BackEnd.vbproj", "{C49453BC-69EA-4362-8AEC-3380FB72BE24}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{E27899C9-3495-492F-900B-2409D8D4BD15}"
-	ProjectSection(SolutionItems) = preProject
-		Objet.txt = Objet.txt
-	EndProjectSection
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Xenon.Database", "Xenon.Database\Xenon.Database.sqlproj", "{DC6E059E-B79C-4A6C-81BE-B23214E2A3FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +35,12 @@ Global
 		{C49453BC-69EA-4362-8AEC-3380FB72BE24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C49453BC-69EA-4362-8AEC-3380FB72BE24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C49453BC-69EA-4362-8AEC-3380FB72BE24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC6E059E-B79C-4A6C-81BE-B23214E2A3FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC6E059E-B79C-4A6C-81BE-B23214E2A3FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC6E059E-B79C-4A6C-81BE-B23214E2A3FD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DC6E059E-B79C-4A6C-81BE-B23214E2A3FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC6E059E-B79C-4A6C-81BE-B23214E2A3FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC6E059E-B79C-4A6C-81BE-B23214E2A3FD}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
