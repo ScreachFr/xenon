@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Xenon.BusinessLogic.Models;
 using Xenon___Allianz.Models;
 
 namespace Xenon___Allianz.Controllers
@@ -27,15 +28,27 @@ namespace Xenon___Allianz.Controllers
         public ActionResult Login(UserModel u)
         {
             
-            Console.Write(u);
+                Console.Write(u);
             if (ModelState.IsValid)
             {
-                //Session["XenonUsername"] = "mohamed";
-                /*if (u.Username.Equals("mohamed") && u.Password.Equals("pass"))
+                using (var ctx = new DataContextModel())
                 {
-                    Session["XenonUsername"] = u.Username;
-                    return Redirect("/Home");
-                }*/
+                    var myUser = (from us in ctx.Users
+                                where us.Username.Equals("mohamed")
+                                select us).ToArray();
+                    if (myUser == null)
+                    {
+                        ctx.Users.Add(new Xenon.BusinessLogic.Models.User() { Username = u.Username, Password = u.Password, Mail = u.Mail, Type = "Collaborateur" });
+                        return Redirect("/Login");
+                    }
+                    else
+                    {
+                        Session["XenonUsername"] = myUser[0].Username;
+                        Session["XenonType"] = myUser[0].Type;
+                        return Redirect("/Home");
+                    }
+                }
+                /*
                 foreach (UserModel item in Database.users)
                 {
                     
@@ -57,6 +70,7 @@ namespace Xenon___Allianz.Controllers
                     {                        
                     }    
                 }
+                */
 
                 return Redirect("/Login");
 
