@@ -99,7 +99,7 @@ namespace Xenon___Allianz.Models
                     return false;
             }
             wallets.Add(w);
-            scopes.Add(new ScopeModel() { User = idUser, Wallet = w });
+            scopes.Add(new ScopeModel() { User = idUser, Wallet = w.Id });
             return true;
         }
 
@@ -113,6 +113,10 @@ namespace Xenon___Allianz.Models
             }
 
             return lc;
+        }
+        
+        public static void AddContract(ContractModel c) {
+          contracts.Add(c);
         }
     }
 }
