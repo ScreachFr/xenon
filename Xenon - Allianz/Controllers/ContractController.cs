@@ -12,16 +12,12 @@ namespace Xenon___Allianz.Controllers
         // GET: Contract
         public ActionResult Index(String id)
         {
-            List<ContractModel> l = new List<ContractModel>();
-            foreach (var item in Database.contracts)
-            {
-                if (item.Wallet.Equals(id))
-                {
-                    
-                    l.Add(item);
-                }
-                    
-            }
+            //List<ContractModel> l = new List<ContractModel>();
+            //var eve = ctx.Evenements.Where(e => e.jourHeure.Day == d.Day).OrderBy(e => e.jourHeure).ToList();
+            List<ContractModel> l = Database.contracts.Where(e => e.Wallet.Equals(id)).ToList();
+            
+            
+            // Database.getContractsByWalletService(string id);
             Session["currentWallet"] = id;
             ViewBag.service = id;
             return View(l);
@@ -41,6 +37,11 @@ namespace Xenon___Allianz.Controllers
             //c.Wallet = Session["currentWallet"].ToString();
             Database.contracts.Add(c);
             return Redirect("/Contract/Index/"+s);
+        }
+
+        public ActionResult Detail(ContractModel c)
+        { 
+            return View();
         }
     }
 

@@ -21,18 +21,9 @@ namespace Xenon___Allianz.Controllers
         public ActionResult Edit(String id)
         {
             ViewBag.Service = id;
-            /*
-            WalletModel w = null;
-            foreach (var item in Database.wallets)
-            {
-                if (item.Equals(id))
-
-                    return View();
-            }
-            */
+            
 
             return View();
-            //return Redirect("/Wallet");//View();
         }
 
         public ActionResult Create()
@@ -41,7 +32,7 @@ namespace Xenon___Allianz.Controllers
         }
         public ActionResult AddWallet(WalletModel w)
         {
-            Database.wallets.Add(w);
+            Database.AddWallet(w);
             return Redirect("/Wallet");
         }
         
