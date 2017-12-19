@@ -114,5 +114,9 @@ namespace Xenon___Allianz.Models
 
             return lc;
         }
+        
+        public static void AddContract(ContractModel c) {
+          contracts.Add(c);
+        }
     }
 }
