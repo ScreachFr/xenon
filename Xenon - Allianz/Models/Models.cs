@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -91,7 +91,7 @@ namespace Xenon___Allianz.Models
            // s = new HashSet<WalletModel>()
             return s;
         }
-        public static bool AddWallet(WalletModel w)
+        public static bool AddWallet(WalletModel w, int idUser)
         {
             foreach (var item in wallets)
             {
@@ -99,6 +99,7 @@ namespace Xenon___Allianz.Models
                     return false;
             }
             wallets.Add(w);
+            scopes.Add(new ScopeModel() { User = idUser, Wallet = w });
             return true;
         }
 
