@@ -7,7 +7,7 @@ namespace Xenon___Allianz.Models
 {
     public class WalletModel
     {
-        public int Id { get; set; }
+        public int Id { get; private set; } = new Random().Next(0, 100000000);
         public string Service { get; set; }
     }
 }

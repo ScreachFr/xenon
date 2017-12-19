@@ -17,75 +17,66 @@ namespace Xenon___Allianz.Controllers
         public ActionResult Index()
         {
 
-            return View("index","_LayoutLogin");
+            return View("index", "_LayoutLogin");
         }
         public ActionResult FillUsers()
         {
-           return Redirect("/");
+            return Redirect("/");
         }
-        
+
         [HttpPost]
         public ActionResult Login(UserModel u)
         {
-            
-                Console.Write(u);
+
+            Console.Write(u);
             if (ModelState.IsValid)
             {
                 using (var ctx = new DataContextModel())
                 {
-                    var myUser = (from us in ctx.Users
-                                where us.Username.Equals("mohamed")
-                                select us).ToArray();
-                    if (myUser == null)
+                    /* var myUser = (from us in ctx.Users
+                                 where us.Username.Equals("mohamed")
+                                 select us).ToArray();
+
+                     if (myUser == null)
+                     {
+                         ctx.Users.Add(new Xenon.BusinessLogic.Models.User() { Username = u.Username, Password = u.Password, Mail = u.Mail, Type = "Collaborateur" });
+                         return Redirect("/Login");
+                     }
+                     */
+                    UserModel usr = Database.Login(u);
+                    if (usr != null)
                     {
-                        ctx.Users.Add(new Xenon.BusinessLogic.Models.User() { Username = u.Username, Password = u.Password, Mail = u.Mail, Type = "Collaborateur" });
-                        return Redirect("/Login");
-                    }
-                    else
-                    {
-                        Session["XenonUsername"] = myUser[0].Username;
-                        Session["XenonType"] = myUser[0].Type;
+
+                        Session["XenonUsername"] = usr.Username;
+                        Session["XenonType"] = usr.Status;
+                        Session["XenonUserId"] = usr.Id;
+                        Session["ErrorPassWord"] = null;
                         return Redirect("/Home");
-                    }
-                }
-                /*
-                foreach (UserModel item in Database.users)
-                {
-                    
-                    if (item.Username.Equals(u.Username))
-                    {
-                        if (item.Password.Equals(u.Password))
-                        {
-                            Session["XenonUsername"] = u.Username;
-                            Session["XenonType"] = item.Type;
-                            return Redirect("/Home");
 
-                        }
-                        else
-                        {
-
-                        }
+                        /*
+                        Session["ErrorPassWord"] = "username : "+usr.Username+"\n type : "+usr.Status+"\nid :"+usr.Id;
+                        return Redirect("/Login");
+                        */
                     }
                     else
-                    {                        
-                    }    
+                    {
+                        Session["ErrorPassWord"] = "Login ou mot de passe incorect.";
+                        ViewBag.Message = "Login ou mot de passe incorect.";
+                    }
                 }
-                */
+
 
                 return Redirect("/Login");
 
-
-                //ViewBag.Message = "Your application description page.";
-                //return View();
             }
-
-            //return Redirect("/Home/Index");
             return View();
         }
 
         public ActionResult Logout()
         {
             Session["XenonUsername"] = null;
+            Session["XenonType"] = null;
+            Session["XenonUserId"] = null;
             return Redirect("/Login");
         }
     }

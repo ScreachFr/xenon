@@ -13,11 +13,9 @@ namespace Xenon___Allianz.Controllers
         // GET: Wallet
         public ActionResult Index()
         {
-            /*wallets.Add(new WalletModel { Service = "Health" });
-            wallets.Add(new WalletModel { Service = "Defense" });
-            wallets.Add(new WalletModel { Service = "Sport" });
-            */
-            return View(Database.wallets);
+            int userId = (int)(Session["XenonUserId"]);
+            Console.Write(userId);
+            return View(Database.GetWalletByScope(userId));
         }
 
         public ActionResult Edit(String id)

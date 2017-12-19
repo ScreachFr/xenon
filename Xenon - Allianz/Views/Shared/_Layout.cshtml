@@ -56,19 +56,24 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Wallet", "Index", "Wallet")</li>
-                        <li>@Html.ActionLink("Contact Admin todo", "ContactAdmin", "Home")</li>
-                        <li>@Html.ActionLink("À propos de", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         @{
                             if (((string)Session["XenonType"]) == "admin")
                             {
-                                <li>@Html.ActionLink("Admin Page to do", "Contact", "Home")</li>
+                                <li>@Html.ActionLink("All Users", "User", "Admin")</li>
+                                <li>@Html.ActionLink("All Wallet", "Wallet", "Admin")</li>
+                                <li>@Html.ActionLink("All Contract", "Contract", "Admin")</li>
                             }
-                            
+                            else
+                            {
+                                <li>@Html.ActionLink("Wallet", "Index", "Wallet")</li>
+                                <li>@Html.ActionLink("Contact Admin todo", "ContactAdmin", "Home")</li>
+                                <li>@Html.ActionLink("À propos de", "About", "Home")</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                            }
+
 
                         }
-
 
                     </ul>
                 </div>

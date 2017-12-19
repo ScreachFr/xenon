@@ -7,7 +7,7 @@ namespace Xenon___Allianz.Models
 {
     public class ScopeModel
     {
-        public int user { get; set; }
-        public int wallet { get; set; }
+        public int User { get; set; }
+        public int Wallet { get; set; }
     }
 }
