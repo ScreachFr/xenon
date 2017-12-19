@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace Xenon.BusinessLogic.Models
 {
-  class DataContext : DbContext
+  class BusinessContext : DbContext
   {
-    public DbSet<User> Users { get; private set; }
+    public BusinessContext() : base(){} 
+
+    public DbSet<User> Users { get; set; }
+
 
 
   }

@@ -8,9 +8,18 @@ namespace Xenon.BusinessLogic.Models
 {
   class User
   {
+
     public string Username { get; set; }
     public string Password { get; set; }
     public string Type { get; set; }
     public string Mail { get; set; }
+
+    public User(String username, String password, String type, String mail)
+    {
+      this.Username = username;
+      this.Password = password;
+      this.Type = type;
+      this.Mail = mail;
+    }
   }
 }

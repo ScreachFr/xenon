@@ -9,10 +9,10 @@ namespace Xenon.BusinessLogic.Models
 {
   class Repository<T> : IRepository<T> where T:class
   {
-    protected DataContext Ctx { get; private set; }
+    protected BusinessContext Ctx { get; private set; }
     public DbSet<T> DataSet { get; private set; }
 
-    public Repository(DataContext ctx, DbSet<T> dataSet)
+    public Repository(BusinessContext ctx, DbSet<T> dataSet)
     {
       this.Ctx = ctx;
       this.DataSet = dataSet;
@@ -23,11 +23,11 @@ namespace Xenon.BusinessLogic.Models
 
     public void Insert(T element) => DataSet.Add(element);
 
-    public bool Remove(T element) => (DataSet.Remove(element) == null) ? false, true;
+    public bool Remove(T element) => (DataSet.Remove(element) == null) ? false : true;
 
     public void SaveChanges() => Ctx.SaveChanges();
 
     // TODO something is missing.
-    public bool Update(T element) => (DataSet.Attach(element) == null) ? false, true;
+    public bool Update(T element) => (DataSet.Attach(element) == null) ? false : true;
   }
 }
