@@ -1,0 +1,3 @@
+﻿{
+	"db-connection": "Server=.\\SQLEXPRESS;Database=Xenon;Integrated Security=True;"
+}
