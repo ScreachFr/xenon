@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Xenon___Allianz.Models;
 
 namespace Xenon___Allianz.Controllers
 {
@@ -11,12 +12,21 @@ namespace Xenon___Allianz.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            return View();
+            return Redirect("/Admin/Wallets");
         }
         
         public ActionResult Users()
         {
-            return View();
+            return View(Database.users);
+        }
+
+        public ActionResult Wallets()
+        {
+            return View(Database.wallets);
+        }
+        public ActionResult Contracts()
+        {
+            return View(Database.contracts);
         }
 
     }

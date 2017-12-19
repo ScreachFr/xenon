@@ -14,6 +14,7 @@ namespace Xenon___Allianz.Models
         public static List<WalletModel> wallets;
         public static List<ContractModel> contracts;
         public static List<ScopeModel> scopes;
+        static int cpt = 0;
 
 
         public Database()
@@ -22,14 +23,18 @@ namespace Xenon___Allianz.Models
             wallets = new List<WalletModel>();
             contracts = new List<ContractModel>();
             scopes = new List<ScopeModel>();
-            int cpt=0;
+            
             users.Add(new UserModel() { Id = cpt++, Username = "mohamed", Password = "pass", Status = "souscripteur", Mail = "mohamed@xenon.com" });
             users.Add(new UserModel() { Id = cpt++, Username = "alex", Password = "pass", Status = "manager", Mail = "mohamed@xenon.com" });
             users.Add(new UserModel() { Id = cpt++, Username = "admin", Password = "pass", Status = "admin", Mail = "admin@xenon.com" });
 
             wallets.Add(new WalletModel() { Id = cpt++, Service = "Health" });
             wallets.Add(new WalletModel() { Id = cpt++, Service = "Defense" });
-            wallets.Add(new WalletModel() { Id = cpt++, Service = "Sport" });
+            wallets.Add(new WalletModel() { Id = cpt++, Service = "Agroalimentaire" });
+            wallets.Add(new WalletModel() { Id = cpt++, Service = "Electricité - Electronique" });
+            wallets.Add(new WalletModel() { Id = cpt++, Service = "Machine et equipements" });
+            wallets.Add(new WalletModel() { Id = cpt++, Service = "Plastique" });
+            wallets.Add(new WalletModel() { Id = cpt++, Service = "Transport" });
 
             scopes.Add(new ScopeModel() { User = users[0].Id, Wallet = wallets[0].Id });
             scopes.Add(new ScopeModel() { User = users[0].Id, Wallet = wallets[1].Id });
