@@ -26,9 +26,10 @@ namespace Xenon___Allianz.Models
             users.Add(new UserModel() { Id = cpt++, Username = "mohamed", Password = "pass", Status = "souscripteur", Mail = "mohamed@xenon.com" });
             users.Add(new UserModel() { Id = cpt++, Username = "alex", Password = "pass", Status = "manager", Mail = "mohamed@xenon.com" });
             users.Add(new UserModel() { Id = cpt++, Username = "admin", Password = "pass", Status = "admin", Mail = "admin@xenon.com" });
-            wallets.Add(new WalletModel() { Service = "Health" });
-            wallets.Add(new WalletModel() { Service = "Defense" });
-            wallets.Add(new WalletModel() { Service = "Sport" });
+
+            wallets.Add(new WalletModel() { Id = cpt++, Service = "Health" });
+            wallets.Add(new WalletModel() { Id = cpt++, Service = "Defense" });
+            wallets.Add(new WalletModel() { Id = cpt++, Service = "Sport" });
 
             scopes.Add(new ScopeModel() { User = users[0].Id, Wallet = wallets[0].Id });
             scopes.Add(new ScopeModel() { User = users[0].Id, Wallet = wallets[1].Id });
@@ -36,12 +37,12 @@ namespace Xenon___Allianz.Models
             scopes.Add(new ScopeModel() { User = users[1].Id, Wallet = wallets[0].Id });
             scopes.Add(new ScopeModel() { User = users[1].Id, Wallet = wallets[1].Id });
 
-            contracts.Add(new ContractModel() { Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Prime = 15, Company = "Renault", Wallet = "Health" });
-            contracts.Add(new ContractModel() { Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Company = "CardiWeb", Wallet = "Health" });
-            contracts.Add(new ContractModel() { Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Company = "Avanade", Wallet = "Health" });
-            contracts.Add(new ContractModel() { Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Company = "Levalois Metropolitans", Wallet = "Sport" });
-            contracts.Add(new ContractModel() { Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Company = "Psg", Wallet = "Sport" });
-            contracts.Add(new ContractModel() { Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Prime = 15, Company = "France", Wallet = "Defense" });
+            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Prime = 15, Company = "Renault", Wallet = "Health" });
+            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Company = "CardiWeb", Wallet = "Health" });
+            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Company = "Avanade", Wallet = "Health" });
+            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Company = "Levalois Metropolitans", Wallet = "Sport" });
+            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Company = "Psg", Wallet = "Sport" });
+            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Prime = 15, Company = "France", Wallet = "Defense" });
         }
 
         public static UserModel Login(UserModel u)

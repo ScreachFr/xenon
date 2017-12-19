@@ -8,7 +8,7 @@ namespace Xenon___Allianz.Models
 {
     public class ContractModel
     {
-        public int Id { get; set; } = new Random().Next(0, 100000000);
+        public int Id { get; set; }
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
