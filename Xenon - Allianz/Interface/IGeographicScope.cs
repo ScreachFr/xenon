@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Xenon___Allianz.Interface
 {
-    interface IWalletInterface
+    public interface IGeographicScopeAction
     {
-
     }
 }

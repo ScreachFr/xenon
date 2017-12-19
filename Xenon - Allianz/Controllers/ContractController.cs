@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Xenon___Allianz.DataAccess;
 using Xenon___Allianz.Models;
 namespace Xenon___Allianz.Controllers
 {
@@ -14,13 +15,13 @@ namespace Xenon___Allianz.Controllers
         {
             //List<ContractModel> l = new List<ContractModel>();
             //var eve = ctx.Evenements.Where(e => e.jourHeure.Day == d.Day).OrderBy(e => e.jourHeure).ToList();
-            List<ContractModel> l = Database.contracts.Where(e => e.Wallet.Equals(id)).ToList();
+            //List<ContractModel> l = Database.contracts.Where(e => e.Wallet.Equals(id)).ToList();
             
             
             // Database.getContractsByWalletService(string id);
             Session["currentWallet"] = id;
             ViewBag.service = id;
-            return View(l);
+            return View(DataAccessAction.contract.GetContractByWalletId(id));
         }
 
         public ActionResult Create(String id)

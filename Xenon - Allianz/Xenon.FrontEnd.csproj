@@ -144,15 +144,25 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Bouchon\ContractPlug.cs" />
+    <Compile Include="Bouchon\GeographicScope.cs" />
+    <Compile Include="Bouchon\UserPlug.cs" />
+    <Compile Include="Bouchon\WalletPlug.cs" />
+    <Compile Include="Bouchon\WalletScope.cs" />
     <Compile Include="Controllers\ContractController.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\WalletController.cs" />
+    <Compile Include="DataAccess\DataAccessAction.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Interface\IWalletInterface.cs" />
+    <Compile Include="Interface\IContractAction.cs" />
+    <Compile Include="Interface\IGeographicScope.cs" />
+    <Compile Include="Interface\IUserAction.cs" />
+    <Compile Include="Interface\IWalletAction.cs" />
+    <Compile Include="Interface\IWalletScopeAction.cs" />
     <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\Models.cs" />
     <Compile Include="Models\ScopeModel.cs" />

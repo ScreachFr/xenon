@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Xenon.BusinessLogic.Models;
+using Xenon___Allianz.DataAccess;
 using Xenon___Allianz.Models;
 
 namespace Xenon___Allianz.Controllers
@@ -31,19 +29,8 @@ namespace Xenon___Allianz.Controllers
             Console.Write(u);
             if (ModelState.IsValid)
             {
-                using (var ctx = new DataContextModel())
-                {
-                    /* var myUser = (from us in ctx.Users
-                                 where us.Username.Equals("mohamed")
-                                 select us).ToArray();
 
-                     if (myUser == null)
-                     {
-                         ctx.Users.Add(new Xenon.BusinessLogic.Models.User() { Username = u.Username, Password = u.Password, Mail = u.Mail, Type = "Collaborateur" });
-                         return Redirect("/Login");
-                     }
-                     */
-                    UserModel usr = Database.Login(u);
+                UserModel usr = DataAccessAction.user.Login(u);
                     if (usr != null)
                     {
 
@@ -63,7 +50,7 @@ namespace Xenon___Allianz.Controllers
                         Session["ErrorPassWord"] = "Login ou mot de passe incorect.";
                         ViewBag.Message = "Login ou mot de passe incorect.";
                     }
-                }
+                
 
 
                 return Redirect("/Login");
