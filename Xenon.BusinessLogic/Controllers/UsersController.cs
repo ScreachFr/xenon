@@ -8,24 +8,35 @@ using Xenon.BusinessLogic.Exceptions;
 
 namespace Xenon.BusinessLogic.Controllers
 {
-  class UsersController
+  public class UsersController
   {
 
-    public static bool CheckLoginAndPassword(String username, String password)
+    public static User CheckLoginAndPassword(String username, String password)
     {
       using (var ctx = new BusinessContext())
       {
         String hashedPassword = SHA.GenerateSHA256String(password);
 
-        var query = from u in ctx.Users
-                   where u.Username.Equals(username) && u.Password.Equals(hashedPassword)
-                   select u;
+        try
+        {
+          var query = from u in ctx.Users
+                     where u.Username.Equals(username) && u.Password.Equals(hashedPassword)
+                     select u;
+
+          var count = query.Count();
 
         // Not the right way to do it.
-        if (query.Count() > 0)
-          return false;
+          if (count > 0)
+          return query.First();
         else
-          return true;
+          return null;
+        }
+        catch (Exception e)
+        {
+          Console.WriteLine(e);
+        }
+
+        return null;
       }
       
 
@@ -44,11 +55,13 @@ namespace Xenon.BusinessLogic.Controllers
       
       using (var ctx = new BusinessContext())
       {
-        User u = new User(username, password, type, mail);
+        String hashedPassword = SHA.GenerateSHA256String(password);
+        User u = new User(username, hashedPassword, type, mail);
         ctx.Users.Add(u);
         
         // TODO handle exception.
         ctx.SaveChanges();
+        Console.WriteLine("Register done.");
       }
 
     }
@@ -61,7 +74,9 @@ namespace Xenon.BusinessLogic.Controllers
                     where u.Username.Equals(username)
                     select u;
 
-        if (query.Count() > 0)
+        var count = query.Count();
+
+        if (count > 0)
           return true;
         else
           return false;
