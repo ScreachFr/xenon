@@ -9,9 +9,10 @@ namespace Xenon___Allianz.Interface
 {
     public interface IContractAction
     {
-        List<ContractModel> GetContractByWalletId(String walletId);
+        List<ContractModel> GetContractByWalletId(int walletId);
         bool AddContract(ContractModel c);
         bool EditContract(int contractId, ContractModel c);
+        ContractModel GetContractById(int id);
 
     }
 }

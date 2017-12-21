@@ -42,81 +42,13 @@ namespace Xenon___Allianz.Models
             scopes.Add(new ScopeModel() { User = users[1].Id, Wallet = wallets[0].Id });
             scopes.Add(new ScopeModel() { User = users[1].Id, Wallet = wallets[1].Id });
 
-            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Prime = 15, Company = "Renault", Wallet = "Health" });
-            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Company = "CardiWeb", Wallet = "Health" });
-            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Company = "Avanade", Wallet = "Health" });
-            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Company = "Levalois Metropolitans", Wallet = "Sport" });
-            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Company = "Psg", Wallet = "Sport" });
-            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Prime = 15, Company = "France", Wallet = "Defense" });
-        }
+            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Prime = 15, Company = "Renault", Wallet = wallets[0].Id });
+            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Company = "CardiWeb", Wallet = wallets[0].Id });
+            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Company = "Avanade", Wallet = wallets[1].Id });
+            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Company = "Levalois Metropolitans", Wallet = wallets[1].Id });
+            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Company = "Psg", Wallet = wallets[2].Id });
+            contracts.Add(new ContractModel() { Id = cpt++, Start = DateTime.Now, End = DateTime.Now, Cover = 15, Negociable = true, Prime = 15, Company = "France", Wallet = wallets[2].Id });
 
-        public static UserModel Login(UserModel u)
-        {
-            foreach (var item in users)
-            {
-                if (u.Username.Equals(item.Username) && u.Password.Equals(item.Password))
-                {
-                    return item;
-                }
-            }
-            return null;
-        }
-        public static bool Register(UserModel u)
-        {
-            foreach (var item in users)
-            {
-                if (item.Username.Equals(u.Username))
-                    return false;
-            }
-            users.Add(u);
-            return true;
-        }
-        public static ISet<WalletModel> GetWalletByScope(int userId)
-        {
-            ISet<WalletModel> s = new HashSet<WalletModel>();
-            List<WalletModel> l = new List<WalletModel>();
-            foreach (var item in scopes)
-            {
-                if(item.User == userId)
-                {
-                    foreach (var wal in wallets)
-                    {
-                        if (wal.Id.Equals(item.Wallet))
-                        {
-                            s.Add(wal);
-                        }
-                    }
-                }
-            }
-           // s = new HashSet<WalletModel>()
-            return s;
-        }
-        public static bool AddWallet(WalletModel w, int idUser)
-        {
-            foreach (var item in wallets)
-            {
-                if (item.Service.Equals(w.Service))
-                    return false;
-            }
-            wallets.Add(w);
-            scopes.Add(new ScopeModel() { User = idUser, Wallet = w.Id });
-            return true;
-        }
-
-        public static List<ContractModel> GetContractFromWallet(string s)
-        {
-            List<ContractModel> lc = new List<ContractModel>();
-            foreach (var item in contracts)
-            {
-                if (item.Wallet.Equals(s))
-                    lc.Add(item);
-            }
-
-            return lc;
-        }
-        
-        public static void AddContract(ContractModel c) {
-          contracts.Add(c);
         }
     }
 }

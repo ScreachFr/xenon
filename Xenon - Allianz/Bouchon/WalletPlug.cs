@@ -11,7 +11,14 @@ namespace Xenon___Allianz.Bouchon
     {
         public bool AddWallet(WalletModel w, int userId)
         {
-            throw new NotImplementedException();
+            foreach (var item in Database.wallets)
+            {
+                if (item.Service.Equals(w.Service))
+                    return false;
+            }
+            Database.wallets.Add(w);
+            Database.scopes.Add(new ScopeModel() { User = userId, Wallet = w.Id });
+            return true;
         }
 
         public bool EditWallet(int walletId, WalletModel w)

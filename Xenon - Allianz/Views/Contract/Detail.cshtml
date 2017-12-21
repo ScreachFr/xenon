@@ -1,0 +1,90 @@
+﻿@model Xenon___Allianz.Models.ContractModel
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>ContractModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Start)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Start)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.End)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.End)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cover)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cover)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Negociable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Negociable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rompu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rompu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Wallet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Wallet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Value)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index","Contract")
+</p>

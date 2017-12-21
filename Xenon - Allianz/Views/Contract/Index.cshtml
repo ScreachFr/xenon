@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create/" + (string)(Session["currentWallet"]), "Contract")
+    @Html.ActionLink("Create New", "Create/" + (int)(Session["currentWallet"]), "Contract")
 </p>
 <table class="table">
     <tr>
@@ -66,7 +66,7 @@
                 @Html.ActionLink("Edit to do", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
             </td>
             <td>
-                @Html.ActionLink("Details to do", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Details", "Detail", new { id = item.Id }, new { @class = "btn btn-primary" })
             </td>
     }
 

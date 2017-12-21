@@ -11,7 +11,7 @@ namespace Xenon___Allianz.Controllers
     {
         
         // GET: Contract
-        public ActionResult Index(String id)
+        public ActionResult Index(int id)
         {
             //List<ContractModel> l = new List<ContractModel>();
             //var eve = ctx.Evenements.Where(e => e.jourHeure.Day == d.Day).OrderBy(e => e.jourHeure).ToList();
@@ -19,12 +19,16 @@ namespace Xenon___Allianz.Controllers
             
             
             // Database.getContractsByWalletService(string id);
+            if(Session["currentWallet"] != null)
+            {
+                return Redirect("Contract/Index/" + ((int)Session["currentWallet"]));
+            }
             Session["currentWallet"] = id;
             ViewBag.service = id;
             return View(DataAccessAction.contract.GetContractByWalletId(id));
         }
 
-        public ActionResult Create(String id)
+        public ActionResult Create(int id)
         {
             ViewBag.Wallet = id;
             Session["currentWallet"] = id;
@@ -33,16 +37,17 @@ namespace Xenon___Allianz.Controllers
 
         public ActionResult AddContract(ContractModel c)
         {
-            string s = (string)(Session["currentWallet"]);
+            int s = (int)(Session["currentWallet"]);
             c.Wallet = s;
             //c.Wallet = Session["currentWallet"].ToString();
-            Database.contracts.Add(c);
-            return Redirect("/Contract/Index/"+s);
+            //Database.contracts.Add(c);
+            DataAccessAction.contract.AddContract(c);
+            return Redirect("/Wallet");
         }
 
-        public ActionResult Detail(ContractModel c)
+        public ActionResult Detail(int id)
         { 
-            return View();
+            return View(DataAccessAction.contract.GetContractById(id));
         }
     }
 

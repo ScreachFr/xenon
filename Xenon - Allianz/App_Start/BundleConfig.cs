@@ -22,17 +22,29 @@ namespace Xenon___Allianz
             /** JS BUNDLES **/
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/bootstrap-datepicker.js",
+                      "~/Scripts/bootstrap-datepicker.min.js",
+                      "~/Scripts/bootstrap-datetimepicker.js"
+                      ));
 
             bundles.Add(new ScriptBundle("~/bundles/LoginRegister/js").Include(
                       "~/Scripts/LoginRegister.js"
+                      ));
+            bundles.Add(new ScriptBundle("~/bundles/Contract/js").Include(
+                      "~/Scripts/Contract.js"
                       ));
 
 
             /** CSS BUNDLES **/
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/bootstrap-datepicker3.css",
+                      "~/Content/bootstrap-datepicker3.min.css",
+                      "~/Content/bootstrap-datepicker3.css.map",
+                      "~/Content/bootstrap-datetimepicker.css",
+                      "~/Content/bootstrap-datetimepicker.min.css"));
             bundles.Add(new StyleBundle("~/Content/LoginRegister/css").Include(
                       "~/Content/LoginRegister.css"
                       ));

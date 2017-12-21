@@ -11,7 +11,8 @@ namespace Xenon___Allianz.Bouchon
     {
         public bool AddContract(ContractModel c)
         {
-            throw new NotImplementedException();
+            Database.contracts.Add(c);
+            return true;
         }
 
         public bool EditContract(int contractId, ContractModel c)
@@ -19,12 +20,17 @@ namespace Xenon___Allianz.Bouchon
             throw new NotImplementedException();
         }
 
-        public List<ContractModel> GetContractByWalletId(string walletId)
+        public ContractModel GetContractById(int id)
+        {
+            return Database.contracts.Where(e => e.Id == id).First();
+        }
+
+        public List<ContractModel> GetContractByWalletId(int walletId)
         {
             List<ContractModel> lc = new List<ContractModel>();
             foreach (var item in Database.contracts)
             {
-                if (item.Wallet.Equals(walletId))
+                if (item.Wallet == walletId)
                     lc.Add(item);
             }
 

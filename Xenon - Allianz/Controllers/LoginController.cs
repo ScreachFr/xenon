@@ -17,10 +17,6 @@ namespace Xenon___Allianz.Controllers
 
             return View("index", "_LayoutLogin");
         }
-        public ActionResult FillUsers()
-        {
-            return Redirect("/");
-        }
 
         [HttpPost]
         public ActionResult Login(UserModel u)
@@ -39,16 +35,12 @@ namespace Xenon___Allianz.Controllers
                         Session["XenonUserId"] = usr.Id;
                         Session["ErrorPassWord"] = null;
                         return Redirect("/Home");
-
-                        /*
-                        Session["ErrorPassWord"] = "username : "+usr.Username+"\n type : "+usr.Status+"\nid :"+usr.Id;
-                        return Redirect("/Login");
-                        */
+                    
                     }
                     else
                     {
                         Session["ErrorPassWord"] = "Login ou mot de passe incorect.";
-                        ViewBag.Message = "Login ou mot de passe incorect.";
+                        
                     }
                 
 

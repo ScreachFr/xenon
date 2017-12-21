@@ -33,7 +33,13 @@ namespace Xenon___Allianz.Bouchon
 
         public bool Register(UserModel u)
         {
-            throw new NotImplementedException();
+            foreach (var item in Database.users)
+            {
+                if (item.Username.Equals(u.Username))
+                    return false;
+            }
+            Database.users.Add(u);
+            return true;
         }
     }
 }
