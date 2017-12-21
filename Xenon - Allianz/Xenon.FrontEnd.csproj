@@ -302,6 +302,10 @@
     <Content Include="bin\Xenon - Allianz.dll.config" />
     <Content Include="Content\bootstrap-datepicker3.css.map" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\Contract.js" />
     <Content Include="Scripts\LoginRegister.js" />
     <Content Include="Scripts\bootstrap.js" />
