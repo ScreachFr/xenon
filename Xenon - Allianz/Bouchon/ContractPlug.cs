@@ -22,7 +22,7 @@ namespace Xenon___Allianz.Bouchon
 
         public ContractModel GetContractById(int id)
         {
-            return Database.contracts.Where(e => e.Id == id).First();
+            return Database.contracts.Where(e => e.Id == id).FirstOrDefault();
         }
 
         public List<ContractModel> GetContractByWalletId(int walletId)
@@ -31,7 +31,10 @@ namespace Xenon___Allianz.Bouchon
             foreach (var item in Database.contracts)
             {
                 if (item.Wallet == walletId)
+                {
+                    
                     lc.Add(item);
+                }
             }
 
             return lc;

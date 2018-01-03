@@ -9,20 +9,20 @@ namespace Xenon___Allianz.Controllers
 {
     public class ContractController : Controller
     {
-        
+
         // GET: Contract
         public ActionResult Index(int id)
         {
             //List<ContractModel> l = new List<ContractModel>();
             //var eve = ctx.Evenements.Where(e => e.jourHeure.Day == d.Day).OrderBy(e => e.jourHeure).ToList();
             //List<ContractModel> l = Database.contracts.Where(e => e.Wallet.Equals(id)).ToList();
-            
-            
+
+
             // Database.getContractsByWalletService(string id);
-            if(Session["currentWallet"] != null)
+            /*if(Session["currentWallet"] != null)
             {
                 return Redirect("Contract/Index/" + ((int)Session["currentWallet"]));
-            }
+            }*/
             Session["currentWallet"] = id;
             ViewBag.service = id;
             return View(DataAccessAction.contract.GetContractByWalletId(id));
@@ -39,6 +39,8 @@ namespace Xenon___Allianz.Controllers
         {
             int s = (int)(Session["currentWallet"]);
             c.Wallet = s;
+
+            Console.WriteLine(c);
             //c.Wallet = Session["currentWallet"].ToString();
             //Database.contracts.Add(c);
             DataAccessAction.contract.AddContract(c);
@@ -46,10 +48,15 @@ namespace Xenon___Allianz.Controllers
         }
 
         public ActionResult Detail(int id)
-        { 
-            return View(DataAccessAction.contract.GetContractById(id));
+        {
+            ContractModel c = DataAccessAction.contract.GetContractById(id);
+            if (c == null)
+            {
+                return Redirect("/");
+            }
+            return View(c);
         }
     }
 
-    
+
 }

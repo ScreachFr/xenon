@@ -10,9 +10,9 @@ namespace Xenon___Allianz.Models
     {
         public int Id { get; set; }
         //[DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
-        public DateTime Start { get; set; }
+        public String Start { get; set; }
         //[DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
-        public DateTime End { get; set; }
+        public String End { get; set; }
         //[Range(0.01, 100.00, ErrorMessage = "Cover must be between 0.01 and 100.00")]
         public double Cover { get; set; }
         public bool Negociable { get; set; } = false;

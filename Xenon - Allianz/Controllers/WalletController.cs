@@ -16,7 +16,7 @@ namespace Xenon___Allianz.Controllers
         {
             int userId = (int)(Session["XenonUserId"]);
             Console.Write(userId);
-            Session["currentWallet"] = null;
+            //Session["currentWallet"] = null;
             return View(DataAccessAction.wallet.GetWalletByScope(userId));
         }
 

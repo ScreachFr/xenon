@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Xenon___Allianz.Models;
+using Xenon___Allianz.DataAccess;
 
 namespace Xenon___Allianz.Controllers
 {
@@ -14,7 +15,7 @@ namespace Xenon___Allianz.Controllers
         {
             return Redirect("/Admin/Wallets");
         }
-        
+
         public ActionResult Users()
         {
             return View(Database.users);
@@ -28,6 +29,27 @@ namespace Xenon___Allianz.Controllers
         {
             return View(Database.contracts);
         }
+
+        public ActionResult RegisterUser()
+        {
+            return View();
+        }
+        public ActionResult RegisterUserAux(UserModel user)
+        {
+            DataAccessAction.user.Register(user);
+            return Redirect("/Admin/Users");
+        }
+        public ActionResult AddWallet()
+        {
+            return View();
+        }
+        public ActionResult AddWalletAux(WalletModel w)
+        {
+            DataAccessAction.wallet.AddWallet(w, 1);
+            return Redirect("/Admin/Wallets");
+        }
+
+
 
     }
 }
