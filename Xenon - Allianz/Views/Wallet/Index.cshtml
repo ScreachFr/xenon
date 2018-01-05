@@ -2,13 +2,13 @@
 
 @{
     ViewBag.Title = "Index";
-    <h1>@Session["XenonUserId"]</h1>
+<h1>(int)(@Session["XenonUserId"]);</h1>
 }
 
 <h2>List of Wallet</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New wallet", "Create")
 </p>
 <table class="table">
     <tr>
@@ -40,7 +40,7 @@
             }
             <td>
                 @Html.ActionLink("Detail", "Index", "Contract",
-                                                    new { id = item.Service }, new { @class = "btn btn-primary" })
+                                                    new { id = item.Id }, new { @class = "btn btn-primary" })
             </td>
 
         </tr>

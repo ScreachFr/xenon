@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Xenon___Allianz.DataAccess;
 using Xenon___Allianz.Models;
 
 namespace Xenon___Allianz.Controllers
@@ -15,7 +16,8 @@ namespace Xenon___Allianz.Controllers
         {
             int userId = (int)(Session["XenonUserId"]);
             Console.Write(userId);
-            return View(Database.GetWalletByScope(userId));
+            //Session["currentWallet"] = null;
+            return View(DataAccessAction.wallet.GetWalletByScope(userId));
         }
 
         public ActionResult Edit(String id)
@@ -31,9 +33,10 @@ namespace Xenon___Allianz.Controllers
             return View();
         }
         public ActionResult AddWallet(WalletModel w)
-        { 
-            // XXX 0 is here just for test purpose. It needs to be changed!
-            Database.AddWallet(w, 0);
+        {
+            int userId = (int)(Session["XenonUserId"]);
+            //Database.AddWallet(w, userId);
+            DataAccessAction.wallet.AddWallet(w, userId);
             return Redirect("/Wallet");
         }
         

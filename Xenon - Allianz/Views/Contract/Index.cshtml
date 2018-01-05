@@ -6,9 +6,14 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create/" + (string)(Session["currentWallet"]), "Contract")
-</p>
+
+@if (((string)Session["XenonType"]) == "souscripteur")
+{
+    <p>
+        @Html.ActionLink("Create New contract", "Create/" + (int)(Session["currentWallet"]), "Contract")
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -31,49 +36,49 @@
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Start)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Company)
-        </td>
-        <!--
-    <td>
-        @Html.DisplayFor(modelItem => item.End)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Cover)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Negociable)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Prime)
-    </td>
-
-    <td>
-        @Html.DisplayFor(modelItem => item.Wallet)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Value)
-    </td>
-        -->
-        @{
-        if (((string)Session["XenonType"]) == "souscripteur")
-        {
+        <tr>
             <td>
-                @Html.ActionLink("Edit to do", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
+                @Html.DisplayFor(modelItem => item.Start.ToString().Split(' ')[0])
             </td>
             <td>
-                @Html.ActionLink("Details to do", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
+                @Html.DisplayFor(modelItem => item.Company)
             </td>
-    }
+            <!--
+            <td>
+                @Html.DisplayFor(modelItem => item.End)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cover)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Negociable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prime)
+            </td>
 
-        }
+            <td>
+                @Html.DisplayFor(modelItem => item.Wallet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+                -->
+            @{
+                if (((string)Session["XenonType"]) == "souscripteur")
+                {
+                    <td>
+                        @Html.ActionLink("Edit to do", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Detail", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    </td>
+                }
+
+            }
 
 
-    </tr>
+        </tr>
     }
 
 </table>

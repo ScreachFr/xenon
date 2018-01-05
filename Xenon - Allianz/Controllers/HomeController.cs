@@ -10,11 +10,15 @@ namespace Xenon___Allianz.Controllers
     {
         public ActionResult Index()
         {
-            if (((string)Session["XenonType"]).Equals("admin"))
+            if (Session["XenonType"] != null)
             {
-                return Redirect("/Admin");
+                if (((string)Session["XenonType"]).Equals("admin"))
+                {
+                    return Redirect("/Admin");
+                }
+                return Redirect("/Wallet");
             }
-            return Redirect("/Wallet");
+            return Redirect("/");
         }
 
         public ActionResult About()
