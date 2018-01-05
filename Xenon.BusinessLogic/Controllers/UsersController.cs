@@ -26,7 +26,7 @@ namespace Xenon.BusinessLogic.Controllers
           var count = query.Count();
 
         // Not the right way to do it.
-          if (count > 0)
+        if (count > 0)
           return query.First();
         else
           return null;

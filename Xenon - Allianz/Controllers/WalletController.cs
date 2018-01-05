@@ -31,8 +31,9 @@ namespace Xenon___Allianz.Controllers
             return View();
         }
         public ActionResult AddWallet(WalletModel w)
-        {
-            Database.AddWallet(w);
+        { 
+            // XXX 0 is here just for test purpose. It needs to be changed!
+            Database.AddWallet(w, 0);
             return Redirect("/Wallet");
         }
         
