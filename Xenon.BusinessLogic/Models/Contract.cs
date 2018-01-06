@@ -4,11 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Xenon___Allianz.Models
+namespace Xenon.Models
 {
     public class ContractModel
     {
-        public int Id { get; set; }
+        [Key]
+        public Guid Id { get; set; }
         //[DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public String Start { get; set; }
         //[DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
@@ -19,7 +20,7 @@ namespace Xenon___Allianz.Models
         public int Prime { get; set; } = 0;
         public bool Rompu { get; set; } = false;
         public string Company { get; set; }
-        public int Wallet { get; set; }
+        public Guid Wallet { get; set; }
         public int Value { get; set; }
     }
 }

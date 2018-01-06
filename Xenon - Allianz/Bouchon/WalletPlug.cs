@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Xenon___Allianz.Interface;
+using Xenon.Interface;
+using Xenon.Models;
 using Xenon___Allianz.Models;
 
 namespace Xenon___Allianz.Bouchon
 {
     public class WalletPlug : IWalletAction
     {
-        public bool AddWallet(WalletModel w, int userId)
+        public bool AddWallet(WalletModel w, Guid userId)
         {
             foreach (var item in Database.wallets)
             {
@@ -21,18 +22,18 @@ namespace Xenon___Allianz.Bouchon
             return true;
         }
 
-        public bool EditWallet(int walletId, WalletModel w)
+        public bool EditWallet(Guid walletId, WalletModel w)
         {
             throw new NotImplementedException();
         }
 
-        public List<WalletModel> GetWalletByScope(int userId)
+        public List<WalletModel> GetWalletByScope(Guid userId)
         {
             ISet<WalletModel> s = new HashSet<WalletModel>();
             List<WalletModel> l = new List<WalletModel>();
             foreach (var item in Database.scopes)
             {
-                if (item.User == userId)
+                if (item.User.Equals(userId))
                 {
                     foreach (var wal in Database.wallets)
                     {

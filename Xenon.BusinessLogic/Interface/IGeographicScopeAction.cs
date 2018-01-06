@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Xenon___Allianz.Interface
+namespace Xenon.Interface
 {
-    interface IWalletScopeAction
+    public interface IGeographicScopeAction
     {
     }
 }

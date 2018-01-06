@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xenon.Interface;
 
-namespace Xenon___Allianz.Interface
+namespace Xenon.BusinessLogic.Controllers
 {
-    public interface IGeographicScopeAction
+    class GeographicScopeAction : IGeographicScopeAction
     {
     }
 }

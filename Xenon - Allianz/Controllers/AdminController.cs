@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Xenon___Allianz.Models;
 using Xenon___Allianz.DataAccess;
+using Xenon.Models;
+using Xenon.BusinessLogic.Models;
+using Xenon___Allianz.Models;
 
 namespace Xenon___Allianz.Controllers
 {
@@ -34,7 +36,7 @@ namespace Xenon___Allianz.Controllers
         {
             return View();
         }
-        public ActionResult RegisterUserAux(UserModel user)
+        public ActionResult RegisterUserAux(User user)
         {
             DataAccessAction.user.Register(user);
             return Redirect("/Admin/Users");
@@ -45,7 +47,7 @@ namespace Xenon___Allianz.Controllers
         }
         public ActionResult AddWalletAux(WalletModel w)
         {
-            DataAccessAction.wallet.AddWallet(w, 1);
+            DataAccessAction.wallet.AddWallet(w, new Guid()); // TODO Change this.
             return Redirect("/Admin/Wallets");
         }
 

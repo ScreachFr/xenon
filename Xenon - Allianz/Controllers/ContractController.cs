@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Xenon.Models;
 using Xenon___Allianz.DataAccess;
-using Xenon___Allianz.Models;
 namespace Xenon___Allianz.Controllers
 {
     public class ContractController : Controller
     {
 
         // GET: Contract
-        public ActionResult Index(int id)
+        public ActionResult Index(Guid id)
         {
             //List<ContractModel> l = new List<ContractModel>();
             //var eve = ctx.Evenements.Where(e => e.jourHeure.Day == d.Day).OrderBy(e => e.jourHeure).ToList();
@@ -37,7 +37,7 @@ namespace Xenon___Allianz.Controllers
 
         public ActionResult AddContract(ContractModel c)
         {
-            int s = (int)(Session["currentWallet"]);
+            Guid s = (Guid)Session["currentWallet"];
             c.Wallet = s;
 
             Console.WriteLine(c);
@@ -47,7 +47,7 @@ namespace Xenon___Allianz.Controllers
             return Redirect("/Wallet");
         }
 
-        public ActionResult Detail(int id)
+        public ActionResult Detail(Guid id)
         {
             ContractModel c = DataAccessAction.contract.GetContractById(id);
             if (c == null)

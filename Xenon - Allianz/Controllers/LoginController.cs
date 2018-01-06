@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Xenon.BusinessLogic.Models;
 using Xenon___Allianz.DataAccess;
-using Xenon___Allianz.Models;
 
 namespace Xenon___Allianz.Controllers
 {
     public class LoginController : Controller
     {
-        List<UserModel> users = new List<UserModel>();
+        List<User> users = new List<User>();
 
 
         // GET: Log
@@ -19,14 +19,14 @@ namespace Xenon___Allianz.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(UserModel u)
+        public ActionResult Login(User u)
         {
 
             Console.Write(u);
             if (ModelState.IsValid)
             {
 
-                UserModel usr = DataAccessAction.user.Login(u);
+                User usr = DataAccessAction.user.Login(u.Username, u.Password);
                     if (usr != null)
                     {
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Xenon___Allianz.Interface;
+using Xenon.Interface;
 
 namespace Xenon___Allianz.Bouchon
 {

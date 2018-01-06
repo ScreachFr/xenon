@@ -16,15 +16,6 @@ namespace Xenon___Allianz.Controllers
     {
 
       Database d = new Database();
-      try
-      {
-        UsersController.Register("alex", "password", "none", "dummy@fake.fr");
-      } catch(Exception e)
-      {
-        Console.WriteLine(e);
-      }
-
-
 
       return Redirect("/Login");
     }

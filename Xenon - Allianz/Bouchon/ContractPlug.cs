@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Xenon___Allianz.Interface;
+using Xenon.Interface;
+using Xenon.Models;
 using Xenon___Allianz.Models;
 
 namespace Xenon___Allianz.Bouchon
@@ -15,22 +16,22 @@ namespace Xenon___Allianz.Bouchon
             return true;
         }
 
-        public bool EditContract(int contractId, ContractModel c)
+        public bool EditContract(Guid contractId, ContractModel c)
         {
             throw new NotImplementedException();
         }
 
-        public ContractModel GetContractById(int id)
+        public ContractModel GetContractById(Guid id)
         {
-            return Database.contracts.Where(e => e.Id == id).FirstOrDefault();
+            return Database.contracts.Where(e => e.Id.Equals(id)).FirstOrDefault();
         }
 
-        public List<ContractModel> GetContractByWalletId(int walletId)
+        public List<ContractModel> GetContractByWalletId(Guid walletId)
         {
             List<ContractModel> lc = new List<ContractModel>();
             foreach (var item in Database.contracts)
             {
-                if (item.Wallet == walletId)
+                if (item.Wallet.Equals(walletId))
                 {
                     
                     lc.Add(item);
