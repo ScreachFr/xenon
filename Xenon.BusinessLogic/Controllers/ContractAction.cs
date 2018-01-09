@@ -51,7 +51,20 @@ namespace Xenon.BusinessLogic.Controllers
 
     public List<Contract> GetContractByWalletId(Guid walletId)
     {
-      throw new NotImplementedException();
+      using (var ctx = new BusinessContext())
+      {
+        var query = from c in ctx.Contracts
+                    where c.Wallet.Equals(walletId)
+                    select c;
+
+        var result = new List<Contract>();
+        foreach (var item in query)
+        {
+          result.Add(item);
+        }
+
+        return result;
+      }
     }
   }
 }
