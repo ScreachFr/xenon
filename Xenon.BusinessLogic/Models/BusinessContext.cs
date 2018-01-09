@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xenon.BusinessLogic.Utils;
+using Xenon.Models;
 
 namespace Xenon.BusinessLogic.Models
 {
@@ -17,6 +18,10 @@ namespace Xenon.BusinessLogic.Models
     }
 
     public DbSet<User> Users { get; set; }
+
+    public DbSet<Wallet> Wallets { get; set; }
+
+    public DbSet<Contract>  Contracts { get; set; }
 
   }
 }

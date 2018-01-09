@@ -9,10 +9,10 @@ namespace Xenon.Interface
 {
     public interface IContractAction
     {
-        List<ContractModel> GetContractByWalletId(Guid walletId);
-        bool AddContract(ContractModel c);
-        bool EditContract(Guid contractId, ContractModel c);
-        ContractModel GetContractById(Guid id);
+        List<Contract> GetContractByWalletId(Guid walletId);
+        bool AddContract(Contract c);
+        bool EditContract(Guid contractId, Contract c);
+        Contract GetContractById(Guid id);
 
     }
 }

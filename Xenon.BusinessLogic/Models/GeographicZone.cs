@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Xenon.Models
+namespace Xenon.BusinessLogic.Models
 {
-  public class Wallet
+  public class GeographicZone
   {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; }
-    public string Service { get; set; }
-
-
+    public String Name { get; set; }
+    public Guid Father { get; set; }
   }
 }
