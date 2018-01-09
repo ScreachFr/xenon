@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using Xenon.BusinessLogic.Models;
 using Xenon___Allianz.DataAccess;
+using Xenon___Allianz.Models;
 
 namespace Xenon___Allianz.Controllers
 {
@@ -19,7 +20,7 @@ namespace Xenon___Allianz.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(User u)
+        public ActionResult Login(UserModel u)
         {
 
             Console.Write(u);

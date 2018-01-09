@@ -41,9 +41,9 @@ namespace Xenon.BusinessLogic.Controllers
                 {
 
 
-                    var query = from u in ctx.Users
-                                where u.Username.Equals(username) && u.Password.Equals(hashedPassword)
-                                select u;
+                    var query = from usr in ctx.Users
+                                where usr.Username.Equals(username) && usr.Password.Equals(hashedPassword)
+                                select usr;
 
                     var count = query.Count();
 

@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Xenon.BusinessLogic.Models;
 using Xenon.Interface;
-using Xenon.Models;
 
 namespace Xenon.BusinessLogic.Controllers
 {
