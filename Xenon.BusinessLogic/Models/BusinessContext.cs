@@ -25,5 +25,9 @@ namespace Xenon.BusinessLogic.Models
 
     public DbSet<Scope> Scopes { get; set; }
 
+    public DbSet<GeographicScope> GeograpicScopes { get; set; }
+
+    public DbSet<GeoUserScope> GeoUserScopes { get; set; }
+
   }
 }
