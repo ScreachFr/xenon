@@ -12,6 +12,6 @@ namespace Xenon___Allianz.DataAccess
     {
         public static IUserAction user = new UserAction();
         public static IWalletAction wallet = new WalletAction();
-        public static IContractAction contract = new ContractPlug();
+        public static IContractAction contract = new ContractAction();
     }       
 }

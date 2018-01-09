@@ -10,9 +10,9 @@ namespace Xenon___Allianz.Controllers
     {
         public ActionResult Index()
         {
-            if (Session["XenonType"] != null)
+            if (Session["XenonStatus"] != null)
             {
-                if (((string)Session["XenonType"]).Equals("admin"))
+                if (((string)Session["XenonStatus"]).Equals("admin"))
                 {
                     return Redirect("/Admin");
                 }

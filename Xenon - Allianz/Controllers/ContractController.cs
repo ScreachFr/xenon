@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Xenon.Models;
+using Xenon___Allianz.Models;
 using Xenon___Allianz.DataAccess;
 namespace Xenon___Allianz.Controllers
 {
@@ -44,13 +44,13 @@ namespace Xenon___Allianz.Controllers
             Console.WriteLine(c);
             //c.Wallet = Session["currentWallet"].ToString();
             //Database.contracts.Add(c);
-            DataAccessAction.contract.AddContract(c);
+            //DataAccessAction.contract.AddContract(c);
             return Redirect("/Wallet");
         }
 
         public ActionResult Detail(Guid id)
         {
-            ContractModel c = DataAccessAction.contract.GetContractById(id);
+            ContractModel c =new ContractModel();
             if (c == null)
             {
                 return Redirect("/");

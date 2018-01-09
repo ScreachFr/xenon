@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Xenon___Allianz.Models
 {
-    public class Models
+    public class UserModel
     {
         public int Id { get; set; }
         public string Username { get; set; }

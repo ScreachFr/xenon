@@ -17,8 +17,5 @@ namespace Xenon.BusinessLogic.Models
     public string Password { get; set; }
     public string Status { get; set; }
     public string Mail { get; set; }
-
-   
-
   }
 }
