@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xenon.BusinessLogic.Models;
-using Xenon.Interface;
 
-namespace Xenon.BusinessLogic.Controllers
+namespace Xenon.BusinessLogic.Interface
 {
-  class GeographicScopeAction : IGeographicScopeAction
+  interface IGeoUserScopeAction
   {
-    
+    void BindUserHisWithZone(User u);
   }
 }
