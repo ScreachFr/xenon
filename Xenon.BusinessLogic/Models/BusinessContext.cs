@@ -23,5 +23,7 @@ namespace Xenon.BusinessLogic.Models
 
     public DbSet<Contract>  Contracts { get; set; }
 
+    public DbSet<Scope> Scopes { get; set; }
+
   }
 }

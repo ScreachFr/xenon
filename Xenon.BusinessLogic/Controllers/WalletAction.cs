@@ -17,7 +17,9 @@ namespace Xenon.BusinessLogic.Controllers
         return false;
 
       try {
-        AddWalletToDB(w);
+        var newWallet = AddWalletToDB(w);
+
+        AddScope(userId, newWallet.Id);
         return true;
       } catch (Exception e) {
         Console.WriteLine(e.StackTrace);
@@ -27,17 +29,25 @@ namespace Xenon.BusinessLogic.Controllers
 
     }
 
-    private bool AddWalletToDB(Wallet w)
+    private Wallet AddWalletToDB(Wallet w)
     {
       using (var ctx = new BusinessContext())
       {
-        ctx.Wallets.Add(w);
+        var result = ctx.Wallets.Add(w);
         ctx.SaveChanges();
-        Console.WriteLine("Register done.");
 
-        return true;
+        return result;
       }
     }
+
+    private void AddScope(Guid idUser, Guid idWallet)
+    {
+      using (var ctx = new BusinessContext())
+      {
+        ctx.Scopes.Add(new Scope(idUser, idWallet));
+        ctx.SaveChanges();
+      }
+    } 
 
     private bool IsWalletNameAlreadyInUse(String name)
     {
@@ -63,7 +73,21 @@ namespace Xenon.BusinessLogic.Controllers
 
     public List<Wallet> GetWalletByScope(Guid userId)
     {
-      throw new NotImplementedException();
+      using (var ctx = new BusinessContext())
+      {
+        var query = from w in ctx.Wallets
+                    join s in ctx.Scopes on w.Id equals s.Wallet
+                    where s.User.Equals(userId)
+                    select new { owner = s.User, wallet = w };
+
+        var result = new List<Wallet>();
+        foreach (var item in query)
+        {
+          result.Add(item.wallet);
+        }
+
+        return result;
+      }
     }
 
     public int NumberOfContractsByWalletId(Guid walletId)
