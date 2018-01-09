@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xenon.BusinessLogic.Utils;
-using Xenon.Models;
+using Xenon.BusinessLogic.Models;
 
 namespace Xenon.BusinessLogic.Models
 {

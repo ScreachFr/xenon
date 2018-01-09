@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace Xenon.Models
+namespace Xenon.BusinessLogic.Models
 {
   public class Wallet
   {

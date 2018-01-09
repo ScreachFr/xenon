@@ -31,7 +31,7 @@ namespace Xenon___Allianz.Controllers
                     {
 
                         Session["XenonUsername"] = usr.Username;
-                        Session["XenonType"] = usr.Status;
+                        Session["XenonStatus"] = usr.Status;
                         Session["XenonUserId"] = usr.Id;
                         Session["ErrorPassWord"] = null;
                         return Redirect("/Home");
@@ -54,7 +54,7 @@ namespace Xenon___Allianz.Controllers
         public ActionResult Logout()
         {
             Session["XenonUsername"] = null;
-            Session["XenonType"] = null;
+            Session["XenonStatus"] = null;
             Session["XenonUserId"] = null;
             return Redirect("/Login");
         }

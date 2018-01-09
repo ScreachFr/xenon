@@ -47,7 +47,7 @@ namespace Xenon___Allianz.Controllers
         }
         public ActionResult AddWalletAux(WalletModel w)
         {
-            DataAccessAction.wallet.AddWallet(w, new Guid()); // TODO Change this.
+            //DataAccessAction.wallet.AddWallet(w, new Guid()); // TODO Change this.
             return Redirect("/Admin/Wallets");
         }
 
