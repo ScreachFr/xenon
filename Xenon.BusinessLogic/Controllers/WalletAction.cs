@@ -97,5 +97,24 @@ namespace Xenon.BusinessLogic.Controllers
             // todo
             return 5;
         }
+
+    public Wallet GetWalletById(Guid walletId)
+    {
+      using (var ctx = new BusinessContext())
+      {
+        var query = from w in ctx.Wallets
+                    where w.Id.Equals(walletId)
+                    select w;
+
+        int count = query.Count();
+
+        if (count > 0)
+          return query.First();
+        else
+          return null;
+
+
+      }
     }
+  }
 }
