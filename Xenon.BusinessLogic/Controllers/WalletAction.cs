@@ -8,21 +8,26 @@ using Xenon.Models;
 
 namespace Xenon.BusinessLogic.Controllers
 {
-  class WalletAction : IWalletAction
-  {
-    public bool AddWallet(WalletModel w, Guid userId)
+    public class WalletAction : IWalletAction
     {
-      throw new NotImplementedException();
-    }
+        public bool AddWallet(Wallet w, Guid userId)
+        {
+            throw new NotImplementedException();
+        }
 
-    public bool EditWallet(Guid walletId, WalletModel w)
-    {
-      throw new NotImplementedException();
-    }
+        public bool EditWallet(Guid walletId, Wallet w)
+        {
+            throw new NotImplementedException();
+        }
 
-    public List<WalletModel> GetWalletByScope(Guid userId)
-    {
-      throw new NotImplementedException();
+        public List<Wallet> GetWalletByScope(Guid userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int NumberOfContractsByWalletId(Guid walletId)
+        {
+            throw new NotImplementedException();
+        }
     }
-  }
 }

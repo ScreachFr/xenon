@@ -9,11 +9,13 @@ namespace Xenon.Interface
 {
     public interface IWalletAction
     {
-        List<WalletModel> GetWalletByScope(Guid userId);
+        List<Wallet> GetWalletByScope(Guid userId);
 
-        bool AddWallet(WalletModel w, Guid userId);
+        bool AddWallet(Wallet w, Guid userId);
 
-        bool EditWallet(Guid walletId, WalletModel w);
+        bool EditWallet(Guid walletId, Wallet w);
+
+        int NumberOfContractsByWalletId(Guid walletId);
 
     }
 }

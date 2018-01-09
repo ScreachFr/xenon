@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Xenon.Models
 {
-    public class WalletModel
+    public class Wallet
     {
         public Guid Id { get; set; }
         public string Service { get; set; }

@@ -23,6 +23,7 @@ namespace Xenon___Allianz.Controllers
             {
                 return Redirect("Contract/Index/" + ((int)Session["currentWallet"]));
             }*/
+
             Session["currentWallet"] = id;
             ViewBag.service = id;
             return View(DataAccessAction.contract.GetContractByWalletId(id));

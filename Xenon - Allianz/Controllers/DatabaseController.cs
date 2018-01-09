@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Xenon.BusinessLogic.Controllers;
+using Xenon___Allianz.DataAccess;
 using Xenon___Allianz.Models;
 
 namespace Xenon___Allianz.Controllers
@@ -16,7 +17,7 @@ namespace Xenon___Allianz.Controllers
     {
 
       Database d = new Database();
-
+            //DataAccessAction.user.Register(new Xenon.BusinessLogic.Models.User());
       return Redirect("/Login");
     }
   }
