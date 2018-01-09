@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Index";
-<h1>(int)(@Session["XenonUserId"]);</h1>
 }
 
 <h2>List of Wallet</h2>
@@ -39,8 +38,9 @@
                 }
             }
             <td>
+                
                 @Html.ActionLink("Detail", "Index", "Contract",
-                                                    new { id = item.Id }, new { @class = "btn btn-primary" })
+                                                    new { @id = item.Id }, new { @class = "btn btn-primary" })
             </td>
 
         </tr>

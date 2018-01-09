@@ -59,6 +59,7 @@ namespace Xenon.BusinessLogic.Controllers
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
+                    //throw e;
                 }
 
                 return null;

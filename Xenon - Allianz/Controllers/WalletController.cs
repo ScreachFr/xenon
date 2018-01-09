@@ -53,7 +53,7 @@ namespace Xenon___Allianz.Controllers
 
             Guid userId = (Guid)(Session["XenonUserId"]);
             //Database.AddWallet(w, userId);
-            Wallet w = new Wallet { Id = new Guid(), Service = wm.Service };
+            Wallet w = new Wallet { Service = wm.Service };
             DataAccessAction.wallet.AddWallet(w, userId);
             return Redirect("/Wallet");
         }

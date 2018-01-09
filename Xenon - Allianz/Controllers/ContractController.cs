@@ -5,7 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using Xenon___Allianz.Models;
 using Xenon___Allianz.DataAccess;
+using Xenon.BusinessLogic.Models;
 namespace Xenon___Allianz.Controllers
+
 {
     public class ContractController : Controller
     {
@@ -13,7 +15,7 @@ namespace Xenon___Allianz.Controllers
         // GET: Contract
         public ActionResult Index(Guid id)
         {
-            //List<ContractModel> l = new List<ContractModel>();
+            List<ContractModel> l = new List<ContractModel>();
             //var eve = ctx.Evenements.Where(e => e.jourHeure.Day == d.Day).OrderBy(e => e.jourHeure).ToList();
             //List<ContractModel> l = Database.contracts.Where(e => e.Wallet.Equals(id)).ToList();
 
@@ -23,13 +25,29 @@ namespace Xenon___Allianz.Controllers
             {
                 return Redirect("Contract/Index/" + ((int)Session["currentWallet"]));
             }*/
-
+            foreach (var item in DataAccessAction.contract.GetContractByWalletId(id))
+            {
+                l.Add(new ContractModel()
+                {
+                    Id = item.Id,
+                    Start = item.Start.ToString(),
+                    End = item.End.ToString(),
+                    Cover = item.Cover,
+                    Negociable = item.Negociable,
+                    Prime = item.Prime,
+                    Rompu = item.Rompu,
+                    Company = item.Company,
+                    Wallet = item.Wallet,
+                    WalletName = "",
+                    Value = item.Value
+                });
+            }
             Session["currentWallet"] = id;
             ViewBag.service = id;
-            return View(DataAccessAction.contract.GetContractByWalletId(id));
+            return View(l);
         }
 
-        public ActionResult Create(int id)
+        public ActionResult Create(Guid id)
         {
             ViewBag.Wallet = id;
             Session["currentWallet"] = id;
@@ -40,7 +58,21 @@ namespace Xenon___Allianz.Controllers
         {
             Guid s = (Guid)Session["currentWallet"];
             c.Wallet = s;
-
+            Contract contract = new Contract()
+            {
+                Start = new DateTime(
+                    int.Parse(c.Start.Split('/')[2]), int.Parse(c.Start.Split('/')[0]), int.Parse(c.Start.Split('/')[1])),
+                End = new DateTime(
+                    int.Parse(c.End.Split('/')[2]), int.Parse(c.End.Split('/')[0]), int.Parse(c.End.Split('/')[1])),
+                Cover = c.Cover,
+                Negociable = c.Negociable,
+                Prime = c.Prime,
+                Rompu = c.Rompu,
+                Company = c.Company,
+                Value = c.Value,
+                Wallet = s
+            };
+            DataAccessAction.contract.AddContract(contract);
             Console.WriteLine(c);
             //c.Wallet = Session["currentWallet"].ToString();
             //Database.contracts.Add(c);
@@ -50,12 +82,24 @@ namespace Xenon___Allianz.Controllers
 
         public ActionResult Detail(Guid id)
         {
-            ContractModel c =new ContractModel();
-            if (c == null)
+            Contract item = DataAccessAction.contract.GetContractById(id);
+            ContractModel contract =new ContractModel()
             {
-                return Redirect("/");
-            }
-            return View(c);
+                Id = item.Id,
+                Start = item.Start.ToString(),
+                End = item.End.ToString(),
+                Cover = item.Cover,
+                Negociable = item.Negociable,
+                Prime = item.Prime,
+                Rompu = item.Rompu,
+                Company = item.Company,
+                Wallet = item.Wallet,
+                WalletName = "",
+                Value = item.Value
+            };
+            
+              
+            return View(contract);
         }
     }
 

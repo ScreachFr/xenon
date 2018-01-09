@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Xenon.Models.ContractModel>
+﻿@model IEnumerable<Xenon___Allianz.Models.ContractModel>
 
 @{
     ViewBag.Title = "Index";
@@ -7,10 +7,10 @@
 <h2>Index</h2>
 
 
-@if (((string)Session["XenonType"]) == "souscripteur")
+@if (((string)Session["XenonStatus"]) == "souscripteur")
 {
     <p>
-        @Html.ActionLink("Create New contract", "Create/" + (int)(Session["currentWallet"]), "Contract")
+        @Html.ActionLink("Create New contract", "Create/" + (Guid)(Session["currentWallet"]), "Contract")
     </p>
 }
 
@@ -65,13 +65,13 @@
             </td>
                 -->
             @{
-                if (((string)Session["XenonType"]) == "souscripteur")
+                if (((string)Session["XenonStatus"]) == "souscripteur")
                 {
                     <td>
-                        @Html.ActionLink("Edit to do", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Edit to do", "Edit", "Contract", new { @id = item.Id }, new { @class = "btn btn-success" })
                     </td>
                     <td>
-                        @Html.ActionLink("Details", "Detail", new { id = item.Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Details", "Detail", "Contract" ,new { @id = item.Id }, new { @class = "btn btn-primary" })
                     </td>
                 }
 

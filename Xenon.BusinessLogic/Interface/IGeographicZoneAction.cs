@@ -9,7 +9,7 @@ namespace Xenon.BusinessLogic.Interface
   interface IGeographicZoneAction
   {
 
-    List<GeographicZone> Get
+    //List<GeographicZone> Get
 
   }
 }
