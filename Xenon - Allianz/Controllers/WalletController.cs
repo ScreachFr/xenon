@@ -15,19 +15,36 @@ namespace Xenon___Allianz.Controllers
         // GET: Wallet
         public ActionResult Index()
         {
-            Guid userId = (Guid)(Session["XenonUserId"]);
-            List<WalletModel> wallets = new List<WalletModel>();
-            Console.Write(userId);
-            //Session["currentWallet"] = null;
-            foreach (var item in DataAccessAction.wallet.GetWalletByScope(userId))
+            if (Session["XenonUserId"] == null)
             {
-                wallets.Add(new WalletModel { Id = item.Id, Service = item.Service, numberOfContract = 0 });
+                return Redirect("/");
+            }
+            Guid userId = (Guid)(Session["XenonUserId"]);
+            string connectedSession = (string)(Session["XenonStatus"]);
+            List<WalletModel> walletModels = new List<WalletModel>();
+            List<Wallet> wallets = null;
+            if (connectedSession.Equals("souscripteur") || connectedSession.Equals("manager"))
+            {
+                wallets = DataAccessAction.wallet.GetWalletByScope(userId);
+            }
+            else
+            {
+                wallets = DataAccessAction.wallet.GetAllWallet();
             }
             foreach (var item in wallets)
             {
+                walletModels.Add(new WalletModel { Id = item.Id, Service = item.Service, numberOfContract = 0 });
+            }
+            foreach (var item in walletModels)
+            {
                 item.numberOfContract = DataAccessAction.wallet.NumberOfContractsByWalletId(item.Id);
             }
-            return View(wallets);
+
+
+            //Console.Write(userId);
+            //Session["currentWallet"] = null;
+
+            return View(walletModels);
         }
 
         public ActionResult Edit(String id)
@@ -42,7 +59,8 @@ namespace Xenon___Allianz.Controllers
         {
             string status = (string)(Session["XenonStatus"]);
 
-            if (status.Equals("souscripteur")) {
+            if (status.Equals("souscripteur"))
+            {
                 return View();
             }
             return Redirect("/Wallet");

@@ -18,28 +18,93 @@ namespace Xenon___Allianz.Controllers
             return Redirect("/Admin/Wallets");
         }
 
-       /*
-        *public ActionResult Users()
+
+        public ActionResult Users()
         {
-            return View(Database.users);
+            if (((string)Session["XenonStatus"]).Equals("admin"))
+            {
+
+
+                List<UserModel> lu = new List<UserModel>();
+                foreach (var item in DataAccessAction.user.GetAllUsers())
+                {
+                    lu.Add(new UserModel()
+                    {
+                        Id = item.Id,
+                        Username = item.Username,
+                        Mail = item.Mail,
+                        Status = item.Status
+
+                    });
+                }
+                return View(lu);
+            }
+            return Redirect("/");
+
+
         }
 
         public ActionResult Wallets()
         {
-            return View(Database.wallets);
+            if (((string)Session["XenonStatus"]).Equals("admin"))
+            {
+                List<WalletModel> lw = new List<WalletModel>();
+                foreach (var item in DataAccessAction.wallet.GetAllWallet())
+                {
+                    lw.Add(new WalletModel()
+                    {
+                        Id = item.Id,
+                        Service = item.Service,
+                        numberOfContract = 0,
+                    });
+                }
+                return View(lw);
+            }
+            return Redirect("/");
         }
         public ActionResult Contracts()
         {
-            return View(Database.contracts);
+            if (((string)Session["XenonStatus"]).Equals("admin"))
+            {
+                List<ContractModel> lc = new List<ContractModel>();
+                foreach (var item in DataAccessAction.contract.GetAllContract())
+                {
+                    lc.Add(new ContractModel()
+                    {
+                        Id = item.Id,
+                        Company = item.Company,
+                        Cover = item.Cover,
+                        End = item.End.ToString().Split(' ')[0],
+                        Negociable = item.Negociable,
+                        Prime = item.Prime,
+                        Rompu = item.Rompu,
+                        Start = item.Start.ToString().Split(' ')[0],
+                        Value = item.Value,
+                        Wallet = item.Wallet,
+                        WalletName = DataAccessAction.wallet.GetWalletById(item.Wallet).Service
+                    });
+                }
+                return View(lc);
+            }
+            return Redirect("/");
         }
 
         public ActionResult RegisterUser()
         {
             return View();
         }
-        public ActionResult RegisterUserAux(User user)
+        public ActionResult RegisterUserAux(UserModel user)
         {
-            DataAccessAction.user.Register(user);
+            User u = new User()
+            {
+                Id = new Guid(),
+                Username = user.Username,
+                Password = user.Password,
+                Mail = user.Mail,
+                Status = user.Status,
+                GeographicZone = new Guid(),
+            };
+            DataAccessAction.user.Register(u);
             return Redirect("/Admin/Users");
         }
         public ActionResult AddWallet()
@@ -51,7 +116,7 @@ namespace Xenon___Allianz.Controllers
             //DataAccessAction.wallet.AddWallet(w, new Guid()); // TODO Change this.
             return Redirect("/Admin/Wallets");
         }
-        */
+
 
 
     }

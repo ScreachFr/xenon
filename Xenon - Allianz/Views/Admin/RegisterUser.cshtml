@@ -1,4 +1,4 @@
-﻿@model Xenon.Models.UserModel
+﻿@model Xenon___Allianz.Models.UserModel
 
 @{
     ViewBag.Title = "RegisterUser";
@@ -35,27 +35,28 @@
             @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Status",
-                             new SelectList(
-                                 new[]{
+                                  new SelectList(
+                                      new[]{
 new { Value = "souscripteur", Text = "souscripteur" },
 new { Value = "actuaire", Text = "actuaire" },
 new { Value = "manager", Text = "manager" },
 new { Value = "collaborateur", Text = "collaborateur" },
-                                 },
-                                 "Value",
-                                 "Text",
-                                 Model
-                             ),
-                             new { @class = "form-control" })
+new { Value = "admin", Text = "admin" },
+                                      },
+                                      "Value",
+                                      "Text",
+                                      Model
+                                  ),
+                                  new { @class = "form-control" })
                 <!--@Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })-->
                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
             </div>
         </div>
-        
+
         <div class="form-group">
-                   
-                </div>
-                    
+
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Mail, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

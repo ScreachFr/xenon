@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Xenon.Models.UserModel>
+﻿@model IEnumerable<Xenon___Allianz.Models.UserModel>
 
 @{
     ViewBag.Title = "Users";
@@ -14,9 +14,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Username)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
@@ -31,9 +29,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Username)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
+        
         <td>
             @Html.DisplayFor(modelItem => item.Status)
         </td>

@@ -4,11 +4,76 @@
     ViewBag.Title = "Index";
 }
 
-<h2>List of Wallet</h2>
 
+<div class="page-header">
+    <h2>List of Wallet</h2>
+</div>
 <p>
-    @Html.ActionLink("Create New wallet", "Create")
+    @if (((string)Session["XenonStatus"]) == "souscripteur")
+    {
+        @Html.ActionLink("Create New wallet", "Create")
+    }
 </p>
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <div class="caption">
+                    <center><h3>@Html.DisplayFor(modelItem => item.Service)</h3></center>
+                    <!--<p>Numbers of contracts : ToDo</p>-->
+                    <p>
+                        <center>
+                            @{
+
+
+                                if (((string)Session["XenonStatus"]) == "souscripteur")
+                                {
+
+
+                                    @Html.ActionLink("Detail", "Index", "Contract",
+                     new { @id = item.Id }, new { @class = "btn btn-primary", @style = " margin-right: 5px" })
+
+                                    <!--@Html.ActionLink("Edit to do", "Edit", "Wallet",
+                                    new { @id = item.Service }, new { @class = "btn btn-success" })
+                                          -->
+                                }
+                                else if (((string)(Session["XenonStatus"])).Equals("manager"))
+                                {
+                                    @Html.ActionLink("Detail", "Index", "Contract",
+                     new { @id = item.Id }, new { @class = "btn btn-primary" })
+                                }
+
+                                else
+                                {
+
+                                }
+                            }
+                        </center>
+
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+
+
+
+
+<!--
+<table class="table">
+    <tr>
+<!--
+<!--
+<table class="table">
+    <tr>
+<!--
 <table class="table">
     <tr>
         <th>
@@ -26,6 +91,7 @@
 
     @foreach (var item in Model)
     {
+
         <tr>
             <td>@Html.DisplayFor(modelItem => item.Service)</td>
             @{
@@ -33,17 +99,20 @@
                 {
                     <td>
                         @Html.ActionLink("Edit to do", "Edit", "Wallet",
-                                                     new { @id = item.Service }, new { @class = "btn btn-success" })
+                                                               new { @id = item.Service }, new { @class = "btn btn-success" })
                     </td>
                 }
             }
             <td>
-                
+
                 @Html.ActionLink("Detail", "Index", "Contract",
-                                                    new { @id = item.Id }, new { @class = "btn btn-primary" })
+                                                              new { @id = item.Id }, new { @class = "btn btn-primary" })
             </td>
 
         </tr>
+
+
     }
 
 </table>
+    -->

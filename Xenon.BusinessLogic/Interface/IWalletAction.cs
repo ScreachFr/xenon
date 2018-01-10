@@ -7,16 +7,18 @@ using Xenon.BusinessLogic.Models;
 
 namespace Xenon.Interface
 {
-  public interface IWalletAction
-  {
-    List<Wallet> GetWalletByScope(Guid userId);
+    public interface IWalletAction
+    {
+        List<Wallet> GetWalletByScope(Guid userId);
 
-    bool AddWallet(Wallet w, Guid userId);
+        bool AddWallet(Wallet w, Guid userId);
 
-    bool EditWallet(Guid walletId, Wallet w);
+        bool EditWallet(Guid walletId, Wallet w);
 
-    int NumberOfContractsByWalletId(Guid walletId);
+        int NumberOfContractsByWalletId(Guid walletId);
 
-    Wallet GetWalletById(Guid walletId);
-  }
+        Wallet GetWalletById(Guid walletId);
+
+        List<Wallet> GetAllWallet();
+    }
 }

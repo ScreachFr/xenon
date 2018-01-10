@@ -13,5 +13,6 @@ namespace Xenon.Interface
         bool Register(User u);
         bool EditStatus(Guid userId, string status);
         bool EditPassWord(Guid userId, string password);
+        List<User> GetAllUsers();
     }
 }

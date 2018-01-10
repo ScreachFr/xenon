@@ -13,6 +13,7 @@ namespace Xenon.Interface
         bool AddContract(Contract c);
         bool EditContract(Guid contractId, Contract c);
         Contract GetContractById(Guid id);
+        List<Contract> GetAllContract();
 
     }
 }
