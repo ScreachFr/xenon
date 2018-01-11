@@ -7,7 +7,7 @@ using Xenon.BusinessLogic.Models;
 
 namespace Xenon.BusinessLogic.Interface
 {
-  interface IGeographicZoneAction
+  public interface IGeographicZoneAction
   {
     GeographicZone AddGeographicZone(GeographicZone zone);
 

@@ -33,7 +33,9 @@ namespace Xenon___Allianz.Controllers
                         Id = item.Id,
                         Username = item.Username,
                         Mail = item.Mail,
-                        Status = item.Status
+                        Status = item.Status,
+                        GeographicZone = item.GeographicZone,
+                        GeographicZoneName = DataAccessAction.geographicZone.GetGeographicZoneById(item.GeographicZone).Name
 
                     });
                 }

@@ -13,6 +13,7 @@ namespace Xenon.BusinessLogic.Models
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; }
+
     public String Name { get; set; }
     public Guid Father { get; set; }
   }

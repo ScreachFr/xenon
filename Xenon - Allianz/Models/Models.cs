@@ -13,6 +13,9 @@ namespace Xenon___Allianz.Models
         public string Password { get; set; }
         public string Status { get; set; }
         public string Mail { get; set; }
+        public Guid GeographicZone { get; set; }
+        public string GeographicZoneName { get; set; }
+
     }
 
     public class WalletModel
@@ -38,5 +41,16 @@ namespace Xenon___Allianz.Models
         public Guid Wallet { get; set; }
         public string WalletName { get; set; }
         public int Value { get; set; }
+    }
+    public class GeographicZoneModel
+    {
+        public Guid Id { get; set; }
+        public String Name { get; set; }
+        public Guid Father { get; set; }
+    }
+    public class RegisterModel
+    {
+        public UserModel User { get; set; }
+        public List<GeographicZoneModel> AllZones { get; set; }
     }
 }

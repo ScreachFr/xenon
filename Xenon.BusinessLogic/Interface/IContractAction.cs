@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xenon.BusinessLogic.Models;
 
-namespace Xenon.Interface
+namespace Xenon.BusinessLogic.Interface
 {
     public interface IContractAction
     {

@@ -9,7 +9,7 @@ using Xenon.BusinessLogic.Models;
 
 namespace Xenon.BusinessLogic.Controllers
 {
-  class GeographicZoneAction : IGeographicZoneAction
+  public class GeographicZoneAction : IGeographicZoneAction
   {
     public GeographicZone AddGeographicZone(GeographicZone zone)
     {

@@ -5,7 +5,7 @@ using Xenon.BusinessLogic.Models;
 using Xenon.BusinessLogic.Utils;
 using System.Linq;
 using Xenon.BusinessLogic.Exceptions;
-using Xenon.Interface;
+using Xenon.BusinessLogic.Interface;
 
 namespace Xenon.BusinessLogic.Controllers
 {
@@ -106,6 +106,42 @@ namespace Xenon.BusinessLogic.Controllers
                 }
 
                 return result;
+            }
+        }
+
+        public User GetUserById(Guid id)
+        {
+            using (var ctx = new BusinessContext())
+            {
+
+
+                try
+                {
+
+
+                    var query = from usr in ctx.Users
+                                where usr.Id.Equals(id)
+                                select usr;
+
+                    //var count = query.Count();
+
+                    return query.FirstOrDefault();
+                    /*
+                    if (count > 0)
+                    {
+                        User r = query.First();
+                        return r;
+                    }
+                    else
+                        return null;
+                        */
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+                return null;
             }
         }
     }

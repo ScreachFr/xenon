@@ -14,12 +14,15 @@
         <th>
             @Html.DisplayNameFor(model => model.Username)
         </th>
-        
+
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Mail)
+        </th>
+        <th>
+            Geographic Zone
         </th>
         <th></th>
     </tr>
@@ -29,7 +32,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Username)
         </td>
-        
+
         <td>
             @Html.DisplayFor(modelItem => item.Status)
         </td>
@@ -37,9 +40,12 @@
             @Html.DisplayFor(modelItem => item.Mail)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.DisplayFor(modelItem => item.GeographicZoneName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
 }

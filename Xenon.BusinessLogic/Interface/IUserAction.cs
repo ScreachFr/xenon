@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xenon.BusinessLogic.Models;
 
-namespace Xenon.Interface
+namespace Xenon.BusinessLogic.Interface
 {
     public interface IUserAction
     {
@@ -13,6 +13,7 @@ namespace Xenon.Interface
         bool Register(User u);
         bool EditStatus(Guid userId, string status);
         bool EditPassWord(Guid userId, string password);
+        User GetUserById(Guid id);
         List<User> GetAllUsers();
     }
 }

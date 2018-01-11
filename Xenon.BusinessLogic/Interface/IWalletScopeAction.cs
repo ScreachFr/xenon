@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Xenon.Interface
+namespace Xenon.BusinessLogic.Interface
 {
     public interface IWalletScopeAction
     {

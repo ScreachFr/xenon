@@ -21,6 +21,33 @@ namespace Xenon___Allianz.Controllers
         }
         private static void FillDatabase()
         {
+            /** FILL GEOGRAPHIC ZONE **/
+            GeographicZone world     = new GeographicZone()
+            {
+               
+                Name = "World",
+                Father = new Guid()
+            };
+            DataAccessAction.geographicZone.AddGeographicZone(world);
+            GeographicZone europe = new GeographicZone()
+            {
+                Name = "Europe",
+                Father = world.Id
+            };
+            DataAccessAction.geographicZone.AddGeographicZone(europe);
+            GeographicZone france = new GeographicZone()
+            {
+                Name = "France",
+                Father = europe.Id,
+            };
+            GeographicZone england = new GeographicZone()
+            {
+                Name = "England",
+                Father = europe.Id
+            };
+            DataAccessAction.geographicZone.AddGeographicZone(france);
+            DataAccessAction.geographicZone.AddGeographicZone(england);
+
             /** FILL USER **/
             User sous = new User()
             {
@@ -29,8 +56,7 @@ namespace Xenon___Allianz.Controllers
                 Password = "pass",
                 Mail = "sous@xenon.com",
                 Status = "souscripteur",
-                GeographicZone = new Guid()
-
+                GeographicZone = world.Id,
             };
 
             User admin = new User()
@@ -40,7 +66,7 @@ namespace Xenon___Allianz.Controllers
                 Password = "pass",
                 Mail = "admin@xenon.com",
                 Status = "admin",
-                GeographicZone = new Guid()
+                GeographicZone = world.Id,
             };
             User manager = new User()
             {
@@ -49,7 +75,7 @@ namespace Xenon___Allianz.Controllers
                 Password = "pass",
                 Mail = "manager@xenon.com",
                 Status = "manager",
-                GeographicZone = new Guid()
+                GeographicZone = europe.Id
             };
             User collaborateur = new User()
             {
@@ -58,7 +84,7 @@ namespace Xenon___Allianz.Controllers
                 Password = "pass",
                 Mail = "collaborateur@xenon.com",
                 Status = "collaborateur",
-                GeographicZone = new Guid()
+                GeographicZone = france.Id
             };
             DataAccessAction.user.Register(sous);
             DataAccessAction.user.Register(admin);
@@ -68,12 +94,7 @@ namespace Xenon___Allianz.Controllers
             /** FILL WALLET **/
 
 
-            Wallet sport = new Wallet() { Service = "sport" };
-            Wallet defense = new Wallet() { Service = "defense" };
-            Wallet bank = new Wallet() { Service = "bank" };
-            Wallet technology = new Wallet() { Service = "technology" };
-            Wallet transport = new Wallet() { Service = "transport" };
-            Wallet plastic = new Wallet() { Service = "plastic" };
+           
             Wallet textile = new Wallet() { Service = "textile" };
             List<Wallet> lw = new List<Wallet>
             {
@@ -91,6 +112,11 @@ namespace Xenon___Allianz.Controllers
             
             DataAccessAction.wallet.AddWallet(textile, manager.Id);
            
+            generateContract(lw);
+            lw = new List<Wallet>()
+            {
+                textile
+            };
             generateContract(lw);
             /** FILL CONTRACT **/
         }
