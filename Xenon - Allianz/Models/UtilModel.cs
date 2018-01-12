@@ -22,6 +22,13 @@ namespace Xenon___Allianz.Models
         public string NewStatus { get; set; }
     }
 
+    public class PaginationModel
+    {
+        public Guid WalletId { get; set; }
+        public int Page { get; set; }
+        public int NumberOfElementsByPage { get; set; }
+    }
+
 
 
 

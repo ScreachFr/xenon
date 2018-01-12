@@ -66,6 +66,7 @@ namespace Xenon___Allianz.Controllers
         }
         public ActionResult Contracts()
         {
+            
             if (((string)Session["XenonStatus"]).Equals("admin"))
             {
                 List<ContractModel> lc = new List<ContractModel>();
@@ -83,7 +84,8 @@ namespace Xenon___Allianz.Controllers
                         Start = item.Start.ToString().Split(' ')[0],
                         Value = item.Value,
                         Wallet = item.Wallet,
-                        WalletName = DataAccessAction.wallet.GetWalletById(item.Wallet).Service
+                        WalletName = DataAccessAction.wallet.GetWalletById(item.Wallet).Service,
+                        Position =item.Position
                     });
                 }
                 return View(lc);

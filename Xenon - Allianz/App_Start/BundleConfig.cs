@@ -33,6 +33,10 @@ namespace Xenon___Allianz
             bundles.Add(new ScriptBundle("~/bundles/Contract/js").Include(
                       "~/Scripts/Contract.js"
                       ));
+            bundles.Add(new ScriptBundle("~/bundles/ContractPagination/js/").Include(
+                      "~/Scripts/ContractPagination.js"
+                      ));
+
 
 
             /** CSS BUNDLES **/

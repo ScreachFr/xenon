@@ -94,8 +94,15 @@ namespace Xenon.BusinessLogic.Controllers
 
         public int NumberOfContractsByWalletId(Guid walletId)
         {
-            // todo
-            return 5;
+
+            using (var ctx = new BusinessContext())
+            {
+                var query = from c in ctx.Contracts
+                            where c.Wallet.Equals(walletId)
+                            select c;
+
+                return query.Count();
+            }
         }
 
         public Wallet GetWalletById(Guid walletId)

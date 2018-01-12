@@ -30,14 +30,14 @@
                             if (((string)Session["XenonStatus"]) == "souscripteur")
                             {
                                 @Html.ActionLink("Details", "Detail", "Contract",
-                                                   new
-                                                   {
-                                                       @id = item.Id
-                                                   },
-                                                   new
-                                                   {
-                                                       @class = "btn btn-primary"
-                                                   })
+                                                                       new
+                                                                       {
+                                                                           @id = item.Id
+                                                                       },
+                                                                       new
+                                                                       {
+                                                                           @class = "btn btn-primary"
+                                                                       })
 
 
                                 <!--@Html.ActionLink("Edit to do", "Edit", "Wallet",
@@ -47,14 +47,14 @@
                             else if (((string)(Session["XenonStatus"])).Equals("manager"))
                             {
                                 @Html.ActionLink("Details", "Detail", "Contract",
-                                                   new
-                                                   {
-                                                       @id = item.Id
-                                                   },
-                                                   new
-                                                   {
-                                                       @class = "btn btn-primary"
-                                                   })
+                                                                       new
+                                                                       {
+                                                                           @id = item.Id
+                                                                       },
+                                                                       new
+                                                                       {
+                                                                           @class = "btn btn-primary"
+                                                                       })
                             }
 
                             else
@@ -71,3 +71,31 @@
         </div>
     }
 </div>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="btn-toolbar" role="toolbar" aria-label="...">
+            <div class="btn-group" role="group" aria-label="...">
+                @{
+                    for (int i = 1; i <= 5; i++)
+                    {
+
+                        string s = "button" + i;
+                        if (true)
+                        {
+
+                        }
+                        <button class="btn btn-default" id=@s>@i</button>
+
+                    } }
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval"),
+    @Scripts.Render("~/bundles/ContractPagination/js")
+}

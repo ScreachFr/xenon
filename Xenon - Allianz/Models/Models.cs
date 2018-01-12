@@ -41,6 +41,7 @@ namespace Xenon___Allianz.Models
         public Guid Wallet { get; set; }
         public string WalletName { get; set; }
         public int Value { get; set; }
+        public int Position { get; set; }
     }
     public class GeographicZoneModel
     {

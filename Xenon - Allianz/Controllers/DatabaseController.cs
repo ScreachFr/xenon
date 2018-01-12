@@ -142,6 +142,7 @@ namespace Xenon___Allianz.Controllers
                         Rompu = (rnd.Next(0, 10) > 5) ? true : false,
                         Value = rnd.Next(1000000, 50000000),
                         Wallet = lw[i].Id,
+                        Position = DataAccessAction.wallet.NumberOfContractsByWalletId(lw[i].Id) + 1
                     });
                 }
 
