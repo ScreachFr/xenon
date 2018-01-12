@@ -31,19 +31,20 @@
 
                                 if (((string)Session["XenonStatus"]) == "souscripteur")
                                 {
-
-
+                                    Guid s = item.Id;
+                            <button class="btn btn-primary" onclick='test("@s")'><span class=" glyphicon glyphicon-eye-open"></span></button>
+                                <!--
                                     @Html.ActionLink("Detail", "Index", "Contract",
-                     new { @id = item.Id }, new { @class = "btn btn-primary", @style = " margin-right: 5px" })
+                                    new { @id = item.Id }, new { @class = "btn btn-primary", @style = " margin-right: 5px" })
 
-                                    <!--@Html.ActionLink("Edit to do", "Edit", "Wallet",
+                                    @Html.ActionLink("Edit to do", "Edit", "Wallet",
                                     new { @id = item.Service }, new { @class = "btn btn-success" })
                                           -->
                                 }
                                 else if (((string)(Session["XenonStatus"])).Equals("manager"))
                                 {
                                     @Html.ActionLink("Detail", "Index", "Contract",
-                     new { @id = item.Id }, new { @class = "btn btn-primary" })
+                                    new { @id = item.Id }, new { @class = "btn btn-primary" })
                                 }
 
                                 else
@@ -51,15 +52,15 @@
 
                                 }
                             }
-                        </center>
+                                </center>
 
-                    </p>
+                            </p>
 
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-    }
+            }
 </div>
 
 
@@ -113,6 +114,11 @@
 
 
     }
+    @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval"),
+    @Scripts.Render("~/bundles/ContractPagination/js")
+}
+
 
 </table>
     -->

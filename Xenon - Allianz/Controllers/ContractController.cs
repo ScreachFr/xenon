@@ -13,7 +13,7 @@ namespace Xenon___Allianz.Controllers
     {
 
         // GET: Contract
-        public ActionResult Index(Guid id)
+        public ActionResult Index(PaginationModel pm)
         {
             if (Session["XenonUserId"] == null)
             {
@@ -25,7 +25,7 @@ namespace Xenon___Allianz.Controllers
 
                 List<ContractModel> l = new List<ContractModel>();
 
-                foreach (var item in DataAccessAction.contract.GetContractByWalletId(id,2,5))
+                foreach (var item in DataAccessAction.contract.GetContractByWalletId(pm.WalletId,pm.Page,pm.NumberOfElementsByPage))
                 {
                     l.Add(new ContractModel()
                     {
@@ -42,8 +42,8 @@ namespace Xenon___Allianz.Controllers
                         Value = item.Value
                     });
                 }
-                Session["currentWallet"] = id;
-                ViewBag.service = id;
+                Session["currentWallet"] = pm.WalletId;
+                ViewBag.service = pm.WalletId;
                 return View(l);
             }
             return Redirect("/");
@@ -54,11 +54,14 @@ namespace Xenon___Allianz.Controllers
             {
                 return Redirect("/");
             }
+            
             if (((string)Session["XenonStatus"]).Equals("souscripteur") ||
                 ((string)Session["XenonStatus"]).Equals("manager"))
             {
 
                 List<ContractModel> l = new List<ContractModel>();
+
+                Console.WriteLine(pm);
 
                 foreach (var item in DataAccessAction.contract.GetContractByWalletId(pm.WalletId, pm.Page, pm.NumberOfElementsByPage))
                 {
@@ -79,7 +82,7 @@ namespace Xenon___Allianz.Controllers
                 }
                 Session["currentWallet"] = pm.WalletId;
                 ViewBag.service = pm.WalletId;
-                return View(l);
+                return View("index", l);
             }
             return Redirect("/");
         }

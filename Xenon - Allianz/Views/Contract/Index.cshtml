@@ -80,12 +80,9 @@
                     for (int i = 1; i <= 5; i++)
                     {
 
-                        string s = "button" + i;
-                        if (true)
-                        {
-
-                        }
-                        <button class="btn btn-default" id=@s>@i</button>
+                        string s = (Guid)(Session["currentWallet"])+","+ i;
+                       
+                        <button class="btn btn-default" id=@s onclick='test2("@s")'>@i</button>
 
                     } }
 

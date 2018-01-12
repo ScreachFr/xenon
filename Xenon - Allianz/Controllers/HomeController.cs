@@ -18,8 +18,8 @@ namespace Xenon___Allianz.Controllers
                 {
                     return Redirect("/Admin");
                 }
-                //return Redirect("/Wallet");
-                List<WalletModel> wallets = new List<WalletModel>();
+                return Redirect("/Wallet");
+                /*List<WalletModel> wallets = new List<WalletModel>();
                 foreach (var item in DataAccessAction.wallet.GetAllWallet())
                 {
                     wallets.Add(new WalletModel()
@@ -35,6 +35,7 @@ namespace Xenon___Allianz.Controllers
                     Wallets = wallets
                 };
                 return View(hpm);
+                */
             }
             return Redirect("/");
         }
