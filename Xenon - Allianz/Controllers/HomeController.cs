@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Xenon___Allianz.Models;
+using Xenon___Allianz.DataAccess;
 
 namespace Xenon___Allianz.Controllers
 {
@@ -16,7 +18,23 @@ namespace Xenon___Allianz.Controllers
                 {
                     return Redirect("/Admin");
                 }
-                return Redirect("/Wallet");
+                //return Redirect("/Wallet");
+                List<WalletModel> wallets = new List<WalletModel>();
+                foreach (var item in DataAccessAction.wallet.GetAllWallet())
+                {
+                    wallets.Add(new WalletModel()
+                    {
+                        Id = item.Id,
+                        Service = item.Service
+                    });
+                }
+                List<ContractModel> contracts = new List<ContractModel>();
+                HomePageModel hpm = new HomePageModel()
+                {
+                    Contracts = contracts,
+                    Wallets = wallets
+                };
+                return View(hpm);
             }
             return Redirect("/");
         }

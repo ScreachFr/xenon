@@ -119,6 +119,20 @@ namespace Xenon___Allianz.Controllers
             return Redirect("/Admin/Wallets");
         }
 
+        public ActionResult UpdateSatus()
+        {
+            return View();
+        }
+        public ActionResult UpdateStatusValidation(UpdateStatusModel usm)
+        {
+            if (((string)Session["XenonStatus"]).Equals("admin"))
+            {
+                return Redirect("/Admin/Users");
+            }
+            return Redirect("/");
+
+        }
+
 
 
     }
