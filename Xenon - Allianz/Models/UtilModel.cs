@@ -29,6 +29,12 @@ namespace Xenon___Allianz.Models
         public int NumberOfElementsByPage { get; set; }
     }
 
+    public class ContractListModel
+    {
+        public int NumberOfContractInWallet { get; set; }
+        public List<ContractModel> ContractList { get; set; }
+    }
+
 
 
 

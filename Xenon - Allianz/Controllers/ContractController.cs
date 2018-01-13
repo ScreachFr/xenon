@@ -44,7 +44,13 @@ namespace Xenon___Allianz.Controllers
                 }
                 Session["currentWallet"] = pm.WalletId;
                 ViewBag.service = pm.WalletId;
-                return View(l);
+                ContractListModel clm = new ContractListModel()
+                {
+                    ContractList = l,
+                    NumberOfContractInWallet = DataAccessAction.wallet.NumberOfContractsByWalletId(pm.WalletId)
+                };
+
+                return View(clm);
             }
             return Redirect("/");
         }

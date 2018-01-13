@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Xenon___Allianz.Models.ContractModel>
+﻿@model Xenon___Allianz.Models.ContractListModel
 
 @{
     ViewBag.Title = "List of contract";
@@ -17,7 +17,7 @@
 }
 
 <div class="row">
-    @foreach (var item in Model)
+    @foreach (var item in Model.ContractList)
     {
         <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
@@ -30,14 +30,14 @@
                             if (((string)Session["XenonStatus"]) == "souscripteur")
                             {
                                 @Html.ActionLink("Details", "Detail", "Contract",
-                                                                       new
-                                                                       {
-                                                                           @id = item.Id
-                                                                       },
-                                                                       new
-                                                                       {
-                                                                           @class = "btn btn-primary"
-                                                                       })
+                                                                            new
+                                                                            {
+                                                                                @id = item.Id
+                                                                            },
+                                                                            new
+                                                                            {
+                                                                                @class = "btn btn-primary"
+                                                                            })
 
 
                                 <!--@Html.ActionLink("Edit to do", "Edit", "Wallet",
@@ -47,14 +47,14 @@
                             else if (((string)(Session["XenonStatus"])).Equals("manager"))
                             {
                                 @Html.ActionLink("Details", "Detail", "Contract",
-                                                                       new
-                                                                       {
-                                                                           @id = item.Id
-                                                                       },
-                                                                       new
-                                                                       {
-                                                                           @class = "btn btn-primary"
-                                                                       })
+                                                                            new
+                                                                            {
+                                                                                @id = item.Id
+                                                                            },
+                                                                            new
+                                                                            {
+                                                                                @class = "btn btn-primary"
+                                                                            })
                             }
 
                             else
@@ -77,11 +77,16 @@
         <div class="btn-toolbar" role="toolbar" aria-label="...">
             <div class="btn-group" role="group" aria-label="...">
                 @{
-                    for (int i = 1; i <= 5; i++)
+                    int numberOfElements = Model.NumberOfContractInWallet;
+                    int numberOfElementByPage = 10;
+                    int n = numberOfElements / numberOfElementByPage;
+                    int m = ((numberOfElements % numberOfElementByPage) == 0) ? n : n + 1;
+
+                    for (int i = 1; i <= m; i++)
                     {
 
-                        string s = (Guid)(Session["currentWallet"])+","+ i;
-                       
+                        string s = (Guid)(Session["currentWallet"]) + "," + i;
+
                         <button class="btn btn-default" id=@s onclick='test2("@s")'>@i</button>
 
                     } }
