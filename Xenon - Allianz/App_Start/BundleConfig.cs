@@ -24,7 +24,8 @@ namespace Xenon___Allianz
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/bootstrap-datepicker.js",
-                      "~/Scripts/bootstrap-datepicker.min.js"
+                      "~/Scripts/bootstrap-datepicker.min.js",
+                      "~/Scripts/utils.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/LoginRegister/js").Include(

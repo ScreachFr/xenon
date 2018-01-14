@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Api";
+}
+@{
+    //string s = "http://xenon.allianz.com";
+    string s = "http://localhost:65493";
+    <div class=" page-header">
+        <h1>Api Xenon - Allianz</h1>
+
+        <p>
+            Here is the basic documentation of the Xenon - Allianz api.
+            Overall, the API is just a set of GET URLs that have request parameters that can be set and will return a JSON result.
+            Below are the API URLs and their parameters and a JSON example of what they'll return.
+        </p>
+
+    </div>
+    <h2>
+        You must be logged in to access these features of the api
+    </h2>
+
+    <h3>Get Wallets By User Scope </h3>
+    <p><strong>Url : </strong>@s/Wallet/GetWalletsByUserScopeApi</p>
+    <p><strong>Parameters : </strong></p>
+    <ul>
+        <li>none</li>
+    </ul>
+    <p><strong>Exemple Url : </strong><a target="_blank" href="@s/Wallet/GetWalletsByUserScopeApi">@s/Wallet/GetWalletsByUserScopeApi</a></p>
+
+    <h3>Add Wallet </h3>
+    <p><strong>Url : </strong>/Wallet/AddWalletApi</p>
+    <p><strong>Parameters : </strong></p>
+    <ul>
+        <li>service  - string</li>
+    </ul>
+    <p><strong>Exemple Url :</strong> <a target="_blank" href="@s/Wallet/AddWalletApi?service=test">@s/Wallet/AddWalletApi?service=test</a></p>
+}

@@ -7,11 +7,10 @@
 @if (Session["ErrorPassWord"] != null)
 {
     <div class="alert alert-danger" role="alert">@Session["ErrorPassWord"]</div>
-    
+
 }
 
 <h2>Login</h2>
-
 
 @using (Html.BeginForm("Login", "Login"))
 {
@@ -54,7 +53,7 @@
         <h6>Collaborateur -      username : collaborateur , pass : pass</h6>
 
     </div>
-
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval"),
+    @Scripts.Render("~/bundles/bootstrap"),
 }

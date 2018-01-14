@@ -59,5 +59,10 @@ namespace Xenon___Allianz.Controllers
             Session["XenonUserId"] = null;
             return Redirect("/Login");
         }
+
+        public ActionResult Api()
+        {
+            return View();
+        }
     }
 }

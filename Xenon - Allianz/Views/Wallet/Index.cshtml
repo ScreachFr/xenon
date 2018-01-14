@@ -3,19 +3,15 @@
 @{
     ViewBag.Title = "Wallet - Index";
 }
-
-
 <div class="page-header">
     <h2>List of Wallet</h2>
 </div>
 <p>
     @if (((string)Session["XenonStatus"]) == "souscripteur")
     {
-        @Html.ActionLink("Create New wallet", "Create")
+        @Html.ActionLink("add new wallet", "Create")
     }
 </p>
-
-
 <div class="row">
     @foreach (var item in Model)
     {
@@ -34,19 +30,19 @@
                                 if (((string)Session["XenonStatus"]) == "souscripteur")
                                 {
                                     Guid s = item.Id;
-                            <button class="btn btn-primary" onclick='test("@s")'><span class=" glyphicon glyphicon-eye-open"></span></button>
-                                <!--
-                                    @Html.ActionLink("Detail", "Index", "Contract",
-                                    new { @id = item.Id }, new { @class = "btn btn-primary", @style = " margin-right: 5px" })
+                                    <button class="btn btn-primary" onclick='test("@s")'><span class=" glyphicon glyphicon-eye-open"></span></button>
+                                    <!--
+                                        @Html.ActionLink("Detail", "Index", "Contract",
+                                        new { @id = item.Id }, new { @class = "btn btn-primary", @style = " margin-right: 5px" })
 
-                                    @Html.ActionLink("Edit to do", "Edit", "Wallet",
-                                    new { @id = item.Service }, new { @class = "btn btn-success" })
-                                          -->
+                                        @Html.ActionLink("Edit to do", "Edit", "Wallet",
+                                        new { @id = item.Service }, new { @class = "btn btn-success" })
+                                              -->
                                 }
                                 else if (((string)(Session["XenonStatus"])).Equals("manager"))
                                 {
                                     @Html.ActionLink("Detail", "Index", "Contract",
-                                    new { @id = item.Id }, new { @class = "btn btn-primary" })
+                                         new { @id = item.Id }, new { @class = "btn btn-primary" })
                                 }
 
                                 else
@@ -54,73 +50,18 @@
 
                                 }
                             }
-                                </center>
+                        </center>
 
-                            </p>
+                    </p>
 
-                        </div>
-                    </div>
                 </div>
-
-            }
-</div>
-
-
-
-
-
-<!--
-<table class="table">
-    <tr>
-<!--
-<!--
-<table class="table">
-    <tr>
-<!--
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Service)
-        </th>
-        @{
-            if (((string)Session["XenonType"]) == "souscripteur")
-            {
-                <th></th>
-            }
-        }
-
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-
-        <tr>
-            <td>@Html.DisplayFor(modelItem => item.Service)</td>
-            @{
-                if (((string)Session["XenonType"]) == "souscripteur")
-                {
-                    <td>
-                        @Html.ActionLink("Edit to do", "Edit", "Wallet",
-                                                               new { @id = item.Service }, new { @class = "btn btn-success" })
-                    </td>
-                }
-            }
-            <td>
-
-                @Html.ActionLink("Detail", "Index", "Contract",
-                                                              new { @id = item.Id }, new { @class = "btn btn-primary" })
-            </td>
-
-        </tr>
-
+            </div>
+        </div>
 
     }
-    @section Scripts {
+</div>
+
+@section Scripts {
     @Scripts.Render("~/bundles/jqueryval"),
     @Scripts.Render("~/bundles/ContractPagination/js")
 }
-
-
-</table>
-    -->

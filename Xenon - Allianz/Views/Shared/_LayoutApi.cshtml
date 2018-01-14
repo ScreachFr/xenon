@@ -1,9 +1,4 @@
-﻿@{
-    if (Session["XenonUsername"] != null)
-    {
-        Response.Redirect("/Home");
-    }
-}
+﻿
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +14,7 @@
     <div class="container body-content">
 
 
-        <div class="navbar navbar-default">
+        <div class="navbar navbar-default" style="background-color:lightsteelblue">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -27,27 +22,39 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @Html.ActionLink("Xenon Allianz", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+
                 </div>
                 <div class="navbar-collapse collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Logo", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Database", "Index", "Database")</li>
+                        <li>@Html.ActionLink("Xenon Allianz", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
                     </ul>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Log in", "Index", "Login")</li>
-                        <li>@Html.ActionLink("API", "Api", "Home")</li>
+                        @{
 
-                        <!--
-    <li>@Html.ActionLink("Register", "Register", "Log")</li>
-        -->
+                            if (Session["XenonUsername"] != null)
+                            {
+                                <li>@Html.ActionLink("Wallet", "Index", "Wallet")</li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                            }
+
+
+                            <li>@Html.ActionLink("API", "Api", "Home")</li>
+
+
+
+
+                        }
+
                     </ul>
                 </div>
             </div>
         </div>
-
         @RenderBody()
         <hr />
         <footer>

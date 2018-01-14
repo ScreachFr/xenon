@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,36 +16,38 @@ namespace Xenon___Allianz.Controllers
         // GET: Wallet
         public ActionResult Index()
         {
-            if (Session["XenonUserId"] == null)
-            {
-                return Redirect("/");
-            }
-            Guid userId = (Guid)(Session["XenonUserId"]);
-            string connectedSession = (string)(Session["XenonStatus"]);
+            return View(GetWalletsByUserScope());
+        }
+
+       
+
+        public List<WalletModel> GetWalletsByUserScope()
+        {
             List<WalletModel> walletModels = new List<WalletModel>();
-            List<Wallet> wallets = null;
-            if (connectedSession.Equals("souscripteur") || connectedSession.Equals("manager"))
+            if (Session["XenonUserId"] != null)
             {
-                wallets = DataAccessAction.wallet.GetWalletByScope(userId);
-            }
-            else
-            {
-                wallets = DataAccessAction.wallet.GetAllWallet();
-            }
-            foreach (var item in wallets)
-            {
-                walletModels.Add(new WalletModel { Id = item.Id, Service = item.Service, numberOfContract = 0 });
-            }
-            foreach (var item in walletModels)
-            {
-                item.numberOfContract = DataAccessAction.wallet.NumberOfContractsByWalletId(item.Id);
-            }
 
-
-            //Console.Write(userId);
-            //Session["currentWallet"] = null;
-
-            return View(walletModels);
+                Guid userId = (Guid)(Session["XenonUserId"]);
+                string connectedSession = (string)(Session["XenonStatus"]);
+                List<Wallet> wallets = null;
+                if (connectedSession.Equals("souscripteur") || connectedSession.Equals("manager"))
+                {
+                    wallets = DataAccessAction.wallet.GetWalletByScope(userId);
+                }
+                else
+                {
+                    wallets = DataAccessAction.wallet.GetAllWallet();
+                }
+                foreach (var item in wallets)
+                {
+                    walletModels.Add(new WalletModel { Id = item.Id, Service = item.Service, numberOfContract = 0 });
+                }
+                foreach (var item in walletModels)
+                {
+                    item.numberOfContract = DataAccessAction.wallet.NumberOfContractsByWalletId(item.Id);
+                }
+            }
+            return walletModels;
         }
 
         public ActionResult Edit(String id)
@@ -66,14 +69,36 @@ namespace Xenon___Allianz.Controllers
             return Redirect("/Wallet");
 
         }
+
+        
         public ActionResult AddWallet(WalletModel wm)
         {
 
+            AddWalletAux(wm);
+            return Redirect("/Wallet");
+        }
+        private void AddWalletAux(WalletModel wm)
+        {
             Guid userId = (Guid)(Session["XenonUserId"]);
             //Database.AddWallet(w, userId);
             Wallet w = new Wallet { Service = wm.Service };
             DataAccessAction.wallet.AddWallet(w, userId);
-            return Redirect("/Wallet");
+        }
+
+        /** API WEB SERVICE **/
+
+        public string GetWalletsByUserScopeApi()
+        {
+            return JsonConvert.SerializeObject(GetWalletsByUserScope());
+        }
+
+        public void AddWalletApi(String service)
+        {
+            WalletModel wm = new WalletModel
+            {
+                Service = service
+            };
+            AddWalletAux(wm);
         }
 
     }

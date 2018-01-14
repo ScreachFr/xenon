@@ -53,6 +53,11 @@ namespace Xenon___Allianz.Controllers
 
             return View();
         }
+        public ActionResult Api()
+        {
+            return View("Api", "_LayoutApi");
+        }
+        
         
 
     }

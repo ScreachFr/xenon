@@ -16,3 +16,16 @@ $(function () {
     });
 
 });
+
+function login() {
+
+}
+
+function successLogin(user) {
+    if (user != null) {
+
+    }
+    else {
+
+    }
+}

@@ -304,6 +304,7 @@
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\ContractPagination.js" />
     <Content Include="Scripts\Contract.js" />
+    <Content Include="Scripts\utils.js" />
     <Content Include="Scripts\LoginRegister.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -351,6 +352,9 @@
     <Content Include="Views\Admin\RegisterUser.cshtml" />
     <Content Include="Views\Admin\AddWallet.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Login\Api.cshtml" />
+    <Content Include="Views\Shared\_LayoutApi.cshtml" />
+    <Content Include="Views\Home\Api.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
