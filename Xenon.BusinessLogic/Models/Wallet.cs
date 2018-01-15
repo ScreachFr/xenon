@@ -7,13 +7,14 @@ using System.Web;
 
 namespace Xenon.BusinessLogic.Models
 {
-  public class Wallet
-  {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid Id { get; set; }
-    public string Service { get; set; }
+    public class Wallet
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
+        public string Service { get; set; }
+        public string Image { get; set; }
 
 
-  }
+    }
 }

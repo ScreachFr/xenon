@@ -22,6 +22,7 @@ namespace Xenon___Allianz.Models
     {
         public Guid Id { get; set;  }
         public string Service { get; set; }
+        public string Image { get; set; }
         public int numberOfContract { get; set; }
     }
 

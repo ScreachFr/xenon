@@ -40,7 +40,7 @@ namespace Xenon___Allianz.Controllers
                 }
                 foreach (var item in wallets)
                 {
-                    walletModels.Add(new WalletModel { Id = item.Id, Service = item.Service, numberOfContract = 0 });
+                    walletModels.Add(new WalletModel { Id = item.Id, Service = item.Service, numberOfContract = 0, Image=item.Image });
                 }
                 foreach (var item in walletModels)
                 {
