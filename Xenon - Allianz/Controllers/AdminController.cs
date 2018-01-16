@@ -28,6 +28,8 @@ namespace Xenon___Allianz.Controllers
                 List<UserModel> lu = new List<UserModel>();
                 foreach (var item in DataAccessAction.user.GetAllUsers())
                 {
+                    //if (item.Status.Equals("admin"))
+                    //{
                     lu.Add(new UserModel()
                     {
                         Id = item.Id,
@@ -38,6 +40,20 @@ namespace Xenon___Allianz.Controllers
                         GeographicZoneName = DataAccessAction.geographicZone.GetGeographicZoneById(item.GeographicZone).Name
 
                     });
+
+                    /*else
+                    {
+                        lu.Add(new UserModel()
+                        {
+                            Id = item.Id,
+                            Username = item.Username,
+                            Mail = item.Mail,
+                            Status = item.Status,
+                            //GeographicZone = item.GeographicZone,
+                            GeographicZoneName = ""
+
+                        });
+                    }*/
                 }
                 return View(lu);
             }
@@ -66,7 +82,7 @@ namespace Xenon___Allianz.Controllers
         }
         public ActionResult Contracts()
         {
-            
+
             if (((string)Session["XenonStatus"]).Equals("admin"))
             {
                 List<ContractModel> lc = new List<ContractModel>();
@@ -85,7 +101,7 @@ namespace Xenon___Allianz.Controllers
                         Value = item.Value,
                         Wallet = item.Wallet,
                         WalletName = DataAccessAction.wallet.GetWalletById(item.Wallet).Service,
-                        Position =item.Position
+                        Position = item.Position
                     });
                 }
                 return View(lc);
@@ -106,7 +122,7 @@ namespace Xenon___Allianz.Controllers
                 Password = user.Password,
                 Mail = user.Mail,
                 Status = user.Status,
-                GeographicZone = new Guid(),
+                GeographicZone = new Guid("52292A7C-BEFA-E711-8AC1-484520A48417"),
             };
             DataAccessAction.user.Register(u);
             return Redirect("/Admin/Users");
@@ -133,6 +149,12 @@ namespace Xenon___Allianz.Controllers
             }
             return Redirect("/");
 
+        }
+
+        public ActionResult ShowStatusToValid()
+        {
+
+            return View();
         }
 
 

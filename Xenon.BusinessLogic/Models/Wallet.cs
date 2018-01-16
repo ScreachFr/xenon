@@ -14,7 +14,5 @@ namespace Xenon.BusinessLogic.Models
         public Guid Id { get; set; }
         public string Service { get; set; }
         public string Image { get; set; }
-
-
     }
 }

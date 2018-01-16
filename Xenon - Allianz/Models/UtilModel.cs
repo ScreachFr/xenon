@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI.HtmlControls;
 
 namespace Xenon___Allianz.Models
 {
@@ -20,7 +21,10 @@ namespace Xenon___Allianz.Models
     {
         public Guid UserId { get; set; }
         public string NewStatus { get; set; }
+        public string State { get; set; } = "In progress";
+        public HttpPostedFileBase File { get; set; }
     }
+
 
     public class PaginationModel
     {

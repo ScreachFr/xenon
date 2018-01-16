@@ -11,7 +11,7 @@ namespace Xenon.BusinessLogic.Interface
     {
         User Login(String username, String password);
         bool Register(User u);
-        bool EditStatus(Guid userId, string status);
+        bool EditStatus(Guid userId, string status, string filename);
         bool EditPassWord(Guid userId, string password);
         User GetUserById(Guid id);
         List<User> GetAllUsers();

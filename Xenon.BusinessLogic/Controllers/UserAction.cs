@@ -82,9 +82,22 @@ namespace Xenon.BusinessLogic.Controllers
             }
         }
 
-        public bool EditStatus(Guid userId, string status)
+        public bool EditStatus(Guid userId, string status, string filename)
         {
-            throw new NotImplementedException();
+            using (var ctx = new BusinessContext())
+            {
+                var query = from u in ctx.Users
+                            where u.Id == userId
+                            select u;
+                User usr = query.First();
+                usr.Status = status;
+                ctx.Entry(usr).State = System.Data.Entity.EntityState.Modified;
+                //ctx.Users.Attach(usr);
+                ctx.SaveChanges();
+                return true;
+            }
+            
+            //throw new NotImplementedException();
         }
 
         public bool EditPassWord(Guid userId, string password)
