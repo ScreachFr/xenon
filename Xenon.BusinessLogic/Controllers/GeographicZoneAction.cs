@@ -83,7 +83,35 @@ namespace Xenon.BusinessLogic.Controllers
 
     public bool IsWithinScope(Guid father, Guid supposedChild)
     {
-      throw new NotImplementedException();
+      if (father == null)
+        return false;
+      
+
+      using (var ctx = new BusinessContext())
+      {
+        var query = from z in ctx.GeographicZones
+                    where z.Id.Equals(supposedChild)
+                    select z;
+        var count = query.Count();
+
+        if (count > 0)
+        {
+          var res = query.First();
+          if (res.Father.Equals(father))
+            return true;
+          else
+            return IsWithinScope(father, res.Father);
+
+
+        } else
+          return false;
+        
+
+
+      }
+
     }
+
+    
   }
 }
