@@ -7,18 +7,21 @@ $(function (){
 function test(s) {
     console.log(s);
     //alert(s);
-    Pagin(s,1);
+    Pagin(s,1,5);
 }
 function test2(s) {
     console.log(s);
     var s2 = s.split(',');
-    Pagin(s2[0], s2[1]);
+    var res = $("#numberElementsByPage").val();
+    console.log('qsdcqs');
+    
+    Pagin(s2[0], s2[1], res);
 
 }
 
-function Pagin(id,page) {
+function Pagin(id, page, numberElementsByPage) {
     console.log(id);
-    location.href = "/Contract/Index?WalletId=" + id + "&Page=" + page + "&NumberOfElementsByPage=10"
+    location.href = "/Contract/Index?WalletId=" + id + "&Page=" + page + "&NumberOfElementsByPage=" + numberElementsByPage;
     /*$.ajax({
         url: '/Contract/Index',
         data: {

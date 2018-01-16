@@ -11,9 +11,25 @@
 </div>
 @if (((string)Session["XenonStatus"]) == "souscripteur")
 {
-    <p>
-        @Html.ActionLink("add New contract", "Create/" + (Guid)(Session["currentWallet"]), "Contract")
-    </p>
+    <div class="row">
+
+        <div class="col-md-3">
+            <p class="">
+                @Html.ActionLink("add New contract", "Create/" + (Guid)(Session["currentWallet"]), "Contract")
+            </p>
+        </div>
+        <div class="col-md-6"></div>
+        <div class="col-md-3">
+            <div class="form-group pull-right">
+                <select class="form-control pull-right" id="numberElementsByPage">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+        </div>
+    </div>
 }
 
 <div class="row">
@@ -25,19 +41,18 @@
                     <h3> @Html.DisplayFor(modelItem => item.Company)</h3>
                     <p>Start at : @Html.DisplayFor(modelItem => item.Start.ToString().Split(' ')[0])</p>
                     <p>
-
                         @{
                             if (((string)Session["XenonStatus"]) == "souscripteur")
                             {
                                 @Html.ActionLink("Details", "Detail", "Contract",
-                                                                            new
-                                                                            {
-                                                                                @id = item.Id
-                                                                            },
-                                                                            new
-                                                                            {
-                                                                                @class = "btn btn-primary"
-                                                                            })
+                                                                                 new
+                                                                                 {
+                                                                                     @id = item.Id
+                                                                                 },
+                                                                                 new
+                                                                                 {
+                                                                                     @class = "btn btn-primary"
+                                                                                 })
 
 
                                 <!--@Html.ActionLink("Edit to do", "Edit", "Wallet",
@@ -47,14 +62,14 @@
                             else if (((string)(Session["XenonStatus"])).Equals("manager"))
                             {
                                 @Html.ActionLink("Details", "Detail", "Contract",
-                                                                            new
-                                                                            {
-                                                                                @id = item.Id
-                                                                            },
-                                                                            new
-                                                                            {
-                                                                                @class = "btn btn-primary"
-                                                                            })
+                                                                                 new
+                                                                                 {
+                                                                                     @id = item.Id
+                                                                                 },
+                                                                                 new
+                                                                                 {
+                                                                                     @class = "btn btn-primary"
+                                                                                 })
                             }
 
                             else

@@ -11,56 +11,31 @@ namespace Xenon___Allianz.Controllers
 {
     public class ContractController : Controller
     {
+        /* */
 
-        // GET: Contract
+
+        /* WEBSITE WEB SERVICE*/
         public ActionResult Index(PaginationModel pm)
         {
             if (Session["XenonUserId"] == null)
             {
                 return Redirect("/");
             }
-            if (((string)Session["XenonStatus"]).Equals("souscripteur") || 
+            if (((string)Session["XenonStatus"]).Equals("souscripteur") ||
                 ((string)Session["XenonStatus"]).Equals("manager"))
             {
-
-                List<ContractModel> l = new List<ContractModel>();
-
-                foreach (var item in DataAccessAction.contract.GetContractByWalletId(pm.WalletId,pm.Page,pm.NumberOfElementsByPage))
-                {
-                    l.Add(new ContractModel()
-                    {
-                        Id = item.Id,
-                        Start = item.Start.ToString(),
-                        End = item.End.ToString(),
-                        Cover = item.Cover,
-                        Negociable = item.Negociable,
-                        Prime = item.Prime,
-                        Rompu = item.Rompu,
-                        Company = item.Company,
-                        Wallet = item.Wallet,
-                        WalletName = "",
-                        Value = item.Value
-                    });
-                }
-                Session["currentWallet"] = pm.WalletId;
-                ViewBag.service = pm.WalletId;
-                ContractListModel clm = new ContractListModel()
-                {
-                    ContractList = l,
-                    NumberOfContractInWallet = DataAccessAction.wallet.NumberOfContractsByWalletId(pm.WalletId)
-                };
-
+                ContractListModel clm = GetContractByWalletId(pm);
                 return View(clm);
             }
             return Redirect("/");
         }
-        public ActionResult ContractAtPage(PaginationModel pm)
+        /*public ActionResult ContractAtPage(PaginationModel pm)
         {
             if (Session["XenonUserId"] == null)
             {
                 return Redirect("/");
             }
-            
+
             if (((string)Session["XenonStatus"]).Equals("souscripteur") ||
                 ((string)Session["XenonStatus"]).Equals("manager"))
             {
@@ -92,6 +67,7 @@ namespace Xenon___Allianz.Controllers
             }
             return Redirect("/");
         }
+        */
 
         public ActionResult Create(Guid id)
         {
@@ -138,7 +114,7 @@ namespace Xenon___Allianz.Controllers
                 return Redirect("/");
             }
             Contract item = DataAccessAction.contract.GetContractById(id);
-            ContractModel contract =new ContractModel()
+            ContractModel contract = new ContractModel()
             {
                 Id = item.Id,
                 Start = item.Start.ToString(),
@@ -154,11 +130,52 @@ namespace Xenon___Allianz.Controllers
             };
 
             //contract.WalletName = ;
-            
-              
+
+
             return View(contract);
         }
+        /* API WEB SERVICE */
+
+        /* END OF API WEB SERVICE */
+
+        /** FUNCTION DEFINITION **/
+
+        public ContractListModel GetContractByWalletId(PaginationModel pm)
+        {
+            List<ContractModel> l = new List<ContractModel>();
+
+            foreach (var item in DataAccessAction.contract.GetContractByWalletId(walletId: pm.WalletId, page: pm.Page, numberByPage: pm.NumberOfElementsByPage))
+            {
+                l.Add(new ContractModel()
+                {
+                    Id = item.Id,
+                    Start = item.Start.ToString(),
+                    End = item.End.ToString(),
+                    Cover = item.Cover,
+                    Negociable = item.Negociable,
+                    Prime = item.Prime,
+                    Rompu = item.Rompu,
+                    Company = item.Company,
+                    Wallet = item.Wallet,
+                    WalletName = "",
+                    Value = item.Value
+                });
+            }
+            Session["currentWallet"] = pm.WalletId;
+            ViewBag.service = pm.WalletId;
+            ContractListModel clm = new ContractListModel()
+            {
+                ContractList = l,
+                NumberOfContractInWallet = DataAccessAction.wallet.NumberOfContractsByWalletId(pm.WalletId)
+            };
+
+            return clm;
+
+        }
     }
+
+    
+    
 
 
 }

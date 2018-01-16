@@ -27,6 +27,7 @@ namespace Xenon___Allianz.Models
         public Guid WalletId { get; set; }
         public int Page { get; set; }
         public int NumberOfElementsByPage { get; set; }
+        public string SortResult { get; set; }
     }
 
     public class ContractListModel
