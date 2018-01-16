@@ -1,7 +1,20 @@
-$(function (){
+$(document).ready(function () {
+    $('#contractList').DataTable({
+        "columnDefs": [
+            { width: "5%", targets: 2 },
+            { orderable: false, targets: [2] }
+        ]
+    });
+
+    //console.log('xscd');
+    //alert($('#contractList'));
+});
+
+$(function () {
     for (var i = 1; i <= 5; i++) {
         //$("#button" + i).click(console.log("hello everdoby"));
     }
+    //console.log('xscd');
 })
 
 function test(s) {

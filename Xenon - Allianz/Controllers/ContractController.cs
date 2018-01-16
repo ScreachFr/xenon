@@ -29,45 +29,6 @@ namespace Xenon___Allianz.Controllers
             }
             return Redirect("/");
         }
-        /*public ActionResult ContractAtPage(PaginationModel pm)
-        {
-            if (Session["XenonUserId"] == null)
-            {
-                return Redirect("/");
-            }
-
-            if (((string)Session["XenonStatus"]).Equals("souscripteur") ||
-                ((string)Session["XenonStatus"]).Equals("manager"))
-            {
-
-                List<ContractModel> l = new List<ContractModel>();
-
-                Console.WriteLine(pm);
-
-                foreach (var item in DataAccessAction.contract.GetContractByWalletId(pm.WalletId, pm.Page, pm.NumberOfElementsByPage))
-                {
-                    l.Add(new ContractModel()
-                    {
-                        Id = item.Id,
-                        Start = item.Start.ToString(),
-                        End = item.End.ToString(),
-                        Cover = item.Cover,
-                        Negociable = item.Negociable,
-                        Prime = item.Prime,
-                        Rompu = item.Rompu,
-                        Company = item.Company,
-                        Wallet = item.Wallet,
-                        WalletName = "",
-                        Value = item.Value
-                    });
-                }
-                Session["currentWallet"] = pm.WalletId;
-                ViewBag.service = pm.WalletId;
-                return View("index", l);
-            }
-            return Redirect("/");
-        }
-        */
 
         public ActionResult Create(Guid id)
         {
@@ -144,12 +105,12 @@ namespace Xenon___Allianz.Controllers
         {
             List<ContractModel> l = new List<ContractModel>();
 
-            foreach (var item in DataAccessAction.contract.GetContractByWalletId(walletId: pm.WalletId, page: pm.Page, numberByPage: pm.NumberOfElementsByPage))
+            foreach (var item in DataAccessAction.contract.GetContractByWalletId(walletId: pm.WalletId, page: pm.Page, numberByPage: 100))
             {
                 l.Add(new ContractModel()
                 {
                     Id = item.Id,
-                    Start = item.Start.ToString(),
+                    Start = item.Start.Year + "/" + item.Start.Month + "/" + item.Start.Day,
                     End = item.End.ToString(),
                     Cover = item.Cover,
                     Negociable = item.Negociable,
@@ -166,7 +127,9 @@ namespace Xenon___Allianz.Controllers
             ContractListModel clm = new ContractListModel()
             {
                 ContractList = l,
-                NumberOfContractInWallet = DataAccessAction.wallet.NumberOfContractsByWalletId(pm.WalletId)
+                NumberOfContractInWallet = DataAccessAction.wallet.NumberOfContractsByWalletId(pm.WalletId),
+                WalletName = DataAccessAction.wallet.GetWalletById(pm.WalletId).Service
+             
             };
 
             return clm;
@@ -174,8 +137,10 @@ namespace Xenon___Allianz.Controllers
         }
     }
 
-    
-    
+
+
+
+
 
 
 }

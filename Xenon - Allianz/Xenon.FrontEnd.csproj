@@ -268,6 +268,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dataTables.bootstrap.min.css" />
     <Content Include="Content\LoginRegister.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -304,6 +305,8 @@
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\ContractPagination.js" />
     <Content Include="Scripts\Contract.js" />
+    <Content Include="Scripts\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\utils.js" />
     <Content Include="Scripts\LoginRegister.js" />
     <Content Include="Scripts\bootstrap.js" />

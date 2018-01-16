@@ -25,6 +25,8 @@ namespace Xenon___Allianz
                       "~/Scripts/respond.js",
                       "~/Scripts/bootstrap-datepicker.js",
                       "~/Scripts/bootstrap-datepicker.min.js",
+                      "~/Scripts/jquery.dataTables.min.js",
+                      "~/Scripts/dataTables.bootstrap.min.js",
                       "~/Scripts/utils.js"
                       ));
 
@@ -46,7 +48,8 @@ namespace Xenon___Allianz
                       "~/Content/site.css",
                       "~/Content/bootstrap-datepicker3.css",
                       "~/Content/bootstrap-datepicker3.min.css",
-                      "~/Content/bootstrap-datepicker3.css.map"));
+                      "~/Content/bootstrap-datepicker3.css.map",
+                      "~/Content/dataTables.bootstrap.min.css"));
             bundles.Add(new StyleBundle("~/Content/LoginRegister/css").Include(
                       "~/Content/LoginRegister.css"
                       ));

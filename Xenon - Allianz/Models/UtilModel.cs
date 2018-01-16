@@ -34,6 +34,7 @@ namespace Xenon___Allianz.Models
     {
         public int NumberOfContractInWallet { get; set; }
         public List<ContractModel> ContractList { get; set; }
+        public string WalletName { get; set; }
     }
 
 
