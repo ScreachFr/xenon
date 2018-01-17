@@ -49,7 +49,8 @@ namespace Xenon___Allianz
                       "~/Content/bootstrap-datepicker3.css",
                       "~/Content/bootstrap-datepicker3.min.css",
                       "~/Content/bootstrap-datepicker3.css.map",
-                      "~/Content/dataTables.bootstrap.min.css"));
+                //"~/Content/jquery.dataTables.min.css"));
+                "~/Content/dataTables.bootstrap.min.css"));
             bundles.Add(new StyleBundle("~/Content/LoginRegister/css").Include(
                       "~/Content/LoginRegister.css"
                       ));

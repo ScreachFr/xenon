@@ -110,7 +110,7 @@ namespace Xenon___Allianz.Controllers
                 l.Add(new ContractModel()
                 {
                     Id = item.Id,
-                    Start = item.Start.Year + "/" + item.Start.Month + "/" + item.Start.Day,
+                    Start = item.Start.Year + "/" + item.Start.Month.ToString("D2") + "/" + item.Start.Day.ToString("D2"),
                     End = item.End.ToString(),
                     Cover = item.Cover,
                     Negociable = item.Negociable,

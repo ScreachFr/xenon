@@ -269,6 +269,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dataTables.bootstrap.min.css" />
+    <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="Content\LoginRegister.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
