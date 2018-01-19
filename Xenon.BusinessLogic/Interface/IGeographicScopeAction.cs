@@ -9,5 +9,6 @@ namespace Xenon.BusinessLogic.Interface
 {
   public interface IGeographicScopeAction
   {
+        void AddContractScope(Guid contractId, Guid geographicZoneId);
   }
 }

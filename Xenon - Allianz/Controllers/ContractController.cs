@@ -108,7 +108,7 @@ namespace Xenon___Allianz.Controllers
             foreach (var item in DataAccessAction.contract.GetContractByWalletId(walletId: pm.WalletId, page: pm.Page, numberByPage: 100))
             {
                 l.Add(new ContractModel()
-                {
+                {   
                     Id = item.Id,
                     Start = item.Start.Year + "/" + item.Start.Month.ToString("D2") + "/" + item.Start.Day.ToString("D2"),
                     End = item.End.ToString(),

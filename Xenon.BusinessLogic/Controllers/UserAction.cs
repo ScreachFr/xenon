@@ -11,8 +11,6 @@ namespace Xenon.BusinessLogic.Controllers
 {
     public class UserAction : IUserAction
     {
-
-
         private static bool IsUsernameTaken(String username)
         {
             using (var ctx = new BusinessContext())
@@ -39,8 +37,6 @@ namespace Xenon.BusinessLogic.Controllers
 
                 try
                 {
-
-
                     var query = from usr in ctx.Users
                                 where usr.Username.Equals(username) && usr.Password.Equals(hashedPassword)
                                 select usr;

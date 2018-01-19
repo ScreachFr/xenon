@@ -10,6 +10,7 @@ namespace Xenon.BusinessLogic.Controllers
 {
   class GeographicScopeAction : IGeographicScopeAction
   {
-    
+   
+        
   }
 }

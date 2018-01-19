@@ -10,6 +10,15 @@ namespace Xenon.BusinessLogic.Interface
     public interface IAdminAction
     {
         void AddUpdateStatusUser(UpdateStatus us);
-        void UpdateStatusUser(UpdateStatus us);
+        
+        // edit user status
+        void AcceptUpdateStatusUser(UpdateStatus us);
+
+        void RefuseUpdateStatusUser(UpdateStatus us);
+
+        // sort by inProgress = true then inProgress status will be first in line
+        List<UpdateStatus> GetUpdateStatus(bool inProgress);
+
+
     }
 }
