@@ -83,11 +83,11 @@ namespace Xenon.BusinessLogic.Controllers
       using (var ctx = new BusinessContext())
       {
         var query = from u in ctx.Users
-                    where u.Id == userId
+                    where u.Id.Equals(userId)
                     select u;
         User usr = query.FirstOrDefault();
 
-        if (usr != null)
+        if (usr == null)
         {
           return false;
         }

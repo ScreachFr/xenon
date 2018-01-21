@@ -17,7 +17,22 @@
         <div class="form-group">
             @Html.LabelFor(model => model.NewStatus, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NewStatus, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("NewStatus",
+                            new SelectList(
+                                new[]{
+new { Value = "souscripteur", Text = "souscripteur" },
+new { Value = "actuaire", Text = "actuaire" },
+new { Value = "manager", Text = "manager" },
+new { Value = "collaborateur", Text = "collaborateur" },
+new { Value = "admin", Text = "admin" },
+                                },
+                                "Value",
+                                "Text",
+                                Model
+                            ),
+                            new { @class = "form-control" })
+                
+               
                 @Html.ValidationMessageFor(model => model.NewStatus, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -52,7 +52,7 @@ namespace Xenon___Allianz.Controllers
                 string filename = Path.GetFileName(usm.File.FileName);
                 usm.File.SaveAs(Server.MapPath(path: "~/File/") + filename);
                 DataAccessAction.user.EditStatus(id, usm.NewStatus,"");
-                return Redirect("/User");
+                return Redirect("/Login/Logout");
             }
             return View("UpdateStatus");
             

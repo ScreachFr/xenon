@@ -130,7 +130,7 @@ namespace Xenon___Allianz.Controllers
                 ContractList = l,
                 NumberOfContractInWallet = DataAccessAction.wallet.NumberOfContractsByWalletId(pm.WalletId),
                 WalletName = DataAccessAction.wallet.GetWalletById(pm.WalletId).Service,
-                Scope = (DataAccessAction.wallet.GetScopeWalletByWalletIdAndUserId(userId, pm.WalletId) ? "Inital" : "Etendu")
+                Scope = (DataAccessAction.wallet.GetScopeWalletByWalletIdAndUserId(userId, pm.WalletId) ? "Inital" : "Extend")
              
             };
 

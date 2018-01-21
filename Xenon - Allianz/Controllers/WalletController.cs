@@ -45,7 +45,7 @@ namespace Xenon___Allianz.Controllers
                 foreach (var item in walletModels)
                 {
                     item.NumberOfContract = DataAccessAction.wallet.NumberOfContractsByWalletId(item.Id);
-                    item.Scope = (DataAccessAction.wallet.GetScopeWalletByWalletIdAndUserId(userId, item.Id) ? "Inital" : "Etendu");
+                    item.Scope = (DataAccessAction.wallet.GetScopeWalletByWalletIdAndUserId(userId, item.Id) ? "Inital" : "Extend");
                 }
             }
             return walletModels;

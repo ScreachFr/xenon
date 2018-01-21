@@ -30,6 +30,7 @@ namespace Xenon___Allianz.Controllers
                 {
                     //if (item.Status.Equals("admin"))
                     //{
+                    GeographicZone gz = DataAccessAction.geographicZone.GetGeographicZoneById(item.GeographicZone);
                     lu.Add(new UserModel()
                     {
                         Id = item.Id,
@@ -37,7 +38,7 @@ namespace Xenon___Allianz.Controllers
                         Mail = item.Mail,
                         Status = item.Status,
                         GeographicZone = item.GeographicZone,
-                        GeographicZoneName = DataAccessAction.geographicZone.GetGeographicZoneById(item.GeographicZone).Name
+                        GeographicZoneName = (gz == null) ? "" : gz.Name
 
                     });
 
