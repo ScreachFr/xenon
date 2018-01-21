@@ -59,12 +59,7 @@ namespace Xenon.BusinessLogic.Controllers
                             where w.Service.Equals(name)
                             select w;
 
-                var count = query.Count();
-
-                if (count > 0)
-                    return true;
-                else
-                    return false;
+                return query.Count() > 0;
             }
         }
 
@@ -113,14 +108,7 @@ namespace Xenon.BusinessLogic.Controllers
                             where w.Id.Equals(walletId)
                             select w;
 
-                int count = query.Count();
-
-                if (count > 0)
-                    return query.First();
-                else
-                    return null;
-
-
+                return query.FirstOrDefault();
             }
         }
 
