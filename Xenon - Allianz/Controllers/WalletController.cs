@@ -40,11 +40,12 @@ namespace Xenon___Allianz.Controllers
                 }
                 foreach (var item in wallets)
                 {
-                    walletModels.Add(new WalletModel { Id = item.Id, Service = item.Service, numberOfContract = 0, Image=item.Image });
+                    walletModels.Add(new WalletModel { Id = item.Id, Service = item.Service, NumberOfContract = 0, Image=item.Image });
                 }
                 foreach (var item in walletModels)
                 {
-                    item.numberOfContract = DataAccessAction.wallet.NumberOfContractsByWalletId(item.Id);
+                    item.NumberOfContract = DataAccessAction.wallet.NumberOfContractsByWalletId(item.Id);
+                    item.Scope = (DataAccessAction.wallet.GetScopeWalletByWalletIdAndUserId(userId, item.Id) ? "Inital" : "Etendu");
                 }
             }
             return walletModels;
@@ -82,7 +83,7 @@ namespace Xenon___Allianz.Controllers
             Guid userId = (Guid)(Session["XenonUserId"]);
             //Database.AddWallet(w, userId);
             Wallet w = new Wallet { Service = wm.Service };
-            DataAccessAction.wallet.AddWallet(w, userId);
+            DataAccessAction.wallet.AddWallet(w, userId,true);
         }
 
         /** API WEB SERVICE **/

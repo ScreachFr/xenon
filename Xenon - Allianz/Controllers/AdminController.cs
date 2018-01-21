@@ -73,7 +73,7 @@ namespace Xenon___Allianz.Controllers
                     {
                         Id = item.Id,
                         Service = item.Service,
-                        numberOfContract = 0,
+                        NumberOfContract = 0,
                     });
                 }
                 return View(lw);

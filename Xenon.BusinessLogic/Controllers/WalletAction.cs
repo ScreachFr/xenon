@@ -10,7 +10,7 @@ namespace Xenon.BusinessLogic.Controllers
 {
     public class WalletAction : IWalletAction
     {
-        public bool AddWallet(Wallet w, Guid userId)
+        public bool AddWallet(Wallet w, Guid userId, bool initial)
         {
             if (IsWalletNameAlreadyInUse(w.Service))
                 return false;
@@ -19,7 +19,7 @@ namespace Xenon.BusinessLogic.Controllers
             {
                 var newWallet = AddWalletToDB(w);
 
-                AddScope(userId, newWallet.Id);
+                AddScope(userId, newWallet.Id, initial);
                 return true;
             }
             catch (Exception e)
@@ -42,11 +42,12 @@ namespace Xenon.BusinessLogic.Controllers
             }
         }
 
-        private void AddScope(Guid idUser, Guid idWallet)
+        private void AddScope(Guid idUser, Guid idWallet, bool inital)
         {
             using (var ctx = new BusinessContext())
             {
-                ctx.Scopes.Add(new Scope(idUser, idWallet));
+
+                ctx.Scopes.Add(new Scope(idUser, idWallet, inital));
                 ctx.SaveChanges();
             }
         }
@@ -126,6 +127,17 @@ namespace Xenon.BusinessLogic.Controllers
                 }
 
                 return result;
+            }
+        }
+
+        public bool GetScopeWalletByWalletIdAndUserId(Guid userid, Guid walletid)
+        {
+            using(var ctx = new BusinessContext())
+            {
+                var query = from s in ctx.Scopes
+                            where s.User.Equals(userid) && s.Wallet.Equals(walletid)
+                            select s.Initial;
+                return query.FirstOrDefault();
             }
         }
     }

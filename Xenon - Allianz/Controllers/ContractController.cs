@@ -124,11 +124,13 @@ namespace Xenon___Allianz.Controllers
             }
             Session["currentWallet"] = pm.WalletId;
             ViewBag.service = pm.WalletId;
+            Guid userId = (Guid)(Session["XenonUserId"]);
             ContractListModel clm = new ContractListModel()
             {
                 ContractList = l,
                 NumberOfContractInWallet = DataAccessAction.wallet.NumberOfContractsByWalletId(pm.WalletId),
-                WalletName = DataAccessAction.wallet.GetWalletById(pm.WalletId).Service
+                WalletName = DataAccessAction.wallet.GetWalletById(pm.WalletId).Service,
+                Scope = (DataAccessAction.wallet.GetScopeWalletByWalletIdAndUserId(userId, pm.WalletId) ? "Inital" : "Etendu")
              
             };
 

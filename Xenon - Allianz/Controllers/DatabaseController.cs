@@ -126,12 +126,13 @@ namespace Xenon___Allianz.Controllers
                     Image = "https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/0011/5708/brand.gif?itok=cW1XHoHd"
                 }
             };
+            Random r = new Random();
             foreach (var item in lw)
             {
-                DataAccessAction.wallet.AddWallet(item, sous.Id);
+                DataAccessAction.wallet.AddWallet(item, sous.Id,(r.Next(0,9)>5));
             }
 
-            DataAccessAction.wallet.AddWallet(textile, manager.Id);
+            DataAccessAction.wallet.AddWallet(textile, manager.Id,true);
 
             generateContract(lw);
             lw = new List<Wallet>()

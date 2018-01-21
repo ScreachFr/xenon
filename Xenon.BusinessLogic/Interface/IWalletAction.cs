@@ -11,7 +11,7 @@ namespace Xenon.BusinessLogic.Interface
     {
         List<Wallet> GetWalletByScope(Guid userId);
 
-        bool AddWallet(Wallet w, Guid userId);
+        bool AddWallet(Wallet w, Guid userId, bool initial);
 
         bool EditWallet(Guid walletId, Wallet w);
 
@@ -20,5 +20,7 @@ namespace Xenon.BusinessLogic.Interface
         Wallet GetWalletById(Guid walletId);
 
         List<Wallet> GetAllWallet();
+
+        bool GetScopeWalletByWalletIdAndUserId(Guid userid, Guid walletid);
     }
 }
