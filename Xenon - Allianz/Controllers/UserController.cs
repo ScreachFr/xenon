@@ -47,11 +47,21 @@ namespace Xenon___Allianz.Controllers
         {
 
             Guid id = (Guid)Session["XenonUserId"];
+            string connectedSession = (string)(Session["XenonStatus"]);
             if (Path.GetExtension(usm.File.FileName).Equals(".pdf"))
             {  
                 string filename = Path.GetFileName(usm.File.FileName);
                 usm.File.SaveAs(Server.MapPath(path: "~/File/") + filename);
-                DataAccessAction.user.EditStatus(id, usm.NewStatus,"");
+                UpdateStatus updateStatus = new Xenon.BusinessLogic.Models.UpdateStatus
+                {
+                    InProgress = true,
+                    NewStatus= usm.NewStatus,
+                    OldStatus = connectedSession,
+                    Path = "~/File/"+filename,
+                    UserId = id
+                };
+                DataAccessAction.admin.AddUpdateStatusUser(updateStatus);
+                //DataAccessAction.user.EditStatus(id, usm.NewStatus,"");
                 return Redirect("/Login/Logout");
             }
             return View("UpdateStatus");

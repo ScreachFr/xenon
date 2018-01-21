@@ -42,6 +42,20 @@ namespace Xenon___Allianz.Models
         public string Scope { get; set; }
     }
 
+    public class StatusToValid
+    {
+        public Guid Id { get; set; }
+
+        public Guid UserId { get; set; }
+        public string Username { get; set; }
+        public string OldStatus { get; set; }
+        public string NewStatus { get; set; }
+        public bool InProgress { get; set; }
+        public string Path { get; set; }
+        public DateTime SubmitTimeStamp { get; set; }
+        public DateTime AnswerTimeStamp { get; set; }
+    }
+
 
 
 

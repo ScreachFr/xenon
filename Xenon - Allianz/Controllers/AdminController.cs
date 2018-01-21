@@ -154,9 +154,80 @@ namespace Xenon___Allianz.Controllers
 
         public ActionResult ShowStatusToValid()
         {
+            List<StatusToValid> upm = new List<StatusToValid>();
+            foreach (var item in DataAccessAction.admin.GetUpdateStatus(true))
+            {
+                upm.Add(new StatusToValid
+                {
+                    AnswerTimeStamp = new DateTime(),
+                    Id = item.Id,
+                    InProgress = item.InProgress,
+                    NewStatus = item.NewStatus,
+                    OldStatus = item.OldStatus,
+                    Path = item.Path,
+                    SubmitTimeStamp = item.SubmitTimeStamp,
+                    UserId =item.UserId,
+                    Username = DataAccessAction.user.GetUserById(item.UserId).Username
+                    
+                });
 
-            return View();
+            }
+            return View(upm);
         }
+        public ActionResult ShowAllUpdateStatus()
+        {
+            List<StatusToValid> upm = new List<StatusToValid>();
+            foreach (var item in DataAccessAction.admin.GetUpdateStatus(true))
+            {
+                upm.Add(new StatusToValid
+                {
+                    AnswerTimeStamp = new DateTime(),
+                    Id = item.Id,
+                    InProgress = item.InProgress,
+                    NewStatus = item.NewStatus,
+                    OldStatus = item.OldStatus,
+                    Path = item.Path,
+                    SubmitTimeStamp = item.SubmitTimeStamp,
+                    UserId = item.UserId,
+                    Username = DataAccessAction.user.GetUserById(item.UserId).Username
+
+                });
+            }
+            foreach (var item in DataAccessAction.admin.GetUpdateStatus(false))
+            {
+                upm.Add(new StatusToValid
+                {
+                    AnswerTimeStamp = new DateTime(),
+                    Id = item.Id,
+                    InProgress = item.InProgress,
+                    NewStatus = item.NewStatus,
+                    OldStatus = item.OldStatus,
+                    Path = item.Path,
+                    SubmitTimeStamp = item.SubmitTimeStamp,
+                    UserId = item.UserId,
+                    Username = DataAccessAction.user.GetUserById(item.UserId).Username
+
+                });
+            }
+            return View(upm);
+        }
+
+        public FileResult DownloadFile(Guid id)
+        {
+            string path = DataAccessAction.admin.GetUpdateStatusById(id).Path;
+            return new FilePathResult(Server.MapPath(path), "application/pdf");
+        }
+        public ActionResult AcceptUpdateStatus(Guid id)
+        {
+            DataAccessAction.admin.AcceptUpdateStatusUser(id);
+            return Redirect("/Admin/Users");
+        }
+        public ActionResult RefuseUpdateStatus(Guid id)
+        {
+            DataAccessAction.admin.RefuseUpdateStatusUser(id);
+            return Redirect("/Admin/Users");
+        }
+
 
 
 

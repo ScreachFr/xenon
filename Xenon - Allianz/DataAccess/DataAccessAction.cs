@@ -13,5 +13,6 @@ namespace Xenon___Allianz.DataAccess
         public static IWalletAction wallet = new WalletAction();
         public static IContractAction contract = new ContractAction();
         public static IGeographicZoneAction geographicZone = new GeographicZoneAction();
+        public static IAdminAction admin = new AdminAction();
     }       
 }

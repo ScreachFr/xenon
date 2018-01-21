@@ -57,21 +57,22 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         @{
-        if (((string)Session["XenonStatus"]) == "admin")
-        {
-                    <li>@Html.ActionLink("All Users", "Users", "Admin")</li>
-                    <li>@Html.ActionLink("All Wallet", "Wallets", "Admin")</li>
-                    <li>@Html.ActionLink("All Contract", "Contracts", "Admin")</li>
-}
-else
-{
-                    <!--li>@Html.ActionLink("Home to do", "Index", "Home")</li-->
-                    <li>@Html.ActionLink("Wallet", "Index", "Wallet")</li>
-                    <li>@Html.ActionLink("À propos de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("API", "Api", "Home")</li>
+                            if (((string)Session["XenonStatus"]) == "admin")
+                            {
+                                <li>@Html.ActionLink("All Users", "Users", "Admin")</li>
+                                <li>@Html.ActionLink("All Wallet", "Wallets", "Admin")</li>
+                                <li>@Html.ActionLink("All Contract", "Contracts", "Admin")</li>
+                                <li>@Html.ActionLink("Status to valid", "ShowStatusToValid", "Admin")</li>
+                            }
+                            else
+                            {
+                                <!--li>@Html.ActionLink("Home to do", "Index", "Home")</li-->
+                                <li>@Html.ActionLink("Wallet", "Index", "Wallet")</li>
+                                <li>@Html.ActionLink("À propos de", "About", "Home")</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                <li>@Html.ActionLink("API", "Api", "Home")</li>
 
-}
+                            }
 
 
                         }

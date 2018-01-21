@@ -361,6 +361,7 @@
     <Content Include="Views\Shared\_LayoutApi.cshtml" />
     <Content Include="Views\Home\Api.cshtml" />
     <Content Include="Views\User\UpdateStatus.cshtml" />
+    <Content Include="Views\Admin\ShowStatusToValid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

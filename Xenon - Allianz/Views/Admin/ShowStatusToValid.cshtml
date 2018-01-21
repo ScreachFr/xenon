@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Xenon___Allianz.Models.StatusToValid>
+
+@{
+    ViewBag.Title = "ShowStatusToValid";
+}
+
+<h2>ShowStatusToValid</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OldStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NewStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubmitTimeStamp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Path)
+        </th>
+
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OldStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NewStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubmitTimeStamp)
+        </td>
+        <td>
+            <a class="btn btn-warning" href="/Admin/DownloadFile/@item.Id" target="_blank">Download File</a>
+        </td>
+        <td>
+            <a class="btn btn-success" href="/Admin/AcceptUpdateStatus/@item.Id" target="_blank">Accept</a>
+        </td>
+        <td>
+            <a class="btn btn-danger" href="/Admin/RefuseUpdateStatus/@item.Id" target="_blank">Refuse</a>
+        </td>
+    </tr>
+}
+
+</table>
