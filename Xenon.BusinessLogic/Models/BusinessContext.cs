@@ -31,5 +31,7 @@ namespace Xenon.BusinessLogic.Models
 
     public DbSet<GeographicZone> GeographicZones { get; set; }
 
+    public DbSet<UpdateStatus> UpdateStatuses { get; set; }
+
   }
 }
