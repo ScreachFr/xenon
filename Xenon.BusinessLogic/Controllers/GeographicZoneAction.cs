@@ -123,5 +123,15 @@ namespace Xenon.BusinessLogic.Controllers
             }
         }
 
+        public Guid GetGeographicZoneByContractId(Guid contractid)
+        {
+            using (var ctx = new BusinessContext())
+            {
+                var query = from c in ctx.GeograpicScopes
+                            where c.Contract.Equals(contractid)
+                            select c.Zone;
+                return query.FirstOrDefault();
+            }
+        }
     }
 }

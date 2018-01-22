@@ -26,6 +26,32 @@ namespace Xenon___Allianz.Controllers
             }
             return gzm;
         }
+        public static List<ContractModel> ToContractModel(List<Contract> l)
+        {
+            List<ContractModel> cm = new List<ContractModel>();
+            foreach (var item in l)
+            {
+                Guid geoid = DataAccessAction.geographicZone.GetGeographicZoneByContractId(item.Id);
+                cm.Add(new ContractModel
+                {
+                    Id = item.Id,
+                    Start = item.Start.ToString(),
+                    End = item.End.ToString(),
+                    Cover = item.Cover,
+                    Negociable = item.Negociable,
+                    Prime = item.Prime,
+                    Rompu = item.Rompu,
+                    Company = item.Company,
+                    Wallet = item.Wallet,
+                    WalletName = DataAccessAction.wallet.GetWalletById(item.Wallet).Service,
+                    Value = item.Value,
+                    GeographicZoneId = geoid,
+                    GeographicZoneName = DataAccessAction.geographicZone.GetGeographicZoneById(geoid).Name,
+                    Position = 1,
+                });
+            }
+            return cm;
+        }
 
         public static string GeneratePassword()
         {

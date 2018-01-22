@@ -25,16 +25,12 @@
                 </datalist>
             </div>
             <div class="form-group">
-                <input id="www" type="text" list="urldata" name="GeographicZone" class="form-control" placeholder="Geographic Zone">
-                <datalist id="urldata">
-                    <label for="adresse">ou sélectionner dans la liste</label>
-                    <select class="form-control" id="sel1" name="GeographicZone" down>
-                        @foreach (var item in Model.GeographicZoneList)
-                        {
-                            <option value=@item.Id>@item.Name</option>
-                        }
-                    </select>
-                </datalist>
+                <select class="form-control" id="sel1" name="GeographicZone" down>
+                    @foreach (var item in Model.GeographicZoneList)
+                    {
+                        <option value=@item.Id>@item.Name</option>
+                    }
+                </select>
 
             </div>
             <button type="submit" class="btn btn-default">Submit</button>

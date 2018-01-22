@@ -226,15 +226,17 @@ namespace Xenon___Allianz.Controllers
 
         public static void generateContract(List<Wallet> lw)
         {
+            List<GeographicZone> geoZone = DataAccessAction.geographicZone.GetAllAvailableGeographicZones();
             List<Contract> lc = new List<Contract>();
             Random rnd = new Random();
             DateTime d;
+            Contract c = null;
             for (int i = 0; i < lw.Count; i++)
             {
                 for (int j = 0; j < rnd.Next(10, 35); j++)
                 {
                     d = new DateTime(rnd.Next(2010, 2025), rnd.Next(1, 12), rnd.Next(1, 28));
-                    DataAccessAction.contract.AddContract(new Contract()
+                    c = new Contract
                     {
                         Company = lw[i].Service + " " + j,
                         Cover = rnd.Next(1, 100),
@@ -246,9 +248,10 @@ namespace Xenon___Allianz.Controllers
                         Value = rnd.Next(1000000, 50000000),
                         Wallet = lw[i].Id,
                         Position = DataAccessAction.wallet.NumberOfContractsByWalletId(lw[i].Id) + 1
-                    });
+                    };
+                    DataAccessAction.contract.AddContract(c);
+                    DataAccessAction.geographicZone.AddContractScope(c.Id, geoZone[rnd.Next(geoZone.Count)].Id);
                 }
-
             }
 
         }

@@ -18,5 +18,7 @@ namespace Xenon.BusinessLogic.Interface
         bool IsWithinScope(Guid father, Guid supposedChild);
 
         void AddContractScope(Guid contractId, Guid geographicZoneId);
+
+        Guid GetGeographicZoneByContractId(Guid contractid);
     }
 }

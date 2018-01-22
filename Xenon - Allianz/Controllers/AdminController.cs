@@ -94,25 +94,8 @@ namespace Xenon___Allianz.Controllers
 
             if (((string)Session["XenonStatus"]).Equals("admin"))
             {
-                List<ContractModel> lc = new List<ContractModel>();
-                foreach (var item in DataAccessAction.contract.GetAllContract())
-                {
-                    lc.Add(new ContractModel()
-                    {
-                        Id = item.Id,
-                        Company = item.Company,
-                        Cover = item.Cover,
-                        End = item.End.ToString().Split(' ')[0],
-                        Negociable = item.Negociable,
-                        Prime = item.Prime,
-                        Rompu = item.Rompu,
-                        Start = item.Start.ToString().Split(' ')[0],
-                        Value = item.Value,
-                        Wallet = item.Wallet,
-                        WalletName = DataAccessAction.wallet.GetWalletById(item.Wallet).Service,
-                        Position = item.Position
-                    });
-                }
+                List<ContractModel> lc = Utils.ToContractModel(DataAccessAction.contract.GetAllContract());
+                
                 return View(lc);
             }
             return Redirect("/");
