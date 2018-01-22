@@ -28,25 +28,106 @@ namespace Xenon___Allianz.Controllers
                 Name = "World",
                 Father = new Guid()
             };
+            /** Fill Continent **/
             DataAccessAction.geographicZone.AddGeographicZone(world);
             GeographicZone europe = new GeographicZone()
             {
                 Name = "Europe",
                 Father = world.Id
             };
+            GeographicZone asia = new GeographicZone()
+            {
+                Name = "Asie",
+                Father = world.Id
+            };
+            GeographicZone africa = new GeographicZone()
+            {
+                Name = "Afrique",
+                Father = world.Id
+            };
+            GeographicZone america = new GeographicZone()
+            {
+                Name = "Amerique",
+                Father = world.Id
+            };
             DataAccessAction.geographicZone.AddGeographicZone(europe);
+            DataAccessAction.geographicZone.AddGeographicZone(asia);
+            DataAccessAction.geographicZone.AddGeographicZone(africa);
+            DataAccessAction.geographicZone.AddGeographicZone(america);
+            /** Fill Europe Country **/
             GeographicZone france = new GeographicZone()
             {
                 Name = "France",
                 Father = europe.Id,
             };
-            GeographicZone england = new GeographicZone()
+            GeographicZone espagne = new GeographicZone()
             {
-                Name = "England",
+                Name = "Espagne",
+                Father = europe.Id
+            };
+            GeographicZone allemagne = new GeographicZone()
+            {
+                Name = "Allemagne",
+                Father = europe.Id
+            };
+            GeographicZone belgique = new GeographicZone()
+            {
+                Name = "Belgique",
                 Father = europe.Id
             };
             DataAccessAction.geographicZone.AddGeographicZone(france);
-            DataAccessAction.geographicZone.AddGeographicZone(england);
+            DataAccessAction.geographicZone.AddGeographicZone(espagne);
+            DataAccessAction.geographicZone.AddGeographicZone(allemagne);
+            DataAccessAction.geographicZone.AddGeographicZone(belgique);
+            /** fill asia country **/
+            GeographicZone china = new GeographicZone()
+            {
+                Name = "Chine",
+                Father = asia.Id
+            };
+            GeographicZone japan = new GeographicZone()
+            {
+                Name = "Japon",
+                Father = asia.Id
+            };
+            GeographicZone southKorea = new GeographicZone()
+            {
+                Name = "Coree du sud",
+                Father = asia.Id
+            };
+            DataAccessAction.geographicZone.AddGeographicZone(china);
+            DataAccessAction.geographicZone.AddGeographicZone(japan);
+            DataAccessAction.geographicZone.AddGeographicZone(southKorea);
+
+
+            /** fill africa country **/
+            GeographicZone senegal = new GeographicZone()
+            {
+                Name = "Senegal",
+                Father = africa.Id
+            };
+            GeographicZone morroco = new GeographicZone()
+            {
+                Name = "Maroc",
+                Father = africa.Id
+            };
+            DataAccessAction.geographicZone.AddGeographicZone(senegal);
+            DataAccessAction.geographicZone.AddGeographicZone(morroco);
+
+            /** fill america country **/
+            GeographicZone usa = new GeographicZone()
+            {
+                Name = "USA",
+                Father = america.Id
+            };
+            GeographicZone canada = new GeographicZone()
+            {
+                Name = "Canada",
+                Father = america.Id
+            };
+            DataAccessAction.geographicZone.AddGeographicZone(usa);
+            DataAccessAction.geographicZone.AddGeographicZone(canada);
+
 
             /** FILL USER **/
             User sous = new User()

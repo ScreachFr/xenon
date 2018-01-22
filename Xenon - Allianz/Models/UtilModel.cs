@@ -56,6 +56,19 @@ namespace Xenon___Allianz.Models
         public DateTime AnswerTimeStamp { get; set; }
     }
 
+    public class RegisterUserModel
+    {
+        public List<GeographicZoneModel> GeographicZoneList { get; set; }
+        public List<String> StatusList { get; set; } = new List<string>()
+        {
+            "souscripteur",
+            "collaborateur",
+            "manager",
+            "admin",
+            "actuaire",
+        };
+    }
+
 
 
 

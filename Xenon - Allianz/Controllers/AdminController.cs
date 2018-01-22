@@ -81,6 +81,14 @@ namespace Xenon___Allianz.Controllers
             }
             return Redirect("/");
         }
+
+        public ActionResult GeographicZone()
+        {
+            List<GeographicZoneModel> l = Utils.ToGeographicZoneModel(DataAccessAction.geographicZone.GetAllAvailableGeographicZones());
+
+            return View(l); 
+        }
+
         public ActionResult Contracts()
         {
 
@@ -112,18 +120,28 @@ namespace Xenon___Allianz.Controllers
 
         public ActionResult RegisterUser()
         {
-            return View();
+            List<GeographicZoneModel> l = Utils.ToGeographicZoneModel(DataAccessAction.geographicZone.GetAllAvailableGeographicZones());
+            RegisterUserModel rum = new RegisterUserModel
+            {
+                GeographicZoneList = l
+            };
+            return View(rum);
         }
         public ActionResult RegisterUserAux(UserModel user)
         {
+            Guid id = Utils.RandomGeographicZone();
+            if (user.GeographicZone != null)
+            {
+                id = user.GeographicZone;
+            }
             User u = new User()
             {
                 Id = new Guid(),
                 Username = user.Username,
-                Password = user.Password,
-                Mail = user.Mail,
+                Password = Utils.GeneratePassword(),
+                Mail = Utils.GenerateMail(user.Username),
                 Status = user.Status,
-                GeographicZone = new Guid("52292A7C-BEFA-E711-8AC1-484520A48417"),
+                GeographicZone = id,
             };
             DataAccessAction.user.Register(u);
             return Redirect("/Admin/Users");

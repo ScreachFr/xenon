@@ -8,17 +8,17 @@ using Xenon.BusinessLogic.Interface;
 
 namespace Xenon.BusinessLogic.Controllers
 {
-  class GeographicScopeAction : IGeographicScopeAction
-  {
-    public void AddContractScope(Guid contractId, Guid geographicZoneId)
+    class GeographicScopeAction : IGeographicScopeAction
     {
-      using (var ctx = new BusinessContext())
-      {
-        ctx.GeograpicScopes.Add(new GeographicScope() { Contract = contractId, Zone = geographicZoneId });
+        public void AddContractScope(Guid contractId, Guid geographicZoneId)
+        {
+            using (var ctx = new BusinessContext())
+            {
+                ctx.GeograpicScopes.Add(new GeographicScope() { Contract = contractId, Zone = geographicZoneId });
 
-        ctx.SaveChanges();
+                ctx.SaveChanges();
 
-      }
+            }
+        }
     }
-  }
 }

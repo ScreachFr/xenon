@@ -62,7 +62,7 @@ namespace Xenon___Allianz.Controllers
                 };
                 DataAccessAction.admin.AddUpdateStatusUser(updateStatus);
                 //DataAccessAction.user.EditStatus(id, usm.NewStatus,"");
-                return Redirect("/Login/Logout");
+                return Redirect("/");
             }
             return View("UpdateStatus");
             

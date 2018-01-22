@@ -50,10 +50,6 @@ namespace Xenon___Allianz.Models
         public Guid Id { get; set; }
         public String Name { get; set; }
         public Guid Father { get; set; }
-    }
-    public class RegisterModel
-    {
-        public UserModel User { get; set; }
-        public List<GeographicZoneModel> AllZones { get; set; }
+        public string FatherName { get; set; }
     }
 }
