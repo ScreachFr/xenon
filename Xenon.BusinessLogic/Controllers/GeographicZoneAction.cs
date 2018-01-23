@@ -109,9 +109,8 @@ namespace Xenon.BusinessLogic.Controllers
                     return false;
 
             }
-
-
         }
+
         public void AddContractScope(Guid contractId, Guid geographicZoneId)
         {
             using (var ctx = new BusinessContext())

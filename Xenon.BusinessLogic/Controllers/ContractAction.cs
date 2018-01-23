@@ -40,8 +40,8 @@ namespace Xenon.BusinessLogic.Controllers
       using (var ctx = new BusinessContext())
       {
         var query = from contract in ctx.Contracts
-                   where contract.Id.Equals(contractId)
-                   select contract;
+                    where contract.Id.Equals(contractId)
+                    select contract;
 
         var toModify = query.FirstOrDefault();
 
@@ -74,8 +74,15 @@ namespace Xenon.BusinessLogic.Controllers
     {
       using (var ctx = new BusinessContext())
       {
+        /*
+        from w in ctx.Wallets
+        join s in ctx.Scopes on w.Id equals s.Wallet
+        where s.User.Equals(userId)
+        select new { owner = s.User, wallet = w };
+        */
         var query = from c in ctx.Contracts
-                    where c.Wallet.Equals(walletId)
+                    join s in ctx.GeoUserScopes on c.Id equals s.User
+                    where IsWithinScope(geoid, s.Zone)
                     select c;
 
         var result = new List<Contract>();
@@ -123,6 +130,37 @@ namespace Xenon.BusinessLogic.Controllers
         return result;
       }
 
+    }
+
+    private bool IsWithinScope(Guid father, Guid supposedChild)
+    {
+      if (father == null)
+        return false;
+
+      if (father.Equals(supposedChild))
+        return true;
+
+      using (var ctx = new BusinessContext())
+      {
+        var query = from z in ctx.GeographicZones
+                    where z.Id.Equals(supposedChild)
+                    select z;
+        var count = query.Count();
+
+        if (count > 0)
+        {
+          var res = query.First();
+          if (res.Father.Equals(father))
+            return true;
+          else
+            return IsWithinScope(father, res.Father);
+
+
+        }
+        else
+          return false;
+
+      }
     }
   }
 }
