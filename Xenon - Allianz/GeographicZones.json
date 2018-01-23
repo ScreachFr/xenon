@@ -1,0 +1,81 @@
+{
+    "name" : "Monde",
+    "childs": [
+        {
+            "name" : "Europe",
+            "childs" : [
+                {"name" : "France"},
+                {"name" : "Espagne"},
+                {"name" : "Allemagne"},
+                {"name" : "Pologne"},
+                {"name" : "Belgique"},
+                {"name" : "Hollande"},
+                {"name" : "Luxembourg"},
+                {"name" : "Suisse"},
+                {"name" : "Autriche"},
+                {"name" : "Italie"},
+                {"name" : "Grèce"},
+                {"name" : "Danemark"},
+                {"name" : "Norvège"},
+                {"name" : "Suède"},
+                {"name" : "Finlande"},
+                {"name" : "Tchéquie"},
+                {"name" : "Slovaquie"},
+                {"name" : "Hongrie"},
+                {"name" : "Bulgarie"},
+                {"name" : "Roumanie"}
+            ]
+        },
+        {
+            "name" : "Asie",
+            "childs" : [
+                {"name" : "Chine"},
+                {"name" : "Japon"},
+                {"name" : "Vietnam"},
+                {"name" : "Thailande"},
+                {"name" : "Yemen"},
+                {"name" : "Inde"},
+                {"name" : "Pakistan"},
+                {"name" : "Cambodge"},
+                {"name" : "Corée du Sud"}
+            ]
+        },
+        {
+            "name" : "Océanie",
+            "childs" : [
+                {"name" : "Australie"},
+                {"name" : "Nouvelle Zélande"}
+            ]
+        },
+        {
+            "name" : "Afrique",
+            "childs" : [
+                {"name" : "Maroc"},
+                {"name" : "Algérie"},
+                {"name" : "Tunisie"},
+                {"name" : "Egypte"},
+                {"name" : "Ouganda"},
+                {"name" : "Sénégal"},
+                {"name" : "Afrique du Sud"},
+                {"name" : "Sud Soudan"},
+                {"name" : "Cote d'Ivoire"}
+            ]
+        },
+        {
+            "name" : "Amérique",
+            "childs" : [
+                {"name" : "Canada"},
+                {"name" : "Etats Unis d'Amérique"},
+                {"name" : "Mexique"},
+                {"name" : "Pérou"},
+                {"name" : "Bolivie"},
+                {"name" : "Brésil"},
+                {"name" : "Argentine"}
+            ]
+        },
+        {
+            "name" : "Antarctique",
+            "childs" : []
+        }
+    ]
+}
