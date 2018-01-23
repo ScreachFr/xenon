@@ -9,7 +9,7 @@ namespace Xenon.BusinessLogic.Interface
 {
     public interface IContractAction
     {
-        List<Contract> GetContractByWalletId(Guid walletId);
+        List<Contract> GetContractByWalletId(Guid walletId, Guid geoId);
         List<Contract> GetContractByWalletId(Guid walletId, int page, int numberByPage);
         bool AddContract(Contract c);
         bool EditContract(Guid contractId, Contract c);

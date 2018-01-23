@@ -70,7 +70,7 @@ namespace Xenon.BusinessLogic.Controllers
       }
     }
 
-    public List<Contract> GetContractByWalletId(Guid walletId)
+    public List<Contract> GetContractByWalletId(Guid walletId, Guid geoid)
     {
       using (var ctx = new BusinessContext())
       {

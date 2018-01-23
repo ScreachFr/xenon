@@ -233,7 +233,7 @@ namespace Xenon___Allianz.Controllers
             Contract c = null;
             for (int i = 0; i < lw.Count; i++)
             {
-                for (int j = 0; j < rnd.Next(10, 35); j++)
+                for (int j = 0; j < rnd.Next(100, 200); j++)
                 {
                     d = new DateTime(rnd.Next(2010, 2025), rnd.Next(1, 12), rnd.Next(1, 28));
                     c = new Contract
