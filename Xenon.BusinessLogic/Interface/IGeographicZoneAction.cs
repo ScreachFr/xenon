@@ -7,18 +7,20 @@ using Xenon.BusinessLogic.Models;
 
 namespace Xenon.BusinessLogic.Interface
 {
-    public interface IGeographicZoneAction
-    {
-        GeographicZone AddGeographicZone(GeographicZone zone);
+  public interface IGeographicZoneAction
+  {
+    GeographicZone AddGeographicZone(GeographicZone zone);
 
-        GeographicZone GetGeographicZoneById(Guid id);
+    GeographicZone GetGeographicZoneById(Guid id);
 
-        List<GeographicZone> GetAllAvailableGeographicZones();
+    List<GeographicZone> GetAllAvailableGeographicZones();
 
-        bool IsWithinScope(Guid father, Guid supposedChild);
+    bool IsWithinScope(Guid father, Guid supposedChild);
 
-        void AddContractScope(Guid contractId, Guid geographicZoneId);
+    void AddContractScope(Guid contractId, Guid geographicZoneId);
 
-        Guid GetGeographicZoneByContractId(Guid contractid);
-    }
+    Guid GetGeographicZoneByContractId(Guid contractid);
+
+    void UpdateGeographicZones();
+  }
 }
