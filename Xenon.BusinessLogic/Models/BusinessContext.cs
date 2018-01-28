@@ -30,7 +30,7 @@ namespace Xenon.BusinessLogic.Models
     public DbSet<GeoUserScope> GeoUserScopes { get; set; }
 
     public DbSet<GeographicZone> GeographicZones { get; set; }
-
+  
     public DbSet<UpdateStatus> UpdateStatuses { get; set; }
 
   }

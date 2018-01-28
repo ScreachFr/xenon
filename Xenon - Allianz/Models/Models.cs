@@ -25,6 +25,7 @@ namespace Xenon___Allianz.Models
         public string Image { get; set; }
         public int NumberOfContract { get; set; }
         public string Scope { get; set; }
+        public bool IsChecked { get; set; }
     }
 
     public class ContractModel
@@ -44,8 +45,7 @@ namespace Xenon___Allianz.Models
         public string WalletName { get; set; }
         public int Value { get; set; }
         public int Position { get; set; }
-        public Guid GeographicZoneId { get; set; }
-        public string GeographicZoneName { get; set; }
+        public List<GeographicZoneModel> GeographicZones { get; set; }
     }
     public class GeographicZoneModel
     {
@@ -53,5 +53,10 @@ namespace Xenon___Allianz.Models
         public String Name { get; set; }
         public Guid Father { get; set; }
         public string FatherName { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

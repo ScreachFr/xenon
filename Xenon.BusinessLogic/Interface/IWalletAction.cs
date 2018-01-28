@@ -22,5 +22,7 @@ namespace Xenon.BusinessLogic.Interface
         List<Wallet> GetAllWallet();
 
         bool GetScopeWalletByWalletIdAndUserId(Guid userid, Guid walletid);
+
+        void AddScope(Guid idUser, Guid idWallet, bool inital);
     }
 }

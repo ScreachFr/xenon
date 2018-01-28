@@ -18,7 +18,7 @@
         <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
                 <div class="caption">
-                     
+
                     <center>
                         <img src=@item.Image height="200" width="200" />
                         <h3>@Html.DisplayFor(modelItem => item.Service)</h3>
@@ -35,17 +35,17 @@
                                     Guid s = item.Id;
                                     <button class="btn btn-primary" onclick='test("@s")'><span class=" glyphicon glyphicon-eye-open"></span></button>
                                     <!--
-                                        @Html.ActionLink("Detail", "Index", "Contract",
-                                        new { @id = item.Id }, new { @class = "btn btn-primary", @style = " margin-right: 5px" })
+                                    @Html.ActionLink("Detail", "Index", "Contract",
+                                    new { @id = item.Id }, new { @class = "btn btn-primary", @style = " margin-right: 5px" })
 
-                                        @Html.ActionLink("Edit to do", "Edit", "Wallet",
-                                        new { @id = item.Service }, new { @class = "btn btn-success" })
-                                              -->
+                                    @Html.ActionLink("Edit to do", "Edit", "Wallet",
+                                    new { @id = item.Service }, new { @class = "btn btn-success" })
+                                          -->
                                 }
                                 else if (((string)(Session["XenonStatus"])).Equals("manager"))
                                 {
-                                    @Html.ActionLink("Detail", "Index", "Contract",
-                                         new { @id = item.Id }, new { @class = "btn btn-primary" })
+                                    Guid s = item.Id;
+                                    <button class="btn btn-primary" onclick='test("@s")'><span class=" glyphicon glyphicon-eye-open"></span></button>
                                 }
 
                                 else

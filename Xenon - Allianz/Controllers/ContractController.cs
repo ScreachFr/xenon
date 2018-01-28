@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Xenon___Allianz.Models;
 using Xenon___Allianz.DataAccess;
 using Xenon.BusinessLogic.Models;
+using Newtonsoft.Json;
+
 namespace Xenon___Allianz.Controllers
 
 {
@@ -24,7 +26,8 @@ namespace Xenon___Allianz.Controllers
             if (((string)Session["XenonStatus"]).Equals("souscripteur") ||
                 ((string)Session["XenonStatus"]).Equals("manager"))
             {
-                ContractListModel clm = GetContractByWalletId(pm);
+                Guid geoid = (Guid)Session["XenonGeoId"];
+                ContractListModel clm = GetContractByWalletId(pm.WalletId, geoid);
                 return View(clm);
             }
             return Redirect("/");
@@ -87,7 +90,8 @@ namespace Xenon___Allianz.Controllers
                 Company = item.Company,
                 Wallet = item.Wallet,
                 WalletName = DataAccessAction.wallet.GetWalletById(item.Wallet).Service,
-                Value = item.Value
+                Value = item.Value,
+                GeographicZones = Utils.ToGeographicZoneModel(item.GeographicZones),
             };
 
             //contract.WalletName = ;
@@ -96,19 +100,23 @@ namespace Xenon___Allianz.Controllers
             return View(contract);
         }
         /* API WEB SERVICE */
-
+        public string GetContractByWalletIdApi(Guid walletid, Guid geoid)
+        {
+            return JsonConvert.SerializeObject(GetContractByWalletId(walletid, geoid));
+        }
         /* END OF API WEB SERVICE */
+
 
         /** FUNCTION DEFINITION **/
 
-        public ContractListModel GetContractByWalletId(PaginationModel pm)
+        public ContractListModel GetContractByWalletId(Guid walletid, Guid geoid)
         {
             List<ContractModel> l = new List<ContractModel>();
 
-            foreach (var item in DataAccessAction.contract.GetContractByWalletId(walletId: pm.WalletId, page: pm.Page, numberByPage: 100))
+            foreach (var item in DataAccessAction.contract.GetContractByWalletId(walletid, geoid))
             {
                 l.Add(new ContractModel()
-                {   
+                {
                     Id = item.Id,
                     Start = item.Start.Year + "/" + item.Start.Month.ToString("D2") + "/" + item.Start.Day.ToString("D2"),
                     End = item.End.ToString(),
@@ -119,19 +127,20 @@ namespace Xenon___Allianz.Controllers
                     Company = item.Company,
                     Wallet = item.Wallet,
                     WalletName = "",
-                    Value = item.Value
+                    Value = item.Value,
+                    GeographicZones = Utils.ToGeographicZoneModel(item.GeographicZones)
                 });
             }
-            Session["currentWallet"] = pm.WalletId;
-            ViewBag.service = pm.WalletId;
+            Session["currentWallet"] = walletid;
+            ViewBag.service = walletid;
             Guid userId = (Guid)(Session["XenonUserId"]);
             ContractListModel clm = new ContractListModel()
             {
                 ContractList = l,
-                NumberOfContractInWallet = DataAccessAction.wallet.NumberOfContractsByWalletId(pm.WalletId),
-                WalletName = DataAccessAction.wallet.GetWalletById(pm.WalletId).Service,
-                Scope = (DataAccessAction.wallet.GetScopeWalletByWalletIdAndUserId(userId, pm.WalletId) ? "Inital" : "Extend")
-             
+                NumberOfContractInWallet = DataAccessAction.wallet.NumberOfContractsByWalletId(walletid),
+                WalletName = DataAccessAction.wallet.GetWalletById(walletid).Service,
+                Scope = (DataAccessAction.wallet.GetScopeWalletByWalletIdAndUserId(userId, walletid) ? "Inital" : "Extend")
+
             };
 
             return clm;

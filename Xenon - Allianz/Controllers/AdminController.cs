@@ -21,7 +21,7 @@ namespace Xenon___Allianz.Controllers
 
         public ActionResult Users()
         {
-            if (((string)Session["XenonStatus"]).Equals("admin"))
+            if (Session["XenonStatus"] != null && ((string)Session["XenonStatus"]).Equals("admin"))
             {
 
 
@@ -227,6 +227,40 @@ namespace Xenon___Allianz.Controllers
         {
             DataAccessAction.admin.RefuseUpdateStatusUser(id);
             return Redirect("/Admin/Users");
+        }
+
+        public ActionResult AddWalletToUser(Guid id)
+        {
+            User u = DataAccessAction.user.GetUserById(id);
+            UserModel us = new UserModel
+            {
+                Id = u.Id,
+                Username = u.Username
+            };
+            List<WalletModel> wallets = new List<WalletModel>();
+            foreach (var item in DataAccessAction.wallet.GetAllWallet())
+            {
+                wallets.Add(new WalletModel
+                {
+                    Id = item.Id,
+                    Service = item.Service
+                });
+            }
+
+            AddWalletToUserContentModel acm = new AddWalletToUserContentModel
+            {
+                User = us,
+                Wallets = wallets
+            };
+            return View(acm);
+        }
+        public ActionResult AddWalletToUserValid(AddWalletToUserModel auwm)
+        {
+            foreach (var item in auwm.WalletId)
+            {
+                DataAccessAction.wallet.AddScope(auwm.UserId, item, true);
+            }
+            return View("/");
         }
 
 

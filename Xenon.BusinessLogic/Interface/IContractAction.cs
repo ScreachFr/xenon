@@ -15,6 +15,8 @@ namespace Xenon.BusinessLogic.Interface
         bool EditContract(Guid contractId, Contract c);
         Contract GetContractById(Guid id);
         List<Contract> GetAllContract();
+        void AddGeoZoneToContract(Guid contractId, Guid zoneId);
+           
 
     }
 }

@@ -1,0 +1,36 @@
+﻿@model Xenon___Allianz.Models.AddWalletToUserContentModel
+
+@{
+    ViewBag.Title = "AddWalletToUser";
+}
+
+<h2>AddWalletToUser</h2>
+
+<div>
+    <h4>AddWalletToUserContentModel</h4>
+    <hr />
+    <h1>@Model.User.Username</h1>
+
+
+</div>
+@using (Html.BeginForm("AddWalletToUserValid", "Admin"))
+{
+
+    <label>@Model.User.Username</label>
+    <input type="text" value="@Model.User.Id" name="UserId" readonly />
+
+    foreach (var item in Model.Wallets)
+    {
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"
+                       name="WalletId"
+                       value="@item.Id" /> @item.Service
+                </label>
+            </div>
+        }
+        <div class="form-group text-center">
+            <input type="submit" class="btn btn-primary" value="Submit" />
+        </div>
+
+    }

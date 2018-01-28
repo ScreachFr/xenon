@@ -14,17 +14,13 @@
 
     <h3 class="text-center">@Model.Scope</h3>
     <p class="">
-        @if (Model.Scope.Equals("Inital"))
+        @if (Model.Scope.Equals("Inital") && ((string)Session["XenonStatus"] == "souscripteur"))
         {
             @Html.ActionLink("add New contract", "Create/" + (Guid)(Session["currentWallet"]), "Contract")
         }
     </p>
 </div>
-@if (((string)Session["XenonStatus"]) == "souscripteur")
-{
 
-
-}
 <table id="contractList" class="table-hover table-striped" width="100%">
     <thead>
         <tr>

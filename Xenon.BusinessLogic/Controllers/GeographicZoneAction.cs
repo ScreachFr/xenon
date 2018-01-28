@@ -113,10 +113,11 @@ namespace Xenon.BusinessLogic.Controllers
 
         public void AddContractScope(Guid contractId, Guid geographicZoneId)
         {
+            
             using (var ctx = new BusinessContext())
             {
                 ctx.GeograpicScopes.Add(new GeographicScope() { Contract = contractId, Zone = geographicZoneId });
-
+                
                 ctx.SaveChanges();
 
             }

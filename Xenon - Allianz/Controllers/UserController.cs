@@ -26,7 +26,7 @@ namespace Xenon___Allianz.Controllers
                 Id = u.Id,
                 Username = u.Username,
                 GeographicZone = (u.GeographicZone == null)? u.GeographicZone : new Guid(),
-                //GeographicZoneName = DataAccessAction.geographicZone.GetGeographicZoneById(u.GeographicZone).Name,
+                GeographicZoneName = DataAccessAction.geographicZone.GetGeographicZoneById(u.GeographicZone).Name,
                 Mail = u.Mail,
                 Status = u.Status
             };

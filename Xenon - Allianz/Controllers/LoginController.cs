@@ -28,22 +28,23 @@ namespace Xenon___Allianz.Controllers
             {
 
                 User usr = DataAccessAction.user.Login(u.Username, u.Password);
-                    if (usr != null)
-                    {
+                if (usr != null)
+                {
 
-                        Session["XenonUsername"] = usr.Username;
-                        Session["XenonStatus"] = usr.Status;
-                        Session["XenonUserId"] = usr.Id;
-                        Session["ErrorPassWord"] = null;
+                    Session["XenonUsername"] = usr.Username;
+                    Session["XenonStatus"] = usr.Status;
+                    Session["XenonUserId"] = usr.Id;
+                    Session["ErrorPassWord"] = null;
+                    Session["XenonGeoId"] = usr.GeographicZone;
                         return Redirect("/Home");
-                    
-                    }
-                    else
-                    {
-                        Session["ErrorPassWord"] = "Login ou mot de passe incorect.";
-                        
-                    }
-                
+
+                }
+                else
+                {
+                    Session["ErrorPassWord"] = "Login ou mot de passe incorect.";
+
+                }
+
 
 
                 return Redirect("/Login");
@@ -57,6 +58,7 @@ namespace Xenon___Allianz.Controllers
             Session["XenonUsername"] = null;
             Session["XenonStatus"] = null;
             Session["XenonUserId"] = null;
+            Session["XenonGeoId"] = null;
             return Redirect("/Login");
         }
 

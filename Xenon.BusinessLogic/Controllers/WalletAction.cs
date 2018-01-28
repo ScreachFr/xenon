@@ -42,7 +42,7 @@ namespace Xenon.BusinessLogic.Controllers
             }
         }
 
-        private void AddScope(Guid idUser, Guid idWallet, bool inital)
+        public void AddScope(Guid idUser, Guid idWallet, bool inital)
         {
             using (var ctx = new BusinessContext())
             {

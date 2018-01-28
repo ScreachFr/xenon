@@ -8,13 +8,21 @@ using System.Threading.Tasks;
 
 namespace Xenon.BusinessLogic.Models
 {
-  public class GeographicZone
-  {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid Id { get; set; }
+    public class GeographicZone
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
 
-    public String Name { get; set; }
-    public Guid Father { get; set; }
-  }
+        public String Name { get; set; }
+        public Guid Father { get; set; }
+        public List<Contract> Contracts { get; set; }
+
+        public override string ToString()
+        {
+            string s = Name+" "+Father;
+            return s;
+            
+        }
+    }
 }

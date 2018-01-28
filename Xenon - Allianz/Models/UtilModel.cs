@@ -69,6 +69,18 @@ namespace Xenon___Allianz.Models
         };
     }
 
+    public class AddWalletToUserModel
+    {
+        public Guid UserId { get; set; }
+        public List<Guid> WalletId { get; set; }
+    }
+
+    public class AddWalletToUserContentModel
+    {
+        public UserModel User { get; set; }
+        public List<WalletModel> Wallets { get; set; }
+    }
+
 
 
 

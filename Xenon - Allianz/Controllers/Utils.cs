@@ -45,8 +45,8 @@ namespace Xenon___Allianz.Controllers
                     Wallet = item.Wallet,
                     WalletName = DataAccessAction.wallet.GetWalletById(item.Wallet).Service,
                     Value = item.Value,
-                    GeographicZoneId = geoid,
-                    GeographicZoneName = DataAccessAction.geographicZone.GetGeographicZoneById(geoid).Name,
+                    //GeographicZoneId = geoid,
+                    //GeographicZoneName = DataAccessAction.geographicZone.GetGeographicZoneById(geoid).Name,
                     Position = 1,
                 });
             }

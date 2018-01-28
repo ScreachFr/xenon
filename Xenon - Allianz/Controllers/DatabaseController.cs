@@ -233,7 +233,7 @@ namespace Xenon___Allianz.Controllers
             Contract c = null;
             for (int i = 0; i < lw.Count; i++)
             {
-                for (int j = 0; j < rnd.Next(100, 200); j++)
+                for (int j = 0; j < rnd.Next(10, 20); j++)
                 {
                     d = new DateTime(rnd.Next(2010, 2025), rnd.Next(1, 12), rnd.Next(1, 28));
                     c = new Contract
@@ -247,10 +247,11 @@ namespace Xenon___Allianz.Controllers
                         Rompu = (rnd.Next(0, 10) > 5) ? true : false,
                         Value = rnd.Next(1000000, 50000000),
                         Wallet = lw[i].Id,
-                        Position = DataAccessAction.wallet.NumberOfContractsByWalletId(lw[i].Id) + 1
+                        Position = DataAccessAction.wallet.NumberOfContractsByWalletId(lw[i].Id) + 1,
+                        GeographicZones = new List<GeographicZone>()
                     };
                     DataAccessAction.contract.AddContract(c);
-                    DataAccessAction.geographicZone.AddContractScope(c.Id, geoZone[rnd.Next(geoZone.Count)].Id);
+                    DataAccessAction.contract.AddGeoZoneToContract(c.Id, geoZone[rnd.Next(geoZone.Count)].Id);
                 }
             }
 
