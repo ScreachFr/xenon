@@ -96,6 +96,7 @@ namespace Xenon___Allianz.Models
         public List<GeographicZoneModel> GeographicZoneModel { get; set; }
         public Guid WalletId { get; set; }
         public String WalletName { get; set; }
+        public Guid UserId { get; set; }
     }
 
 

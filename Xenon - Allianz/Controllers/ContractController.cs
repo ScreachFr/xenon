@@ -43,12 +43,14 @@ namespace Xenon___Allianz.Controllers
             }
             ViewBag.Wallet = id;
             Session["currentWallet"] = id;
+            Guid geoid = (Guid)Session["XenonGeoId"];
             var s = Utils.ToGeographicZoneModel(DataAccessAction.geographicZone.GetAllAvailableGeographicZones());
             CreateContractModel cs = new CreateContractModel
             {
                 GeographicZoneModel = s,
                 WalletId = id,
-                WalletName = DataAccessAction.wallet.GetWalletById(id).Service
+                WalletName = DataAccessAction.wallet.GetWalletById(id).Service,
+                UserId = geoid
             };
             return View(cs);
         }

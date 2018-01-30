@@ -49,14 +49,30 @@
         <div class="col-md-5">
             @foreach (var item in Model.GeographicZoneModel)
             {
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"
-                               name="GeographicZoneId"
-                               value="@item.Id" /> @item.Name
-                    </label>
-                </div>
-            }
+                if (item.Id.Equals(Model.UserId))
+                {
+
+                    <div class="checkbox">
+                        <label>
+
+                            <input type="checkbox"
+                                   name="GeographicZoneId"
+                                   value="@item.Id" checked onclick="return false;" /> @item.Name
+                            </label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"
+                                       name="GeographicZoneId"
+                                       value="@item.Id" /> @item.Name
+                                </label>
+                            </div>
+                        }
+
+                    }
         </div>
     </div>
 
