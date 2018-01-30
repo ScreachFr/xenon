@@ -47,7 +47,12 @@ namespace Xenon.BusinessLogic.Controllers
             using (var ctx = new BusinessContext())
             {
 
-                ctx.Scopes.Add(new Scope(idUser, idWallet, inital));
+                ctx.Scopes.Add(new Scope
+                {
+                    Initial = inital,
+                    User = idUser,
+                    Wallet = idWallet
+                });
                 ctx.SaveChanges();
             }
         }
@@ -85,6 +90,15 @@ namespace Xenon.BusinessLogic.Controllers
                 }
 
                 return result;
+            }
+        }
+        public List<Wallet> GetWalletNotInUserScope(Guid userId)
+        {
+            using (var ctx = new BusinessContext())
+            {
+                var sc = ctx.Scopes.Where(s => s.User.Equals(userId)).Select(s => s.Wallet).ToList();
+                var query = ctx.Wallets.Where(w => !sc.Contains(w.Id)).ToList();
+                return query;
             }
         }
 
@@ -130,9 +144,10 @@ namespace Xenon.BusinessLogic.Controllers
             }
         }
 
+
         public bool GetScopeWalletByWalletIdAndUserId(Guid userid, Guid walletid)
         {
-            using(var ctx = new BusinessContext())
+            using (var ctx = new BusinessContext())
             {
                 var query = from s in ctx.Scopes
                             where s.User.Equals(userid) && s.Wallet.Equals(walletid)

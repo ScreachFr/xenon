@@ -23,6 +23,7 @@ namespace Xenon___Allianz.Controllers
             {
                 return Redirect("/");
             }
+
             if (((string)Session["XenonStatus"]).Equals("souscripteur") ||
                 ((string)Session["XenonStatus"]).Equals("manager"))
             {
@@ -30,6 +31,7 @@ namespace Xenon___Allianz.Controllers
                 ContractListModel clm = GetContractByWalletId(pm.WalletId, geoid);
                 return View(clm);
             }
+
             return Redirect("/");
         }
 
@@ -100,6 +102,24 @@ namespace Xenon___Allianz.Controllers
             return View(contract);
         }
         /* API WEB SERVICE */
+
+        public string IndexApi(PaginationModel pm)
+        {
+            Guid geoid = (Guid)Session["XenonGeoId"];
+            ContractListModel clm = GetContractByWalletId(pm.WalletId, geoid);
+            return JsonConvert.SerializeObject(clm);
+        }
+
+        public string AddContractApi(ContractModel c)
+        {
+            return JsonConvert.SerializeObject(AddContract(c));
+        }
+
+        public string DetailApi(Guid id)
+        {
+            return JsonConvert.SerializeObject(Detail(id));
+        }
+
         public string GetContractByWalletIdApi(Guid walletid, Guid geoid)
         {
             return JsonConvert.SerializeObject(GetContractByWalletId(walletid, geoid));

@@ -7,6 +7,7 @@ using Xenon___Allianz.DataAccess;
 
 using Xenon.BusinessLogic.Models;
 using Xenon___Allianz.Models;
+using Newtonsoft.Json;
 
 namespace Xenon___Allianz.Controllers
 {
@@ -90,6 +91,7 @@ namespace Xenon___Allianz.Controllers
         }
 
         public ActionResult Contracts()
+
         {
 
             if (((string)Session["XenonStatus"]).Equals("admin"))
@@ -102,6 +104,7 @@ namespace Xenon___Allianz.Controllers
         }
 
         public ActionResult RegisterUser()
+
         {
             List<GeographicZoneModel> l = Utils.ToGeographicZoneModel(DataAccessAction.geographicZone.GetAllAvailableGeographicZones());
             RegisterUserModel rum = new RegisterUserModel
@@ -162,7 +165,7 @@ namespace Xenon___Allianz.Controllers
                 {
                     AnswerTimeStamp = new DateTime(),
                     Id = item.Id,
-                    InProgress = item.InProgress,
+                    State = item.State,
                     NewStatus = item.NewStatus,
                     OldStatus = item.OldStatus,
                     Path = item.Path,
@@ -184,7 +187,7 @@ namespace Xenon___Allianz.Controllers
                 {
                     AnswerTimeStamp = new DateTime(),
                     Id = item.Id,
-                    InProgress = item.InProgress,
+                    State = item.State,
                     NewStatus = item.NewStatus,
                     OldStatus = item.OldStatus,
                     Path = item.Path,
@@ -200,7 +203,7 @@ namespace Xenon___Allianz.Controllers
                 {
                     AnswerTimeStamp = new DateTime(),
                     Id = item.Id,
-                    InProgress = item.InProgress,
+                    State = item.State,
                     NewStatus = item.NewStatus,
                     OldStatus = item.OldStatus,
                     Path = item.Path,
@@ -238,7 +241,7 @@ namespace Xenon___Allianz.Controllers
                 Username = u.Username
             };
             List<WalletModel> wallets = new List<WalletModel>();
-            foreach (var item in DataAccessAction.wallet.GetAllWallet())
+            foreach (var item in DataAccessAction.wallet.GetWalletNotInUserScope(id))
             {
                 wallets.Add(new WalletModel
                 {
@@ -257,11 +260,95 @@ namespace Xenon___Allianz.Controllers
         public ActionResult AddWalletToUserValid(AddWalletToUserModel auwm)
         {
             foreach (var item in auwm.WalletId)
-            {
+            { //4BFCB6CB-9D05-E811-8AD0-484520A48417
                 DataAccessAction.wallet.AddScope(auwm.UserId, item, true);
             }
-            return View("/");
+            return Redirect("/Admin");
         }
+
+        /* API WEB SERVICE */
+
+        public string IndexApi()
+        {
+            return JsonConvert.SerializeObject(Index());
+        }
+
+        public string UsersApi()
+        {
+            return JsonConvert.SerializeObject(Users());
+        }
+
+        public string WalletsApi()
+        {
+            return JsonConvert.SerializeObject(Wallets());
+        }
+
+        public string RegisterUserApi()
+        {
+            return JsonConvert.SerializeObject(RegisterUser());
+        }
+            
+        public string ContractsApi()
+        {
+            return JsonConvert.SerializeObject(Contracts());
+        }
+
+        public string GeographicZoneApi()
+        {
+            return JsonConvert.SerializeObject(GeographicZone());
+        }
+
+        public string AddWalletApi()
+        {
+            return JsonConvert.SerializeObject(AddWallet());
+        }
+
+        public string UpdateSatusApi()
+        {
+            return JsonConvert.SerializeObject(UpdateSatus());
+        }
+
+        public string UpdateStatusValidationApi(UpdateStatusModel usm)
+        {
+            return JsonConvert.SerializeObject(UpdateStatusValidation(usm));
+        }
+
+        public string ShowStatusToValidApi()
+        {
+            return JsonConvert.SerializeObject(ShowStatusToValid());
+        }
+
+        public string ShowAllUpdateStatusApi()
+        {
+            return JsonConvert.SerializeObject(ShowStatusToValid());
+        }
+
+        public string DownloadFileApi(Guid id)
+        {
+            return JsonConvert.SerializeObject(DownloadFile(id));
+        }
+
+        public string AcceptUpdateStatusApi(Guid id)
+        {
+            return JsonConvert.SerializeObject(AcceptUpdateStatus(id));
+        }
+
+        public string RefuseUpdateStatusApi(Guid id)
+        {
+            return JsonConvert.SerializeObject(RefuseUpdateStatus(id));
+        }
+
+        public string AddWalletToUserApi(Guid id)
+        {
+            return JsonConvert.SerializeObject(AddWalletToUser(id));
+        }
+
+        public string AddWalletToUserValidApi(AddWalletToUserModel auwm)
+        {
+            return JsonConvert.SerializeObject(AddWalletToUserValid(auwm));
+        }
+
+        /* END OF API WEB SERVICE */
 
 
 

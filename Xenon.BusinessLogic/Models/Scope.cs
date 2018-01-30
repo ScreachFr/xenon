@@ -18,12 +18,7 @@ namespace Xenon.BusinessLogic.Models
         public Guid Wallet { get; set; }
         public Boolean Initial { get; set; }
 
-        public Scope(Guid user, Guid wallet, bool intial)
-        {
-            this.User = user;
-            this.Wallet = wallet;
-            this.Initial = intial;
-        }
+       
 
     }
 }

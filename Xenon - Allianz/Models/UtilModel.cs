@@ -24,6 +24,16 @@ namespace Xenon___Allianz.Models
         public string State { get; set; } = "In progress";
         public HttpPostedFileBase File { get; set; }
     }
+    public class UserUpdateStatusModel
+    {
+        public Guid UserId { get; set; }
+        public string OldStatus { get; set; }
+        public string NewStatus { get; set; }
+        public bool InProgress { get; set; }
+        public string Path { get; set; }
+        public DateTime SubmitTimeStamp { get; set; }
+        public DateTime AnswerTimeStamp { get; set; }
+    }
 
 
     public class PaginationModel
@@ -50,7 +60,7 @@ namespace Xenon___Allianz.Models
         public string Username { get; set; }
         public string OldStatus { get; set; }
         public string NewStatus { get; set; }
-        public bool InProgress { get; set; }
+        public int State { get; set; }
         public string Path { get; set; }
         public DateTime SubmitTimeStamp { get; set; }
         public DateTime AnswerTimeStamp { get; set; }

@@ -13,8 +13,8 @@ namespace Xenon.BusinessLogic.Models
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; }
-    public string Username { get; set; }
-    public string Password { get; set; }
+    public String Username { get; set; }
+    public String Password { get; set; }
     public string Status { get; set; }
     public string Mail { get; set; }
     public Guid GeographicZone { get; set; }

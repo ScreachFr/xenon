@@ -4,20 +4,20 @@
     ViewBag.Title = "AddWalletToUser";
 }
 
-<h2>AddWalletToUser</h2>
+<h2>Ajout de perimètres initiaux</h2>
 
 <div>
-    <h4>AddWalletToUserContentModel</h4>
+    
     <hr />
-    <h1>@Model.User.Username</h1>
+    <h1>Username : @Model.User.Username</h1>
 
 
 </div>
 @using (Html.BeginForm("AddWalletToUserValid", "Admin"))
 {
 
-    <label>@Model.User.Username</label>
-    <input type="text" value="@Model.User.Id" name="UserId" readonly />
+    
+    <input type="hidden" value="@Model.User.Id" name="UserId" readonly />
 
     foreach (var item in Model.Wallets)
     {
@@ -29,7 +29,7 @@
                 </label>
             </div>
         }
-        <div class="form-group text-center">
+        <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Submit" />
         </div>
 

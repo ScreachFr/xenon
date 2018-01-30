@@ -15,5 +15,6 @@ namespace Xenon.BusinessLogic.Interface
         bool EditPassWord(Guid userId, string password);
         User GetUserById(Guid id);
         List<User> GetAllUsers();
+        List<UpdateStatus> GetMyUpdateStatus(Guid userid);
     }
 }

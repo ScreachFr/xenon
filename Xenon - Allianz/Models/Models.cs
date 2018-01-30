@@ -15,6 +15,8 @@ namespace Xenon___Allianz.Models
         public string Mail { get; set; }
         public Guid GeographicZone { get; set; }
         public string GeographicZoneName { get; set; }
+        public List<StatusToValid> UpdateStatus { get; set; }
+
 
     }
 

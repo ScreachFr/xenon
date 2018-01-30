@@ -17,7 +17,7 @@ namespace Xenon.BusinessLogic.Models
         public Guid UserId { get; set; }
         public string OldStatus { get; set; }
         public string NewStatus { get; set; }
-        public bool InProgress { get; set; }
+        public int State { get; set; }
         public string Path { get; set; }
         public DateTime SubmitTimeStamp { get; set; }
         public DateTime AnswerTimeStamp { get; set; }

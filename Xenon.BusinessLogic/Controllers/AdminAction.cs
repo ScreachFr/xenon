@@ -16,7 +16,7 @@ namespace Xenon.BusinessLogic.Controllers
             using (var ctx = new BusinessContext())
             {
                 us.SubmitTimeStamp = DateTime.Now;
-                us.AnswerTimeStamp = DateTime.Now;
+                us.AnswerTimeStamp = new DateTime(0);
               ctx.UpdateStatuses.Add(us);
                 ctx.SaveChanges();
             }
@@ -28,7 +28,7 @@ namespace Xenon.BusinessLogic.Controllers
             using (var ctx = new BusinessContext())
             {
                 var toAccept = GetUpdateStatusById(id);
-                toAccept.InProgress = false;
+                toAccept.State = 2;
                 toAccept.AnswerTimeStamp = DateTime.Now;
                 ctx.Entry(toAccept).State = System.Data.Entity.EntityState.Modified;
 
@@ -43,7 +43,7 @@ namespace Xenon.BusinessLogic.Controllers
             using (var ctx = new BusinessContext())
             {
                 var toRefuse = GetUpdateStatusById(id);
-                toRefuse.InProgress = false;
+                toRefuse.State = 3;
                 toRefuse.AnswerTimeStamp = DateTime.Now;
                 ctx.Entry(toRefuse).State = System.Data.Entity.EntityState.Modified;
                 ctx.SaveChanges();
@@ -55,7 +55,7 @@ namespace Xenon.BusinessLogic.Controllers
             using (var ctx = new BusinessContext())
             {
                 var query = from us in ctx.UpdateStatuses
-                            where us.InProgress.Equals(inProgress)
+                            where us.State.Equals(1)
                             select us;
 
                 return query.ToList();

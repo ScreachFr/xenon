@@ -37,10 +37,10 @@ namespace Xenon.BusinessLogic.Controllers
 
                 try
                 {
-                    var query = from usr in ctx.Users
-                                where usr.Username.Equals(username) && usr.Password.Equals(hashedPassword)
-                                select usr;
-
+                    var query = ctx.Users.ToList();
+                    var usr = query.Where(e => e.Username.Equals(username) && e.Password.Equals(hashedPassword) ).FirstOrDefault(); 
+                    return usr;
+                    /*
                     var count = query.Count();
 
                     // Not the right way to do it.
@@ -51,6 +51,7 @@ namespace Xenon.BusinessLogic.Controllers
                     }
                     else
                         return null;
+                    */
                 }
                 catch (Exception e)
                 {
@@ -157,6 +158,15 @@ namespace Xenon.BusinessLogic.Controllers
                             select usr;
 
                 return query.FirstOrDefault();
+            }
+        }
+
+        public List<UpdateStatus> GetMyUpdateStatus(Guid userid)
+        {
+            using (var ctx = new BusinessContext())
+            {
+                var query = ctx.UpdateStatuses.Where(u => u.UserId.Equals(userid)).ToList();
+                return query;
             }
         }
     }

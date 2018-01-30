@@ -7,10 +7,7 @@
     <h2>List of Wallet</h2>
 </div>
 <p>
-    @if (((string)Session["XenonStatus"]) == "souscripteur")
-    {
-        @Html.ActionLink("add new wallet", "Create")
-    }
+    
 </p>
 <div class="row">
     @foreach (var item in Model)
