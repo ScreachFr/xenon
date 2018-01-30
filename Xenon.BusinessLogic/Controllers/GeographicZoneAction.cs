@@ -160,6 +160,7 @@ namespace Xenon.BusinessLogic.Controllers
         using (var ctx = new BusinessContext())
         {
           UpdateZone(ctx, new Guid(), values);
+          ctx.SaveChanges();
         }
       }
 

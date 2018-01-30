@@ -25,8 +25,6 @@ namespace Xenon.BusinessLogic.Models
         public Guid Wallet { get; set; }
         public int Value { get; set; }
         public int Position { get; set; }
-        public List<GeographicZone> GeographicZones { get; set; }
-
 
 
         public void Update(Contract newValue)
