@@ -93,7 +93,7 @@ namespace Xenon___Allianz.Controllers
                 Wallet = item.Wallet,
                 WalletName = DataAccessAction.wallet.GetWalletById(item.Wallet).Service,
                 Value = item.Value,
-                GeographicZones = Utils.ToGeographicZoneModel(item.GeographicZones),
+                GeographicZones = Utils.ToGeographicZoneModel(DataAccessAction.contract.GetGeographicZoneByContractId(item.Id)),
             };
 
             //contract.WalletName = ;
@@ -148,7 +148,7 @@ namespace Xenon___Allianz.Controllers
                     Wallet = item.Wallet,
                     WalletName = "",
                     Value = item.Value,
-                    GeographicZones = Utils.ToGeographicZoneModel(item.GeographicZones)
+                    //GeographicZones = Utils.ToGeographicZoneModel(item.GeographicZones)
                 });
             }
             Session["currentWallet"] = walletid;
