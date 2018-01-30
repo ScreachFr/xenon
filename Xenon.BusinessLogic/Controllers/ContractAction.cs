@@ -9,11 +9,16 @@ namespace Xenon.BusinessLogic.Controllers
 {
     public class ContractAction : IContractAction
     {
-        public bool AddContract(Contract c)
+        public bool AddContract(Contract c,List<Guid> geoIdZone)
         {
             try
             {
+                Console.WriteLine("");
                 AddContractToDB(c);
+                if(geoIdZone != null)
+                {
+                    
+                }
                 return true;
             }
             catch (Exception e)
@@ -116,9 +121,7 @@ namespace Xenon.BusinessLogic.Controllers
                         geos.Add(item);
                     }
                 }
-
                 
-
                 return geos;
 
             }

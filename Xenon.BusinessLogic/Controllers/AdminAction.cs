@@ -16,7 +16,7 @@ namespace Xenon.BusinessLogic.Controllers
             using (var ctx = new BusinessContext())
             {
                 us.SubmitTimeStamp = DateTime.Now;
-                us.AnswerTimeStamp = new DateTime(0);
+                us.AnswerTimeStamp = new DateTime(2000, 01, 01);
               ctx.UpdateStatuses.Add(us);
                 ctx.SaveChanges();
             }

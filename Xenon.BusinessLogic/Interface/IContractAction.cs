@@ -12,7 +12,7 @@ namespace Xenon.BusinessLogic.Interface
         List<Contract> GetContractByWalletId(Guid walletId, Guid geoId);
         List<GeographicZone> GetGeographicZoneByContractId(Guid contractId); 
         //List<Contract> GetContractByWalletId(Guid walletId, int page, int numberByPage);
-        bool AddContract(Contract c);
+        bool AddContract(Contract c, List<Guid> geoIdZone);
         bool EditContract(Guid contractId, Contract c);
         Contract GetContractById(Guid id);
         List<Contract> GetAllContract();

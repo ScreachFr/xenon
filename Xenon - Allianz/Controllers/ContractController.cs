@@ -43,7 +43,14 @@ namespace Xenon___Allianz.Controllers
             }
             ViewBag.Wallet = id;
             Session["currentWallet"] = id;
-            return View();
+            var s = Utils.ToGeographicZoneModel(DataAccessAction.geographicZone.GetAllAvailableGeographicZones());
+            CreateContractModel cs = new CreateContractModel
+            {
+                GeographicZoneModel = s,
+                WalletId = id,
+                WalletName = DataAccessAction.wallet.GetWalletById(id).Service
+            };
+            return View(cs);
         }
 
         public ActionResult AddContract(ContractModel c)
@@ -62,14 +69,15 @@ namespace Xenon___Allianz.Controllers
                 Rompu = c.Rompu,
                 Company = c.Company,
                 Value = c.Value,
-                Wallet = s,
+                Wallet = c.Wallet,
                 Position = DataAccessAction.wallet.NumberOfContractsByWalletId(c.Wallet) + 1
             };
-            DataAccessAction.contract.AddContract(contract);
+            DataAccessAction.contract.AddContract(contract,c.GeographicZoneId);
+            foreach (var item in c.GeographicZoneId)
+            {
+                DataAccessAction.geographicZone.AddContractScope(contract.Id, item);
+            }
             Console.WriteLine(c);
-            //c.Wallet = Session["currentWallet"].ToString();
-            //Database.contracts.Add(c);
-            //DataAccessAction.contract.AddContract(c);
             return Redirect("/Wallet");
         }
 

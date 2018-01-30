@@ -250,7 +250,7 @@ namespace Xenon___Allianz.Controllers
                         Position = DataAccessAction.wallet.NumberOfContractsByWalletId(lw[i].Id) + 1,
                         
                     };
-                    DataAccessAction.contract.AddContract(c);
+                    //DataAccessAction.contract.AddContract(c);
                     DataAccessAction.contract.AddGeoZoneToContract(c.Id, geoZone[rnd.Next(geoZone.Count)].Id);
                 }
             }

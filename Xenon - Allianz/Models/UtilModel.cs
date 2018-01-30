@@ -91,6 +91,13 @@ namespace Xenon___Allianz.Models
         public List<WalletModel> Wallets { get; set; }
     }
 
+    public class CreateContractModel
+    {
+        public List<GeographicZoneModel> GeographicZoneModel { get; set; }
+        public Guid WalletId { get; set; }
+        public String WalletName { get; set; }
+    }
+
 
 
 

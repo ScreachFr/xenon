@@ -48,6 +48,7 @@ namespace Xenon___Allianz.Models
         public int Value { get; set; }
         public int Position { get; set; }
         public List<GeographicZoneModel> GeographicZones { get; set; }
+        public List<Guid> GeographicZoneId { get; set; }
     }
     public class GeographicZoneModel
     {

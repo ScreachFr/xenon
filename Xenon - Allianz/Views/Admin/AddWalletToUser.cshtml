@@ -7,7 +7,7 @@
 <h2>Ajout de perimètres initiaux</h2>
 
 <div>
-    
+
     <hr />
     <h1>Username : @Model.User.Username</h1>
 
@@ -16,7 +16,7 @@
 @using (Html.BeginForm("AddWalletToUserValid", "Admin"))
 {
 
-    
+
     <input type="hidden" value="@Model.User.Id" name="UserId" readonly />
 
     foreach (var item in Model.Wallets)
