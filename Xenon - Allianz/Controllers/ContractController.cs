@@ -116,6 +116,10 @@ namespace Xenon___Allianz.Controllers
 
         public ActionResult Edit(Guid id)
         {
+            if (Session["XenonUserId"] == null)
+            {
+                return Redirect("/");
+            }
             Contract item = DataAccessAction.contract.GetContractById(id);
             string st = item.Start.ToString().Split(' ')[0];
             ContractModel contract = new ContractModel()
