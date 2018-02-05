@@ -365,6 +365,8 @@
     <Content Include="Views\Admin\ShowStatusToValid.cshtml" />
     <Content Include="Views\Admin\GeographicZone.cshtml" />
     <Content Include="Views\Admin\AddWalletToUser.cshtml" />
+    <Content Include="Views\Admin\AddWalletToUserExtend.cshtml" />
+    <Content Include="Views\Contract\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

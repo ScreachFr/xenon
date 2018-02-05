@@ -6,9 +6,7 @@
 
 <h2>Contracts</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -32,7 +30,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Company)
         </th>
-        
+
         <th>
             @Html.DisplayNameFor(model => model.WalletName)
         </th>
@@ -42,53 +40,50 @@
         <th>
             @Html.DisplayNameFor(model => model.Position)
         </th>
-        
-       
+
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Start)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.End)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cover)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Negociable)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Prime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rompu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Company)
-        </td>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.WalletName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Value)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Position)
-        </td>
-        
-       
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Start)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.End)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cover)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Negociable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rompu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company)
+            </td>
 
-        <td>
-            @Html.ActionLink("Add Geo zone", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            <td>
+                @Html.DisplayFor(modelItem => item.WalletName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+
+
+
+            <td></td>
+        </tr>
+    }
 
 </table>

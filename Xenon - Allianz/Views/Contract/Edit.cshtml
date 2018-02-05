@@ -1,0 +1,102 @@
+﻿@model Xenon___Allianz.Models.EditContractModel
+
+<form action="/Contract/ValidEdit">
+    <div class="row">
+        <div class="page-header"><h1 class="text-center">Edit contract</h1></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+            <input type="hidden" name="Id" value="@Model.Contract.Id" />
+            <div class="form-group">
+                <label>Start date</label>
+                <input type="text" class="form-control datepicker" name="Start" id="createStart" value="@Model.Contract.Start" required>
+            </div>
+            <div class="form-group">
+                <label>End date</label>
+                <input type="text" class="form-control datepicker" name="End" id="createEnd" value="@Model.Contract.End" required>
+            </div>
+            <div class="form-group">
+                <label>Cover</label>
+                <input type="number" class="form-control" name="Cover" value="@Model.Contract.Cover" required>
+            </div>
+            <div class="form-group">
+                @if (Model.Contract.Negociable)
+                {
+                    <label><input type="checkbox" name="Negociable" checked>Negociable</label>
+                }
+                else
+                {
+                    <label><input type="checkbox" name="Negociable">Negociable</label>
+                }
+
+            </div>
+            <div class="form-group">
+                <label>Prime</label>
+                <input type="number" class="form-control" name="Prime" value="@Model.Contract.Prime" required>
+            </div>
+            <div class="form-group">
+                <label>Company</label>
+                <input type="text" class="form-control" name="Company" value="@Model.Contract.Company" required>
+            </div>
+            <div class="form-group">
+
+                <input type="hidden" class="form-control" name="Wallet" value="@Model.Contract.Wallet" required>
+            </div>
+            <div class="form-group">
+                <label>Wallet Name</label>
+                <input type="text" class="form-control" name="WalletName" value="@Model.Contract.WalletName" readonly>
+            </div>
+            <div class="form-group">
+                <label>Value</label>
+                <input type="number" class="form-control" name="Value" value="@Model.Contract.Value" required>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+        <div class="col-md-5">
+            <ul>
+                @foreach (var item in Model.Contract.GeographicZones)
+
+                {
+                    <li>@item.Name</li>
+                    /*
+
+                    foreach (var item2 in Model.Contract.GeographicZones)
+                    {
+
+
+                    if (item.Id.Equals(item2.Id))
+                    {
+
+                        <div class="checkbox">
+                            <label>
+
+                                <input type="checkbox"
+                                       name="GeographicZoneId"
+                                       value="@item.Id" checked onclick="return false;" /> @item.Name
+                                </label>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"
+                                           name="GeographicZoneId"
+                                           value="@item.Id" /> @item.Name
+                                    </label>
+                                </div>
+                            }
+                        }
+
+                    */
+                }
+            </ul>
+        </div>
+    </div>
+
+</form>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval"),
+    @Scripts.Render("~/bundles/Contract/js")
+}

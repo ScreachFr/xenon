@@ -83,12 +83,14 @@ namespace Xenon___Allianz.Models
     {
         public Guid UserId { get; set; }
         public List<Guid> WalletId { get; set; }
+        public string Scope { get; set; }
     }
 
     public class AddWalletToUserContentModel
     {
         public UserModel User { get; set; }
         public List<WalletModel> Wallets { get; set; }
+
     }
 
     public class CreateContractModel
@@ -97,6 +99,12 @@ namespace Xenon___Allianz.Models
         public Guid WalletId { get; set; }
         public String WalletName { get; set; }
         public Guid UserId { get; set; }
+    }
+
+    public class EditContractModel
+    {
+        public List<GeographicZoneModel> GeographicZoneModel { get; set; }
+        public ContractModel Contract { get; set; }
     }
 
 

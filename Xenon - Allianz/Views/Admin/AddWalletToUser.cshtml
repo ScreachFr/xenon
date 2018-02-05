@@ -4,33 +4,40 @@
     ViewBag.Title = "AddWalletToUser";
 }
 
-<h2>Ajout de perimètres initiaux</h2>
-
-<div>
-
-    <hr />
-    <h1>Username : @Model.User.Username</h1>
-
-
-</div>
-@using (Html.BeginForm("AddWalletToUserValid", "Admin"))
-{
-
-
-    <input type="hidden" value="@Model.User.Id" name="UserId" readonly />
-
-    foreach (var item in Model.Wallets)
-    {
-        <div class="checkbox">
-            <label>
-                <input type="checkbox"
-                       name="WalletId"
-                       value="@item.Id" /> @item.Service
-                </label>
-            </div>
-        }
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Submit" />
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-8">
+        <div class="page-header">
+            <hr />
+            <h1>Ajout de perimètres pour : @Model.User.Username</h1>
         </div>
+        
+        <form action="/Admin/AddWalletToUserValid">
+            <input type="hidden" value="@Model.User.Id" name="UserId" readonly />
+            
+                <label>select a scope</label>
+                <select class="form-control" name="Scope">
+                    <option value="initial">initial</option>
+                    <option value="extends">extends</option>
+                </select>
+            
+            <h3>List of Wallet</h3>
 
-    }
+            @foreach (var item in Model.Wallets)
+            {
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"
+                           name="WalletId"
+                           value="@item.Id" /> @item.Service
+                    </label>
+                </div>
+                }
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Submit" />
+                </div>
+
+            </form>
+    </div>
+    <div class="col-md-1"></div>
+</div>

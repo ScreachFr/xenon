@@ -18,14 +18,21 @@
                     <div class="caption">
                         <h3>@Html.DisplayFor(model => model.Username)</h3>
                         <p>@Html.DisplayFor(model => model.Status)</p>
-                        <p>
-                            <div class="row">
-                                <div class="col-md-4">@Html.ActionLink("Edit password", "Detail", "Contract", new { @class = "btn btn-success" })</div>
-                                <div class="col-md-4">@Html.ActionLink("Update status", "UpdateStatus", "User", new { @class = "btn btn-info" })</div>
-                                <div class="col-md-4">@Html.ActionLink("Download File", "DownloadFile", "User", new { @class = "btn btn-warning" })</div>
+                        @if (!((string)(Session["XenonStatus"])).Equals("admin"))
+                        {
 
-                            </div>
-                        </p>
+
+                            <p>
+                                <div class="row">
+                                    <!--<div class="col-md-4">@Html.ActionLink("Edit password", "Detail", "Contract", new { @class = "btn btn-success" })</div>
+    -->
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-4">@Html.ActionLink("Update status", "UpdateStatus", "User", new { @class = "btn btn-info" })</div>
+                                    <div class="col-md-4">@Html.ActionLink("Download change status form", "DownloadFile", "User", new { @class = "btn btn-warning" })</div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                            </p>
+                        }
                     </div>
                     <p><span class="glyphicon glyphicon-envelope"></span> @Html.DisplayFor(model => model.Mail)</p>
                     <p><span class="glyphicon glyphicon glyphicon-globe"></span> @Html.DisplayFor(model => model.GeographicZoneName)</p>
@@ -34,41 +41,43 @@
 
 
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Old Status</th>
-                        <th>New Status</th>
-                        <th>Answer date</th>
-                        <th>State</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.UpdateStatus)
-                    {
+            @if (!((string)(Session["XenonStatus"])).Equals("admin"))
+            {
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>@item.OldStatus</td>
-                            <td>@item.NewStatus</td>
-
-                            @if (item.State == 1)
-                            {
-                                <td>--</td>
-                                <td>In Progress</td>
-                            }
-                            else if (item.State == 2)
-                            {
-                                <td>@item.AnswerTimeStamp</td>
-                                <td>Accepted</td>
-                            }
-                            else
-                            {
-                                <td>@item.AnswerTimeStamp</td>
-                                <td>Denied</td>}
+                            <th>Old Status</th>
+                            <th>New Status</th>
+                            <th>Answer date</th>
+                            <th>State</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.UpdateStatus)
+                        {
+                            <tr>
+                                <td>@item.OldStatus</td>
+                                <td>@item.NewStatus</td>
 
+                                @if (item.State == 1)
+                                {
+                                    <td>--</td>
+                                    <td>In Progress</td>
+                                }
+                                else if (item.State == 2)
+                                {
+                                    <td>@item.AnswerTimeStamp</td>
+                                    <td>Accepted</td>
+                                }
+                                else
+                                {
+                                    <td>@item.AnswerTimeStamp</td>
+                                    <td>Denied</td>}
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
         </div>
         <div class="col-sm-6 col-md-3"></div>
     </div>

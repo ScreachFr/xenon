@@ -7,7 +7,7 @@
 <h2>Detail</h2>
 
 <div>
-    <h4>ContractModel</h4>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -38,9 +38,16 @@
             @Html.DisplayNameFor(model => model.Negociable)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Negociable)
-        </dd>
+
+        @if (Model.Negociable)
+        {
+            <dd>yes</dd>
+        }
+        else
+        {
+            <dd>no</dd>
+        }
+
 
         <dt>
             @Html.DisplayNameFor(model => model.Prime)
@@ -54,9 +61,14 @@
             @Html.DisplayNameFor(model => model.Rompu)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Rompu)
-        </dd>
+        @if (Model.Rompu)
+        {
+            <dd>yes</dd>
+        }
+        else
+        {
+            <dd>no</dd>
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.Company)
@@ -91,6 +103,9 @@
     }
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", "Contract", new { @id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index","Contract")
+    @if (((string)Session["XenonStatus"] == "souscripteur") && Model.Initial)
+    {
+        <a href="/Contract/Edit/@Model.Id">edit contract</a>
+    }
+
 </p>

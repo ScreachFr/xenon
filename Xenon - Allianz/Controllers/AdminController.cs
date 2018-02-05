@@ -87,7 +87,7 @@ namespace Xenon___Allianz.Controllers
         {
             List<GeographicZoneModel> l = Utils.ToGeographicZoneModel(DataAccessAction.geographicZone.GetAllAvailableGeographicZones());
 
-            return View(l); 
+            return View(l);
         }
 
         public ActionResult Contracts()
@@ -97,7 +97,7 @@ namespace Xenon___Allianz.Controllers
             if (((string)Session["XenonStatus"]).Equals("admin"))
             {
                 List<ContractModel> lc = Utils.ToContractModel(DataAccessAction.contract.GetAllContract());
-                
+
                 return View(lc);
             }
             return Redirect("/");
@@ -170,9 +170,9 @@ namespace Xenon___Allianz.Controllers
                     OldStatus = item.OldStatus,
                     Path = item.Path,
                     SubmitTimeStamp = item.SubmitTimeStamp,
-                    UserId =item.UserId,
+                    UserId = item.UserId,
                     Username = DataAccessAction.user.GetUserById(item.UserId).Username
-                    
+
                 });
 
             }
@@ -257,96 +257,256 @@ namespace Xenon___Allianz.Controllers
             };
             return View(acm);
         }
+        public ActionResult AddWalletToUserExtend(Guid id)
+        {
+            User u = DataAccessAction.user.GetUserById(id);
+            UserModel us = new UserModel
+            {
+                Id = u.Id,
+                Username = u.Username
+            };
+            List<WalletModel> wallets = new List<WalletModel>();
+            foreach (var item in DataAccessAction.wallet.GetWalletNotInUserScope(id))
+            {
+                wallets.Add(new WalletModel
+                {
+                    Id = item.Id,
+                    Service = item.Service
+                });
+            }
+
+            AddWalletToUserContentModel acm = new AddWalletToUserContentModel
+            {
+                User = us,
+                Wallets = wallets
+            };
+            return View(acm);
+        }
         public ActionResult AddWalletToUserValid(AddWalletToUserModel auwm)
         {
+            var s = auwm.Scope;
+            bool b = false;
+            if (s.Equals("initial"))
+            {
+                b = true;
+            }
             foreach (var item in auwm.WalletId)
             { //4BFCB6CB-9D05-E811-8AD0-484520A48417
-                DataAccessAction.wallet.AddScope(auwm.UserId, item, true);
+                DataAccessAction.wallet.AddScope(auwm.UserId, item, b);
+            }
+            return Redirect("/Admin");
+        }
+        public ActionResult AddExtendsWalletToUserValid(AddWalletToUserModel auwm)
+        {
+            //bool b = auwm.IsInitial;
+            foreach (var item in auwm.WalletId)
+            { //4BFCB6CB-9D05-E811-8AD0-484520A48417
+                DataAccessAction.wallet.AddScope(auwm.UserId, item, false);
             }
             return Redirect("/Admin");
         }
 
         /* API WEB SERVICE */
 
-        public string IndexApi()
-        {
-            return JsonConvert.SerializeObject(Index());
-        }
-
         public string UsersApi()
         {
-            return JsonConvert.SerializeObject(Users());
+            if (Session["XenonStatus"] != null && ((string)Session["XenonStatus"]).Equals("admin"))
+            {
+
+                List<UserModel> lu = new List<UserModel>();
+                foreach (var item in DataAccessAction.user.GetAllUsers())
+                {
+                    
+                    GeographicZone gz = DataAccessAction.geographicZone.GetGeographicZoneById(item.GeographicZone);
+                    lu.Add(new UserModel()
+                    {
+                        Id = item.Id,
+                        Username = item.Username,
+                        Mail = item.Mail,
+                        Status = item.Status,
+                        GeographicZone = item.GeographicZone,
+                        GeographicZoneName = (gz == null) ? "" : gz.Name
+
+                    });
+                }
+
+                return JsonConvert.SerializeObject(lu);
+            }
+            return JsonConvert.SerializeObject(new List<UserModel>());
         }
 
         public string WalletsApi()
         {
-            return JsonConvert.SerializeObject(Wallets());
+
+            if (((string)Session["XenonStatus"]).Equals("admin"))
+            {
+                List<WalletModel> lw = new List<WalletModel>();
+                foreach (var item in DataAccessAction.wallet.GetAllWallet())
+                {
+                    lw.Add(new WalletModel()
+                    {
+                        Id = item.Id,
+                        Service = item.Service,
+                        NumberOfContract = 0,
+                    });
+                }
+                return JsonConvert.SerializeObject(lw);
+            }
+            return JsonConvert.SerializeObject(new List<WalletModel>());
         }
 
-        public string RegisterUserApi()
+        public String GeographicZoneApi()
         {
-            return JsonConvert.SerializeObject(RegisterUser());
-        }
-            
-        public string ContractsApi()
-        {
-            return JsonConvert.SerializeObject(Contracts());
+            List<GeographicZoneModel> l = Utils.ToGeographicZoneModel(DataAccessAction.geographicZone.GetAllAvailableGeographicZones());
+
+            return JsonConvert.SerializeObject(l);
         }
 
-        public string GeographicZoneApi()
+        public String ContractsApi()
+
         {
-            return JsonConvert.SerializeObject(GeographicZone());
+
+            if (((string)Session["XenonStatus"]).Equals("admin"))
+            {
+                List<ContractModel> lc = Utils.ToContractModel(DataAccessAction.contract.GetAllContract());
+
+                return JsonConvert.SerializeObject(lc);
+            }
+            return JsonConvert.SerializeObject(new List<ContractModel>());
         }
 
-        public string AddWalletApi()
+        public String RegisterUserApi()
+
         {
-            return JsonConvert.SerializeObject(AddWallet());
+            List<GeographicZoneModel> l = Utils.ToGeographicZoneModel(DataAccessAction.geographicZone.GetAllAvailableGeographicZones());
+            RegisterUserModel rum = new RegisterUserModel
+            {
+                GeographicZoneList = l
+            };
+            return JsonConvert.SerializeObject(rum);
         }
 
-        public string UpdateSatusApi()
+        public void RegisterUserAuxApi(UserModel user)
         {
-            return JsonConvert.SerializeObject(UpdateSatus());
+            Guid id = Utils.RandomGeographicZone();
+            if (user.GeographicZone != null)
+            {
+                id = user.GeographicZone;
+            }
+            User u = new User()
+            {
+                Id = new Guid(),
+                Username = user.Username,
+                Password = Utils.GeneratePassword(),
+                Mail = Utils.GenerateMail(user.Username),
+                Status = user.Status,
+                GeographicZone = id,
+            };
+            DataAccessAction.user.Register(u);
         }
 
-        public string UpdateStatusValidationApi(UpdateStatusModel usm)
+        public String ShowStatusToValidApi()
         {
-            return JsonConvert.SerializeObject(UpdateStatusValidation(usm));
+            List<StatusToValid> upm = new List<StatusToValid>();
+            foreach (var item in DataAccessAction.admin.GetUpdateStatus(true))
+            {
+                upm.Add(new StatusToValid
+                {
+                    AnswerTimeStamp = new DateTime(),
+                    Id = item.Id,
+                    State = item.State,
+                    NewStatus = item.NewStatus,
+                    OldStatus = item.OldStatus,
+                    Path = item.Path,
+                    SubmitTimeStamp = item.SubmitTimeStamp,
+                    UserId = item.UserId,
+                    Username = DataAccessAction.user.GetUserById(item.UserId).Username
+
+                });
+
+            }
+            return JsonConvert.SerializeObject(upm);
+        }
+        public String ShowAllUpdateStatusApi()
+        {
+            List<StatusToValid> upm = new List<StatusToValid>();
+            foreach (var item in DataAccessAction.admin.GetUpdateStatus(true))
+            {
+                upm.Add(new StatusToValid
+                {
+                    AnswerTimeStamp = new DateTime(),
+                    Id = item.Id,
+                    State = item.State,
+                    NewStatus = item.NewStatus,
+                    OldStatus = item.OldStatus,
+                    Path = item.Path,
+                    SubmitTimeStamp = item.SubmitTimeStamp,
+                    UserId = item.UserId,
+                    Username = DataAccessAction.user.GetUserById(item.UserId).Username
+
+                });
+            }
+            foreach (var item in DataAccessAction.admin.GetUpdateStatus(false))
+            {
+                upm.Add(new StatusToValid
+                {
+                    AnswerTimeStamp = new DateTime(),
+                    Id = item.Id,
+                    State = item.State,
+                    NewStatus = item.NewStatus,
+                    OldStatus = item.OldStatus,
+                    Path = item.Path,
+                    SubmitTimeStamp = item.SubmitTimeStamp,
+                    UserId = item.UserId,
+                    Username = DataAccessAction.user.GetUserById(item.UserId).Username
+
+                });
+            }
+            return JsonConvert.SerializeObject(upm);
+        }
+        
+        public void AcceptUpdateStatusApi(Guid id)
+        {
+            DataAccessAction.admin.AcceptUpdateStatusUser(id);
+        }
+        public void RefuseUpdateStatusApi(Guid id)
+        {
+            DataAccessAction.admin.RefuseUpdateStatusUser(id);
         }
 
-        public string ShowStatusToValidApi()
+        public String AddWalletToUserApi(Guid id)
         {
-            return JsonConvert.SerializeObject(ShowStatusToValid());
+            User u = DataAccessAction.user.GetUserById(id);
+            UserModel us = new UserModel
+            {
+                Id = u.Id,
+                Username = u.Username
+            };
+            List<WalletModel> wallets = new List<WalletModel>();
+            foreach (var item in DataAccessAction.wallet.GetWalletNotInUserScope(id))
+            {
+                wallets.Add(new WalletModel
+                {
+                    Id = item.Id,
+                    Service = item.Service
+                });
+            }
+
+            AddWalletToUserContentModel acm = new AddWalletToUserContentModel
+            {
+                User = us,
+                Wallets = wallets
+            };
+            return JsonConvert.SerializeObject(acm);
+        }
+        public void AddWalletToUserValidApi(AddWalletToUserModel auwm)
+        {
+            foreach (var item in auwm.WalletId)
+            { //4BFCB6CB-9D05-E811-8AD0-484520A48417
+                DataAccessAction.wallet.AddScope(auwm.UserId, item, true);
+            }
         }
 
-        public string ShowAllUpdateStatusApi()
-        {
-            return JsonConvert.SerializeObject(ShowStatusToValid());
-        }
-
-        public string DownloadFileApi(Guid id)
-        {
-            return JsonConvert.SerializeObject(DownloadFile(id));
-        }
-
-        public string AcceptUpdateStatusApi(Guid id)
-        {
-            return JsonConvert.SerializeObject(AcceptUpdateStatus(id));
-        }
-
-        public string RefuseUpdateStatusApi(Guid id)
-        {
-            return JsonConvert.SerializeObject(RefuseUpdateStatus(id));
-        }
-
-        public string AddWalletToUserApi(Guid id)
-        {
-            return JsonConvert.SerializeObject(AddWalletToUser(id));
-        }
-
-        public string AddWalletToUserValidApi(AddWalletToUserModel auwm)
-        {
-            return JsonConvert.SerializeObject(AddWalletToUserValid(auwm));
-        }
 
         /* END OF API WEB SERVICE */
 
